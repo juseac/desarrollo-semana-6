@@ -70,10 +70,10 @@
 <!-- Page Header -->
 <div class="flex flex-col gap-2 p-4 border-l-4 border-yellow-600 pl-6 mb-8">
 <h1 class="text-[#111418] text-3xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
-                            Stack Tecnológico: <span class="text-yellow-700">Frameworks, Herramientas y Plataformas</span>
+                            Implementación y Stack Tecnológico
 </h1>
 <p class="text-text-secondary text-base md:text-lg font-normal leading-normal">
-                            Desarrollo de Servicios Web REST y SOAP - Postgrado en Desarrollo de Software
+                            Herramientas y Ejemplos Prácticos de Consumo REST vs SOAP
                         </p>
 </div>
 <!-- Category Chips/Stats (Optional Quick View) -->
@@ -275,6 +275,64 @@
 </table>
 </div>
 </div>
+<!-- Section Header: Implementación -->
+<div class="px-4 pb-4 pt-8">
+<h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-700">code</span>
+                            Implementación Práctica: Consumo de Servicios
+                        </h2>
+</div>
+<!-- Code Comparison -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4">
+<!-- REST Example -->
+<div class="rounded-xl border border-card-border bg-[#1e1e1e] p-6 shadow-sm overflow-hidden group hover:border-yellow-500/50 transition-colors">
+<div class="flex items-center justify-between mb-4 border-b border-gray-700 pb-2">
+<h3 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-green-400">api</span>
+                Cliente REST (JavaScript)
+            </h3>
+<span class="text-xs text-gray-400 font-mono bg-gray-800 px-2 py-1 rounded">fetch API</span>
+</div>
+<pre class="font-mono text-sm text-gray-300 overflow-x-auto leading-relaxed"><code><span class="text-purple-400">const</span> getUser = <span class="text-blue-400">async</span> (id) => {
+  <span class="text-purple-400">try</span> {
+    <span class="text-gray-500">// 1. Simple, directo, usa JSON nativo</span>
+    <span class="text-purple-400">const</span> response = <span class="text-blue-400">await</span> fetch(<span class="text-green-400">`https://api.com/users/${id}`</span>);
+    
+    <span class="text-gray-500">// 2. Parseo automático</span>
+    <span class="text-purple-400">const</span> data = <span class="text-blue-400">await</span> response.json();
+    console.log(data.name);
+  } <span class="text-purple-400">catch</span> (error) {
+    console.error(<span class="text-green-400">'Error:'</span>, error);
+  }
+};</code></pre>
+</div>
+
+<!-- SOAP Example -->
+<div class="rounded-xl border border-card-border bg-[#1e1e1e] p-6 shadow-sm overflow-hidden group hover:border-yellow-500/50 transition-colors">
+<div class="flex items-center justify-between mb-4 border-b border-gray-700 pb-2">
+<h3 class="text-white text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-400">mark_email_unread</span>
+                Cliente SOAP (Axios + XML)
+            </h3>
+<span class="text-xs text-gray-400 font-mono bg-gray-800 px-2 py-1 rounded">XML Construction</span>
+</div>
+<pre class="font-mono text-sm text-gray-300 overflow-x-auto leading-relaxed"><code><span class="text-purple-400">const</span> getSoapUser = <span class="text-blue-400">async</span> (id) => {
+  <span class="text-gray-500">// 1. Construcción manual del sobre XML (Verborragia)</span>
+  <span class="text-purple-400">const</span> xml = <span class="text-green-400">`&lt;soapenv:Envelope ...&gt;
+    &lt;soapenv:Body&gt;
+      &lt;web:GetUser&gt;
+        &lt;web:id&gt;${id}&lt;/web:id&gt;
+      &lt;/web:GetUser&gt;
+    &lt;/soapenv:Body&gt;
+  &lt;/soapenv:Envelope&gt;`</span>;
+
+  <span class="text-gray-500">// 2. Envío con Content-Type específico</span>
+  <span class="text-purple-400">const</span> { data } = <span class="text-blue-400">await</span> axios.post(<span class="text-green-400">'https://api.com/soap'</span>, xml, {
+    headers: { <span class="text-green-400">'Content-Type'</span>: <span class="text-green-400">'text/xml'</span> }
+  });
+};</code></pre>
+</div>
+</div>
 <!-- Slide Navigation Footer -->
 <div class="mt-8 flex items-center justify-between p-4 border-t border-card-border">
 
@@ -286,9 +344,3 @@
 </div>
 </div>
 </body></html>
-
-
-
-
-
-
