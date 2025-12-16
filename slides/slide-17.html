@@ -65,10 +65,14 @@
 <!-- Main Layout Container -->
 <div class="layout-container flex h-full grow flex-col">
 <!-- Content Wrapper -->
-<div class="px-6 md:px-20 lg:px-40 flex flex-1 justify-center py-10">
-<div class="layout-content-container flex flex-col max-w-[1024px] flex-1">
+<div class="px-6 md:px-10 lg:px-12 flex flex-1 justify-center py-10">
+<div class="layout-content-container flex flex-col max-w-[1600px] flex-1">
 <!-- Page Header -->
 <div class="flex flex-col gap-2 p-4 border-l-4 border-yellow-600 pl-6 mb-8">
+<div class="flex items-center gap-2 mb-1">
+    <span class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-xs font-bold uppercase tracking-wider border border-yellow-200">Roadmap: Paso 05</span>
+    <span class="text-[#8c8b5f] text-sm font-medium">Implementación Práctica</span>
+</div>
 <h1 class="text-[#111418] text-3xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
                             Implementación y Stack Tecnológico
 </h1>
@@ -282,65 +286,128 @@
                             Implementación Práctica: Consumo de Servicios
                         </h2>
 </div>
-<!-- Code Comparison -->
+<!-- Code Comparison Wrapper -->
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4">
-<!-- REST Example -->
-<div class="rounded-xl border border-card-border bg-[#1e1e1e] p-6 shadow-sm overflow-hidden group hover:border-yellow-500/50 transition-colors">
-<div class="flex items-center justify-between mb-4 border-b border-gray-700 pb-2">
-<h3 class="text-white text-lg font-bold flex items-center gap-2">
-<span class="material-symbols-outlined text-green-400">api</span>
-                Cliente REST (JavaScript)
+    <!-- REST Example -->
+    <div class="rounded-xl border border-card-border bg-[#1e1e1e] p-6 shadow-sm overflow-hidden group hover:border-yellow-500/50 transition-colors flex flex-col">
+        <div class="flex items-center justify-between mb-4 border-b border-gray-700 pb-2">
+            <h3 class="text-white text-lg font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-400">api</span>
+                Cliente REST (Modern JS)
             </h3>
-<span class="text-xs text-gray-400 font-mono bg-gray-800 px-2 py-1 rounded">fetch API</span>
-</div>
-<pre class="font-mono text-sm text-gray-300 overflow-x-auto leading-relaxed"><code><span class="text-purple-400">const</span> getUser = <span class="text-blue-400">async</span> (id) => {
+            <span class="text-xs text-gray-400 font-mono bg-gray-800 px-2 py-1 rounded">Fetch API</span>
+        </div>
+        <pre class="font-mono text-sm text-gray-300 overflow-x-auto leading-relaxed custom-scrollbar flex-1"><code><span class="text-gray-500">// Función asíncrona para obtener usuario</span>
+<span class="text-purple-400">const</span> getRestUser = <span class="text-blue-400">async</span> (id) => {
   <span class="text-purple-400">try</span> {
-    <span class="text-gray-500">// 1. Simple, directo, usa JSON nativo</span>
-    <span class="text-purple-400">const</span> response = <span class="text-blue-400">await</span> fetch(<span class="text-green-400">`https://api.com/users/${id}`</span>);
+    <span class="text-gray-500">// 1. Petición HTTP GET (URL limpia y semántica)</span>
+    <span class="text-purple-400">const</span> response = <span class="text-blue-400">await</span> fetch(<span class="text-green-400">`https://api.empresa.com/v1/users/${id}`</span>, {
+      method: <span class="text-green-400">'GET'</span>,
+      headers: {
+        <span class="text-green-400">'Accept'</span>: <span class="text-green-400">'application/json'</span>,
+        <span class="text-green-400">'Authorization'</span>: <span class="text-green-400">'Bearer token123'</span>
+      }
+    });
+
+    <span class="text-gray-500">// 2. Validación de estado HTTP (404, 500, etc.)</span>
+    <span class="text-purple-400">if</span> (!response.ok) <span class="text-purple-400">throw</span> <span class="text-blue-400">new</span> Error(<span class="text-green-400">`HTTP Error: ${response.status}`</span>);
+
+    <span class="text-gray-500">// 3. Parseo automático de JSON a Objeto JS</span>
+    <span class="text-purple-400">const</span> user = <span class="text-blue-400">await</span> response.json();
     
-    <span class="text-gray-500">// 2. Parseo automático</span>
-    <span class="text-purple-400">const</span> data = <span class="text-blue-400">await</span> response.json();
-    console.log(data.name);
+    <span class="text-gray-500">// 4. Consumo directo de propiedades</span>
+    console.log(<span class="text-green-400">`Usuario encontrado: ${user.name} (${user.role})`</span>);
+
   } <span class="text-purple-400">catch</span> (error) {
-    console.error(<span class="text-green-400">'Error:'</span>, error);
+    console.error(<span class="text-green-400">'Error en la petición REST:'</span>, error.message);
+  }
+};
+
+<span class="text-gray-500">// Estructura de Respuesta (JSON Ligero):</span>
+<span class="text-gray-500">// { "id": 101, "name": "Alice Smith", "role": "Admin", "active": true }</span></code></pre>
+    </div>
+
+    <!-- SOAP Example -->
+    <div class="rounded-xl border border-card-border bg-[#1e1e1e] p-6 shadow-sm overflow-hidden group hover:border-yellow-500/50 transition-colors flex flex-col">
+        <div class="flex items-center justify-between mb-4 border-b border-gray-700 pb-2">
+            <h3 class="text-white text-lg font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-blue-400">mark_email_unread</span>
+                Cliente SOAP (Legacy)
+            </h3>
+            <span class="text-xs text-gray-400 font-mono bg-gray-800 px-2 py-1 rounded">Axios + XML</span>
+        </div>
+        <pre class="font-mono text-sm text-gray-300 overflow-x-auto leading-relaxed custom-scrollbar flex-1"><code><span class="text-purple-400">import</span> axios <span class="text-purple-400">from</span> <span class="text-green-400">'axios'</span>;
+
+<span class="text-purple-400">const</span> getSoapUser = <span class="text-blue-400">async</span> (id) => {
+  <span class="text-purple-400">try</span> {
+    <span class="text-gray-500">// 1. Construcción manual del "Sobre" (Envelope) XML</span>
+    <span class="text-gray-500">// Estricto cumplimiento del contrato WSDL</span>
+    <span class="text-purple-400">const</span> xmlEnvelope = <span class="text-green-400">`
+      &lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                        xmlns:web="http://api.empresa.com/webservice"&gt;
+        &lt;soapenv:Header&gt;
+           &lt;web:AuthToken&gt;token123&lt;/web:AuthToken&gt;
+        &lt;/soapenv:Header&gt;
+        &lt;soapenv:Body&gt;
+          &lt;web:GetUserRequest&gt;
+            &lt;web:UserId&gt;${id}&lt;/web:UserId&gt;
+          &lt;/web:GetUserRequest&gt;
+        &lt;/soapenv:Body&gt;
+      &lt;/soapenv:Envelope&gt;`</span>;
+
+    <span class="text-gray-500">// 2. Petición POST obligatoria con Content-Type XML</span>
+    <span class="text-purple-400">const</span> { data } = <span class="text-blue-400">await</span> axios.post(<span class="text-green-400">'https://api.empresa.com/soap'</span>, xmlEnvelope, {
+      headers: { 
+        <span class="text-green-400">'Content-Type'</span>: <span class="text-green-400">'text/xml; charset=utf-8'</span>,
+        <span class="text-green-400">'SOAPAction'</span>: <span class="text-green-400">'GetUser'</span>
+      }
+    });
+
+    <span class="text-gray-500">// 3. Parseo Manual de XML a Objeto (Complejidad Adicional)</span>
+    <span class="text-purple-400">const</span> parser = <span class="text-blue-400">new</span> DOMParser();
+    <span class="text-purple-400">const</span> xmlDoc = parser.parseFromString(data, <span class="text-green-400">"text/xml"</span>);
+    <span class="text-purple-400">const</span> name = xmlDoc.getElementsByTagName(<span class="text-green-400">"web:Name"</span>)[0].textContent;
+    
+    console.log(<span class="text-green-400">`Usuario SOAP: ${name}`</span>);
+
+  } <span class="text-purple-400">catch</span> (error) {
+    console.error(<span class="text-green-400">'Error SOAP:'</span>, error);
   }
 };</code></pre>
+    </div>
 </div>
 
-<!-- SOAP Example -->
-<div class="rounded-xl border border-card-border bg-[#1e1e1e] p-6 shadow-sm overflow-hidden group hover:border-yellow-500/50 transition-colors">
-<div class="flex items-center justify-between mb-4 border-b border-gray-700 pb-2">
-<h3 class="text-white text-lg font-bold flex items-center gap-2">
-<span class="material-symbols-outlined text-blue-400">mark_email_unread</span>
-                Cliente SOAP (Axios + XML)
-            </h3>
-<span class="text-xs text-gray-400 font-mono bg-gray-800 px-2 py-1 rounded">XML Construction</span>
-</div>
-<pre class="font-mono text-sm text-gray-300 overflow-x-auto leading-relaxed"><code><span class="text-purple-400">const</span> getSoapUser = <span class="text-blue-400">async</span> (id) => {
-  <span class="text-gray-500">// 1. Construcción manual del sobre XML (Verborragia)</span>
-  <span class="text-purple-400">const</span> xml = <span class="text-green-400">`&lt;soapenv:Envelope ...&gt;
-    &lt;soapenv:Body&gt;
-      &lt;web:GetUser&gt;
-        &lt;web:id&gt;${id}&lt;/web:id&gt;
-      &lt;/web:GetUser&gt;
-    &lt;/soapenv:Body&gt;
-  &lt;/soapenv:Envelope&gt;`</span>;
-
-  <span class="text-gray-500">// 2. Envío con Content-Type específico</span>
-  <span class="text-purple-400">const</span> { data } = <span class="text-blue-400">await</span> axios.post(<span class="text-green-400">'https://api.com/soap'</span>, xml, {
-    headers: { <span class="text-green-400">'Content-Type'</span>: <span class="text-green-400">'text/xml'</span> }
-  });
-};</code></pre>
-</div>
-</div>
-<!-- Slide Navigation Footer -->
-<div class="mt-8 flex items-center justify-between p-4 border-t border-card-border">
-
-
-
+<!-- Simplified Explanation -->
+<div class="px-4 pb-8 mt-4">
+    <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+        <h3 class="text-[#111418] text-lg font-bold mb-4 flex items-center gap-2">
+            <span class="material-symbols-outlined text-yellow-700">lightbulb</span>
+            ¿Qué significa esto en palabras simples?
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <h4 class="font-bold text-green-700 mb-2">REST es como pedir una pizza por App</h4>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                    Es directo y ligero. Solo dices "Quiero la pizza #101" (la URL) y te llega la caja lista para comer (el JSON). No necesitas envoltorios extraños ni protocolos complicados. Es lo que usan la mayoría de las apps modernas (Instagram, Uber) porque es rápido y fácil de entender.
+                </p>
+            </div>
+            <div>
+                <h4 class="font-bold text-blue-700 mb-2">SOAP es como enviar una Carta Certificada</h4>
+                <p class="text-sm text-gray-700 leading-relaxed">
+                    Es formal y estricto. Necesitas un sobre especial (Envelope), poner los sellos correctos (Headers) y escribir el mensaje siguiendo reglas muy rígidas. Al recibirla, tienes que abrir el sobre con cuidado para leer el contenido. Es más trabajo, pero garantiza que el mensaje llegue seguro y sin alteraciones, por eso lo usan los bancos.
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </body></html>
+
+
+
+
+
+
