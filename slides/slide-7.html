@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="light dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title></title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script>
+      tailwind.config = {
+        
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f9f506",
+              "background-light": "#f8f8f5",
+              "background-dark": "#23220f",
+              "text-main": "#181811",
+              "text-muted": "#8c8b5f",
+            },
+            fontFamily: {
+              "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+              "body": ["Spline Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    /* Custom utility for the hexagonal center */
+    .hex-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+    
+    /* Connecting lines for the diagram */
+    .connector-line {
+      position: absolute;
+      z-index: 0;
+      background-color: #cbd5e1; /* slate-300 */
+    }
+    
+    /* Responsive connectors logic is complex in pure CSS, 
+       so we'll stick to a visual grid layout that implies connection 
+       or use a background SVG for the connections if needed. 
+       For this pure Tailwind/HTML approach, we will use a grid layout 
+       where the center is highlighted. */
+  </style>
+    <script src="../navigation.js"></script>
+</head>
+<body class="bg-background-light font-display text-[#111318] min-h-screen flex flex-col overflow-x-hidden">
+<!-- Main Layout Container -->
+<div class="layout-container flex h-full grow flex-col">
+<!-- 1. Header Section (PageHeading adapted) -->
+<header class="z-20 flex w-full items-center justify-between border-b border-solid border-b-[#e6e6e0] bg-white/80 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-4 text-[#181811]">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary-dark">
+<span class="material-symbols-outlined text-2xl text-yellow-700">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Postgrado en Desarrollo de Software</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+</div>
+</header>
+<!-- Content Wrapper -->
+<div class="flex flex-1 flex-col items-center py-8 px-4 sm:px-8 lg:px-16">
+<div class="layout-content-container flex flex-col w-full max-w-[1280px] flex-1 gap-8">
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between items-end gap-4 p-4">
+    <div class="flex min-w-72 flex-col gap-2">
+        <!-- <div class="flex items-center gap-2 mb-1">
+            <span class="bg-black text-white text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider">Módulo 2: Web Services</span>
+            <span class="bg-primary/30 text-black text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider">Diapositiva 1/5</span>
+        </div> -->
+        <h1 class="text-[#181811] text-4xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+            REST: <span class="text-yellow-600">Re</span>presentational <span class="text-yellow-600">S</span>tate <span class="text-yellow-600">T</span>ransfer
+        </h1>
+        <p class="text-[#8c8b5f] text-lg font-normal leading-normal">
+            Estilo arquitectónico para sistemas hipermedia distribuidos.
+        </p>
+    </div>
+    <!-- Definition Card -->
+    <div class="flex flex-col gap-2 p-4 bg-[#f0f0eb] rounded-md border border-[#e6e6db] max-w-md shadow-sm">
+        <div class="flex items-center gap-2 text-[#181811]">
+            <span class="material-symbols-outlined text-yellow-700">school</span>
+            <span class="font-bold text-sm">Origen y Definición</span>
+        </div>
+        <p class="text-[#5c5b3f] text-sm">
+            Propuesto por <strong class="text-[#181811]">Roy Fielding</strong> en su tesis doctoral del año 2000. Define un conjunto de restricciones para crear APIs escalables.
+        </p>
+    </div>
+</div>
+
+<!-- 2. Main Content: The 6 Principles Diagram -->
+<main class="flex-1 flex flex-col justify-center relative py-6">
+<!-- Section Title -->
+<div class="mb-8 text-center">
+<h2 class="text-2xl font-bold text-[#111318]">Los 6 Principios Arquitectónicos</h2>
+<p class="text-[#616f89]">Las restricciones que definen a un sistema como "RESTful"</p>
+</div>
+<!-- Grid Layout mimicking a mind-map/hub-spoke model -->
+<div class="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+<!-- Principle 1 -->
+<div class="group flex flex-col gap-3 rounded-xl border border-gray-200 bg-[#f0f0eb] p-5 shadow-sm hover:shadow-md hover:border-yellow-600/50 transition-all duration-300">
+<div class="flex items-center gap-3 mb-2">
+<div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600">
+<span class="material-symbols-outlined">group</span>
+</div>
+<h3 class="text-lg font-bold text-[#111318] leading-tight">Cliente-Servidor</h3>
+</div>
+<p class="text-[#616f89] text-sm flex-grow">
+                Separación de responsabilidades. La UI es independiente de los datos, permitiendo que evolucionen por separado.
+              </p>
+<div class="bg-background-light p-2 rounded text-xs font-mono text-gray-600 border-l-2 border-yellow-600">
+                Ex: React App vs Node API
+              </div>
+</div>
+<!-- Principle 2 -->
+<div class="group flex flex-col gap-3 rounded-xl border border-gray-200 bg-[#f0f0eb] p-5 shadow-sm hover:shadow-md hover:border-yellow-600/50 transition-all duration-300">
+<div class="flex items-center gap-3 mb-2">
+<div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600">
+<span class="material-symbols-outlined">do_not_disturb_on</span>
+</div>
+<h3 class="text-lg font-bold text-[#111318] leading-tight">Sin Estado (Stateless)</h3>
+</div>
+<p class="text-[#616f89] text-sm flex-grow">
+                El servidor no guarda estado de la sesión entre peticiones. Cada request contiene toda la info necesaria.
+              </p>
+<div class="bg-background-light p-2 rounded text-xs font-mono text-gray-600 border-l-2 border-yellow-600">
+                Ex: Token JWT en Headers
+              </div>
+</div>
+<!-- Principle 3 -->
+<div class="group flex flex-col gap-3 rounded-xl border border-gray-200 bg-[#f0f0eb] p-5 shadow-sm hover:shadow-md hover:border-yellow-600/50 transition-all duration-300">
+<div class="flex items-center gap-3 mb-2">
+<div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<h3 class="text-lg font-bold text-[#111318] leading-tight">Cacheable</h3>
+</div>
+<p class="text-[#616f89] text-sm flex-grow">
+                Las respuestas deben definirse explícitamente como cacheables o no para mejorar la eficiencia.
+              </p>
+<div class="bg-background-light p-2 rounded text-xs font-mono text-gray-600 border-l-2 border-yellow-600">
+                Ex: Cache-Control &amp; ETag
+              </div>
+</div>
+<!-- CENTER PIECE: Visual Anchor for Large Screens -->
+<!-- We hide this on mobile and insert it via grid positioning logic on desktop if we wanted a true radial layout, 
+                 but for a clean grid, we can place it visually distinct or as a header. 
+                 Here, we will place it as a visually distinct card that spans across if needed, or simply keep the grid uniform.
+                 Let's keep the uniform grid but highlight the connections mentally. -->
+<!-- Principle 4 -->
+<div class="group flex flex-col gap-3 rounded-xl border border-gray-200 bg-[#f0f0eb] p-5 shadow-sm hover:shadow-md hover:border-yellow-600/50 transition-all duration-300">
+<div class="flex items-center gap-3 mb-2">
+<div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600">
+<span class="material-symbols-outlined">link</span>
+</div>
+<h3 class="text-lg font-bold text-[#111318] leading-tight">Interfaz Uniforme</h3>
+</div>
+<p class="text-[#616f89] text-sm flex-grow">
+                Comunicación estandarizada. Simplifica y desacopla la arquitectura.
+              </p>
+<div class="bg-background-light p-2 rounded text-xs font-mono text-gray-600 border-l-2 border-yellow-600">
+                Ex: Verbos HTTP (GET, POST)
+              </div>
+</div>
+<!-- Principle 5 -->
+<div class="group flex flex-col gap-3 rounded-xl border border-gray-200 bg-[#f0f0eb] p-5 shadow-sm hover:shadow-md hover:border-yellow-600/50 transition-all duration-300">
+<div class="flex items-center gap-3 mb-2">
+<div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600">
+<span class="material-symbols-outlined">layers</span>
+</div>
+<h3 class="text-lg font-bold text-[#111318] leading-tight">Sistema en Capas</h3>
+</div>
+<p class="text-[#616f89] text-sm flex-grow">
+                Arquitectura jerárquica invisible para el cliente. Mejora la seguridad y el balanceo de carga.
+              </p>
+<div class="bg-background-light p-2 rounded text-xs font-mono text-gray-600 border-l-2 border-yellow-600">
+                Ex: Proxy, Load Balancer
+              </div>
+</div>
+<!-- Principle 6 -->
+<div class="group flex flex-col gap-3 rounded-xl border border-gray-200 bg-[#f0f0eb] p-5 shadow-sm hover:shadow-md hover:border-yellow-600/50 transition-all duration-300">
+<div class="flex items-center gap-3 mb-2">
+<div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-100 text-blue-600">
+<span class="material-symbols-outlined">code</span>
+</div>
+<h3 class="text-lg font-bold text-[#111318] leading-tight">Código bajo Demanda</h3>
+</div>
+<p class="text-[#616f89] text-sm flex-grow">
+                (Opcional) El servidor puede extender la funcionalidad del cliente enviando código ejecutable.
+              </p>
+<div class="bg-background-light p-2 rounded text-xs font-mono text-gray-600 border-l-2 border-yellow-600">
+                Ex: Scripts JS, Applets
+              </div>
+</div>
+</div>
+<!-- Center Visual Anchor (Floating or placed) -->
+<!-- To make the "hub and spoke" visual requested by the user clearer, we can add a visual divider or connector in the background, or a summary pill in the center on large screens. -->
+<!-- <div class="hidden lg:flex absolute inset-0 pointer-events-none justify-center items-center">
+<div class="bg-primary shadow-xl rounded-2xl w-32 h-32 flex flex-col items-center justify-center z-20 border-4 border-white transform transition-transform hover:scale-110">
+<span class="text-[#181811] font-black text-2xl tracking-tighter">REST</span>
+<span class="material-symbols-outlined text-[#181811]/80 text-3xl mt-1">hub</span>
+</div>
+</div> -->
+<!-- NOTE: The grid above will sit *behind* this absolute positioned center on huge screens, likely obscuring content if not careful. 
+               However, with a 3-column grid and a gap, the center of the grid (between col 1-2-3 and row 1-2) is empty space if we had an even number.
+               Since we have 6 items, a 3x2 grid has no "center" hole. 
+               Let's adjust the layout slightly to accommodate the center hub concept more cleanly. -->
+</main>
+<!-- Modified Main Content: 3-col grid with gap for hub -->
+<!-- We will replace the previous grid structure with this one which creates a hole in the middle for the HUB -->
+<style>
+            @media (min-width: 1024px) {
+                .hub-grid {
+                    display: grid;
+                    grid-template-columns: 1fr 200px 1fr;
+                    grid-template-rows: repeat(3, auto);
+                    gap: 2rem;
+                    align-items: center;
+                }
+                /* Left Column */
+                .hub-item:nth-child(1) { grid-column: 1; grid-row: 1; text-align: right; align-items: flex-end; }
+                .hub-item:nth-child(2) { grid-column: 1; grid-row: 2; text-align: right; align-items: flex-end; }
+                .hub-item:nth-child(3) { grid-column: 1; grid-row: 3; text-align: right; align-items: flex-end; }
+                
+                /* Right Column */
+                .hub-item:nth-child(4) { grid-column: 3; grid-row: 1; }
+                .hub-item:nth-child(5) { grid-column: 3; grid-row: 2; }
+                .hub-item:nth-child(6) { grid-column: 3; grid-row: 3; }
+
+                /* Center Hub */
+                .hub-center {
+                    grid-column: 2;
+                    grid-row: 1 / span 3;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                }
+                
+                /* Adjust inner alignment for left items */
+                .hub-item:nth-child(1) .flex-row, .hub-item:nth-child(2) .flex-row, .hub-item:nth-child(3) .flex-row {
+                    flex-direction: row-reverse;
+                }
+            }
+        </style>
+<div class="hidden lg:grid hub-grid w-full max-w-[1100px] mx-auto py-10">
+<!-- Left Side -->
+<div class="hub-item group flex flex-col gap-2 p-4 rounded-xl hover:bg-white/50 transition-colors">
+<div class="flex flex-row items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 shrink-0">
+<span class="material-symbols-outlined">group</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-[#111318]">Cliente-Servidor</h3>
+<p class="text-[#616f89] text-sm">Separación de UI y Datos.</p>
+</div>
+</div>
+<div class="bg-[#f0f0eb] border border-gray-200 px-3 py-1.5 rounded-full text-xs font-mono text-gray-600 inline-block w-fit shadow-sm">
+                    Ex: React vs Node API
+                </div>
+</div>
+<div class="hub-item group flex flex-col gap-2 p-4 rounded-xl hover:bg-white/50 transition-colors">
+<div class="flex flex-row items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 shrink-0">
+<span class="material-symbols-outlined">do_not_disturb_on</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-[#111318]">Stateless</h3>
+<p class="text-[#616f89] text-sm">Sin estado de sesión.</p>
+</div>
+</div>
+<div class="bg-[#f0f0eb] border border-gray-200 px-3 py-1.5 rounded-full text-xs font-mono text-gray-600 inline-block w-fit shadow-sm">
+                    Ex: JWT Tokens
+                </div>
+</div>
+<div class="hub-item group flex flex-col gap-2 p-4 rounded-xl hover:bg-white/50 transition-colors">
+<div class="flex flex-row items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 shrink-0">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-[#111318]">Cacheable</h3>
+<p class="text-[#616f89] text-sm">Eficiencia de red.</p>
+</div>
+</div>
+<div class="bg-[#f0f0eb] border border-gray-200 px-3 py-1.5 rounded-full text-xs font-mono text-gray-600 inline-block w-fit shadow-sm">
+                    Ex: ETag Headers
+                </div>
+</div>
+<!-- Center Hub -->
+<div class="hub-center relative">
+<!-- Decorative lines behind -->
+<div class="absolute inset-0 flex items-center justify-center z-0">
+<div class="w-[120%] h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent rotate-45 absolute"></div>
+<div class="w-[120%] h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent -rotate-45 absolute"></div>
+<div class="w-[150%] h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent absolute"></div>
+</div>
+<div class="relative z-10 flex flex-col items-center justify-center w-40 h-40 bg-primary rounded-xl shadow-2xl shadow-primary/30 ring-4 ring-white rotate-45">
+<div class="-rotate-45 flex flex-col items-center">
+<span class="material-symbols-outlined text-[#181811] text-5xl mb-2">hub</span>
+<h2 class="text-[#181811] font-black text-2xl tracking-tight">REST</h2>
+<span class="text-blue-200 text-xs font-medium uppercase tracking-widest mt-1">Core</span>
+</div>
+</div>
+</div>
+<!-- Right Side -->
+<div class="hub-item group flex flex-col gap-2 p-4 rounded-xl hover:bg-white/50 transition-colors">
+<div class="flex flex-row items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 shrink-0">
+<span class="material-symbols-outlined">link</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-[#111318]">Interfaz Uniforme</h3>
+<p class="text-[#616f89] text-sm">Contrato estandarizado.</p>
+</div>
+</div>
+<div class="bg-[#f0f0eb] border border-gray-200 px-3 py-1.5 rounded-full text-xs font-mono text-gray-600 inline-block w-fit shadow-sm">
+                    Ex: HTTP Verbs
+                </div>
+</div>
+<div class="hub-item group flex flex-col gap-2 p-4 rounded-xl hover:bg-white/50 transition-colors">
+<div class="flex flex-row items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 shrink-0">
+<span class="material-symbols-outlined">layers</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-[#111318]">Sistema en Capas</h3>
+<p class="text-[#616f89] text-sm">Jerarquía invisible.</p>
+</div>
+</div>
+<div class="bg-[#f0f0eb] border border-gray-200 px-3 py-1.5 rounded-full text-xs font-mono text-gray-600 inline-block w-fit shadow-sm">
+                    Ex: Load Balancers
+                </div>
+</div>
+<div class="hub-item group flex flex-col gap-2 p-4 rounded-xl hover:bg-white/50 transition-colors">
+<div class="flex flex-row items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100 text-blue-600 shrink-0">
+<span class="material-symbols-outlined">code</span>
+</div>
+<div>
+<h3 class="text-xl font-bold text-[#111318]">Code on Demand</h3>
+<p class="text-[#616f89] text-sm">Extensión funcional.</p>
+</div>
+</div>
+<div class="bg-[#f0f0eb] border border-gray-200 px-3 py-1.5 rounded-full text-xs font-mono text-gray-600 inline-block w-fit shadow-sm">
+                    Ex: JavaScript
+                </div>
+</div>
+</div>
+<!-- 3. Footer: Pagination/Controls -->
+<!-- <footer class="mt-auto pt-6 border-t border-gray-200 w-full flex items-center justify-between">
+
+<div class="flex gap-2">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="w-2 h-2 rounded-full bg-gray-300"></span>
+<span class="w-2 h-2 rounded-full bg-gray-300"></span>
+<span class="w-2 h-2 rounded-full bg-gray-300"></span>
+<span class="w-2 h-2 rounded-full bg-gray-300"></span>
+</div>
+
+</footer> -->
+</div>
+</div>
+</div>
+</body></html>
+
+
+
+
+
+
+

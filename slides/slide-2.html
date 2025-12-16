@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Objetivos y Roadmap - REST vs SOAP</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script>
+      tailwind.config = {
+        
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f9f506",
+              "background-light": "#f8f8f5",
+              "background-dark": "#23220f",
+              "text-main": "#181811",
+              "text-muted": "#8c8b5f",
+            },
+            fontFamily: {
+              "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+              "body": ["Spline Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&amp;family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Custom scrollbar for clean UI */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e5e7eb;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d1d5db;
+        }
+    </style>
+    <script src="../navigation.js"></script>
+</head>
+<body class="bg-background-light text-text-main font-display antialiased overflow-x-hidden transition-colors duration-300">
+<div class="relative flex h-screen w-full flex-col justify-between">
+<!-- Background decorative element -->
+<div class="absolute top-0 right-0 -z-10 h-[50vh] w-[50vw] rounded-bl-full bg-gradient-to-b from-primary/10 to-transparent blur-3xl opacity-60"></div>
+<!-- Header -->
+<header class="z-20 flex w-full items-center justify-between border-b border-solid border-b-[#e6e6e0] bg-white/80 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-4 text-[#181811]">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary-dark">
+<span class="material-symbols-outlined text-2xl text-yellow-700">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Postgrado en Desarrollo de Software</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+</div>
+</header>
+<!-- Main Content: Horizontal Roadmap -->
+<main class="flex-grow flex items-center justify-center w-full py-10 p-6 md:p-12 lg:p-16">
+<div class="w-full max-w-7xl overflow-x-auto pb-8">
+<!-- Roadmap Container -->
+<div class="flex flex-col md:flex-row items-start justify-between relative min-w-[800px] gap-4">
+<!-- Connection Line (Desktop) -->
+<div class="hidden md:block absolute top-[28px] left-0 w-full h-[2px] bg-gray-200 -z-10"></div>
+<!-- Step 1: Fundamentos -->
+<div class="group flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-6 flex-1 relative">
+<div class="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#f0f0eb] border-2 border-primary shadow-lg group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-primary text-3xl">menu_book</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-text-muted uppercase tracking-wider mb-1">Paso 01</span>
+<h3 class="text-lg font-bold text-text-main mb-1 group-hover:text-primary transition-colors">Fundamentos</h3>
+<p class="text-sm text-text-muted leading-relaxed pr-4">Conceptos básicos de servicios web y comunicación HTTP.</p>
+</div>
+</div>
+<!-- Step 2: REST -->
+<div class="group flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-6 flex-1 relative">
+<div class="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#f0f0eb] border-2 border-blue-400 shadow-lg group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-blue-500 text-3xl">link</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-text-muted uppercase tracking-wider mb-1">Paso 02</span>
+<h3 class="text-lg font-bold text-text-main mb-1 group-hover:text-blue-500 transition-colors">Protocolo REST</h3>
+<p class="text-sm text-text-muted leading-relaxed pr-4">Arquitectura, verbos HTTP, recursos y statelessness.</p>
+</div>
+</div>
+<!-- Step 3: SOAP -->
+<div class="group flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-6 flex-1 relative">
+<div class="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#f0f0eb] border-2 border-purple-400 shadow-lg group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-purple-500 text-3xl">package_2</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-text-muted uppercase tracking-wider mb-1">Paso 03</span>
+<h3 class="text-lg font-bold text-text-main mb-1 group-hover:text-purple-500 transition-colors">Protocolo SOAP</h3>
+<p class="text-sm text-text-muted leading-relaxed pr-4">Estructura XML, contratos WSDL y estandarización WS-*.</p>
+</div>
+</div>
+<!-- Step 4: Analysis -->
+<div class="group flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-6 flex-1 relative">
+<div class="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#f0f0eb] border-2 border-orange-400 shadow-lg group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-orange-500 text-3xl">balance</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-text-muted uppercase tracking-wider mb-1">Paso 04</span>
+<h3 class="text-lg font-bold text-text-main mb-1 group-hover:text-orange-500 transition-colors">Análisis Comparativo</h3>
+<p class="text-sm text-text-muted leading-relaxed pr-4">Ventajas, desventajas, rendimiento y casos de uso ideales.</p>
+</div>
+</div>
+<!-- Step 5: Implementation -->
+<div class="group flex flex-row md:flex-col items-center md:items-start gap-4 md:gap-6 flex-1 relative">
+<div class="relative flex items-center justify-center w-14 h-14 rounded-full bg-[#f0f0eb] border-2 border-green-400 shadow-lg group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-green-500 text-3xl">construction</span>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-bold text-text-muted uppercase tracking-wider mb-1">Paso 05</span>
+<h3 class="text-lg font-bold text-text-main mb-1 group-hover:text-green-500 transition-colors">Implementación</h3>
+<p class="text-sm text-text-muted leading-relaxed pr-4">Ejemplos de código, consumo de APIs y demostración.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<!-- <footer class="flex flex-col sm:flex-row justify-between items-center border-t border-gray-200 pt-6 mt-4">
+<div class="flex items-center gap-2 mb-4 sm:mb-0">
+<div class="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-black text-lg">school</span>
+</div>
+<p class="text-sm font-semibold text-text-main">Postgrado en Desarrollo de Software</p>
+</div>
+<div class="flex items-center gap-6">
+
+
+</div>
+</footer> -->
+</div>
+</body></html>
+
+
+
+
+

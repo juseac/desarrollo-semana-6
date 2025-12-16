@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Servicios Web: REST y SOAP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f9f506",
+              "background-light": "#f8f8f5",
+              "background-dark": "#23220f",
+              "text-main": "#181811",
+              "text-muted": "#8c8b5f",
+            },
+            fontFamily: {
+              "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+              "body": ["Spline Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+    <script src="../navigation.js"></script>
+</head>
+<body class="bg-background-light font-display text-[#181811]">
+<div class="relative flex min-h-screen w-full flex-col overflow-hidden">
+<!-- Navbar -->
+<header class="z-20 flex w-full items-center justify-between border-b border-solid border-b-[#e6e6e0] bg-white/80 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-4 text-[#181811]">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary-dark">
+<span class="material-symbols-outlined text-2xl text-yellow-700">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Postgrado en Desarrollo de Software</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+</div>
+</header>
+<!-- Main Content (Hero) -->
+<main class="relative flex flex-1 flex-col items-center justify-center p-4">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 z-0">
+<img alt="Laptop screen showing code editor with web development syntax" class="h-full w-full object-cover opacity-10" data-alt="Laptop screen showing code editor with web development syntax" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBGt8YG5lxf3cEFBMfpRSu4PwLhfhWmyBdDlGn8snCOrQBDhjQCJKlesmhGLUlRzkuK5dnmElqeNSz3sKXZlmnU418rmM_sPbiGXpHkh7hOI7VCHMyX8EDvHEpBJpJ76NdeuaNxNt5mNkWsTUp1tDU0IQ4dLivsNL1ylCCa55suKjGNmZ4CddI6NrRnZxz6Qtkv80wIsxVYzi1UTMCbez2NewOWKmC4q4JB0MUQJtQtscDZw3oCn3hg5EmuhXIlaUEMv_wuGERuGc"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-background-light/50 to-background-light"></div>
+</div>
+<div class="z-10 layout-content-container flex flex-col max-w-[1200px] w-full items-center text-center gap-8 py-10 md:py-20 animate-fade-in-up">
+<!-- Central Icon -->
+<div class="relative flex items-center justify-center">
+<div class="absolute size-24 md:size-32 bg-primary blur-2xl opacity-40 rounded-full"></div>
+<div class="relative flex size-20 md:size-24 items-center justify-center rounded-full bg-[#f0f0eb] shadow-xl border border-gray-100">
+<span class="material-symbols-outlined text-5xl md:text-6xl text-yellow-600">api</span>
+</div>
+</div>
+<!-- Titles -->
+<div class="flex flex-col gap-4 md:gap-6 max-w-4xl px-4">
+<h1 class="text-[#181811] text-5xl md:text-7xl font-black leading-tight tracking-[-0.033em]">
+                        Servicios Web: <br class="hidden md:block"/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-500">REST y SOAP</span>
+</h1>
+<div class="h-1 w-24 bg-primary mx-auto rounded-full"></div>
+<h2 class="text-[#5c5c4f] text-xl md:text-2xl font-normal leading-relaxed max-w-2xl mx-auto">
+                        Implementación, Análisis Comparativo e Integración en Aplicaciones Modernas
+                    </h2>
+</div>
+<!-- Academic Info Cards -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-3xl px-4">
+<div class="bg-white/60 backdrop-blur-sm p-4 rounded-xl border border-gray-100 flex flex-col items-center gap-2 shadow-sm hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-[#8c8b5f]">architecture</span>
+<p class="text-sm font-bold text-[#181811]">NRC-9063 Desarrollo de Aplicaciones Web</p>
+<p class="text-xs text-[#5c5c4f]">UNIMINUTO</p>
+</div>
+<div class="bg-white/60 backdrop-blur-sm p-4 rounded-xl border border-gray-100 flex flex-col items-center gap-2 shadow-sm hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-[#8c8b5f]">person</span>
+<p class="text-sm font-bold text-[#181811]">Juan Sebastian Arrieta</p>
+<p class="text-xs text-[#5c5c4f]">Presentado por</p>
+</div>
+<div class="bg-white/60 backdrop-blur-sm p-4 rounded-xl border border-gray-100 flex flex-col items-center gap-2 shadow-sm hover:shadow-md transition-shadow">
+<span class="material-symbols-outlined text-[#8c8b5f]">calendar_month</span>
+<p class="text-sm font-bold text-[#181811]">15 de diciembre 2025</p>
+<p class="text-xs text-[#5c5c4f]">Fecha</p>
+</div>
+</div>
+<!-- CTA Button -->
+<div class="mt-8">
+
+</div>
+</div>
+</main>
+<!-- Minimal Footer -->
+<!-- <footer class="z-20 border-t border-solid border-t-[#e6e6e0] px-5 py-6 text-center">
+<p class="text-[#8c8b5f] text-sm font-normal leading-normal">© 2023 Postgrado en Desarrollo de Software. Todos los derechos reservados.</p>
+</footer> -->
+</div>
+</body></html>
+
+
+
+
+

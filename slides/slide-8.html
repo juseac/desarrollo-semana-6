@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f9f506",
+              "background-light": "#f8f8f5",
+              "background-dark": "#23220f",
+              "text-main": "#181811",
+              "text-muted": "#8c8b5f",
+            },
+            fontFamily: {
+              "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+              "body": ["Spline Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for code blocks */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1c242d; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3b4754; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #506070; 
+        }
+        /* Syntax highlighting mock */
+        .token-method { color: #60a5fa; font-weight: bold; }
+        .token-path { color: #a5b4fc; }
+        .token-header { color: #9ca3af; }
+        .token-string { color: #86efac; }
+        .token-number { color: #fca5a5; }
+        .token-key { color: #e5e7eb; }
+    </style>
+    <script src="../navigation.js"></script>
+</head>
+<body class="bg-background-light text-[#111418] font-display overflow-x-hidden flex flex-col min-h-screen">
+<!-- Top Navigation -->
+<header class="z-20 flex w-full items-center justify-between border-b border-solid border-b-[#e6e6e0] bg-white/80 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-4 text-[#181811]">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary-dark">
+<span class="material-symbols-outlined text-2xl text-yellow-700">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Postgrado en Desarrollo de Software</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+</div>
+</header>
+<main class="flex-1 flex flex-col p-4 md:p-8 max-w-[1400px] mx-auto w-full gap-6">
+<!-- Slide Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-[#d4d4c8] pb-6">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="bg-yellow-200 text-yellow-700 px-2 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider">Principios REST</span>
+
+</div>
+<h1 class="text-[#181811] text-3xl md:text-4xl font-black leading-tight tracking-tight">Métodos HTTP: Semántica y Operaciones CRUD</h1>
+<p class="text-[#8c8b5f] text-base max-w-2xl">Entendiendo el significado semántico de los verbos HTTP y su mapeo a operaciones de base de datos.</p>
+</div>
+<div class="flex gap-2">
+
+
+</div>
+</div>
+<!-- Main Content Area: Split View -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full grow">
+<!-- Left Column: The Matrix Table -->
+<div class="lg:col-span-7 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h3 class="text-[#181811] text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-700">table_chart</span>
+                        Matriz de Características de Métodos
+                    </h3>
+<div class="flex gap-4 text-xs text-[#8c8b5f]">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-green-500 text-sm">check_circle</span> Soportado</div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-red-500 text-sm">cancel</span> No Soportado</div>
+</div>
+</div>
+<div class="rounded-md border border-[#d4d4c8] bg-[#f0f0eb] overflow-hidden shadow-xl">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#1e293b] border-b border-[#d4d4c8] text-xs uppercase tracking-wider text-[#8c8b5f]">
+<th class="p-4 font-semibold">Método</th>
+<th class="p-4 font-semibold">Op. CRUD</th>
+<th class="p-4 font-semibold text-center" title="No modifica recursos">Seguro</th>
+<th class="p-4 font-semibold text-center" title="Múltiples solicitudes tienen el mismo efecto que una">Idempotente</th>
+<th class="p-4 font-semibold text-center">Cuerpo</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-border-dark">
+<!-- GET -->
+<tr id="row-GET" onclick="selectMethod('GET')" class="group hover:bg-blue-50 transition-colors cursor-pointer border-l-4 border-l-blue-500 bg-blue-50">
+<td class="p-4 font-mono font-bold text-blue-400">GET</td>
+<td class="p-4 text-[#181811]">Leer (Read)</td>
+<td class="p-4 text-center"><span class="material-symbols-outlined text-green-500 text-lg">check_circle</span></td>
+<td class="p-4 text-center"><span class="material-symbols-outlined text-green-500 text-lg">check_circle</span></td>
+<td class="p-4 text-center text-[#8c8b5f]">—</td>
+</tr>
+<!-- POST -->
+<tr id="row-POST" onclick="selectMethod('POST')" class="group hover:bg-blue-50 transition-colors cursor-pointer border-l-4 border-l-transparent hover:border-l-green-500">
+<td class="p-4 font-mono font-bold text-green-400">POST</td>
+<td class="p-4 text-[#181811]">Crear (Create)</td>
+<td class="p-4 text-center"><span class="material-symbols-outlined text-red-500 text-lg">cancel</span></td>
+<td class="p-4 text-center"><span class="material-symbols-outlined text-red-500 text-lg">cancel</span></td>
+<td class="p-4 text-center"><span class="material-symbols-outlined text-green-500 text-lg">check_circle</span></td>
+</tr>
+<!-- PUT -->
+<tr id="row-PUT" onclick="selectMethod('PUT')" class="group hover:bg-blue-50 transition-colors cursor-pointer border-l-4 border-l-transparent hover:border-l-orange-500">
+<td class="p-4 font-mono font-bold text-orange-400">PUT</td>
+<td class="p-4 text-[#181811]">Actualizar (Reemplazar)</td>
+<td class="p-4 text-center"><span class="material-symbols-outlined text-red-500 text-lg">cancel</span></td>
+<td class="p-4 text-center"><span class="material-symbols-outlined text-green-500 text-lg">check_circle</span></td>
+<td class="p-4 text-center"><span class="material-symbols-outlined text-green-500 text-lg">check_circle</span></td>
+</tr>
+<!-- PATCH -->
+<tr id="row-PATCH" onclick="selectMethod('PATCH')" class="group hover:bg-blue-50 transition-colors cursor-pointer border-l-4 border-l-transparent hover:border-l-yellow-500">
+<td class="p-4 font-mono font-bold text-yellow-700">PATCH</td>
+<td class="p-4 text-[#181811]">Actualizar (Parcial)</td>
+<td class="p-4 text-center"><span class="material-symbols-outlined text-red-500 text-lg">cancel</span></td>
+<td class="p-4 text-center"><span class="material-symbols-outlined text-red-500 text-lg">cancel</span></td>
+<td class="p-4 text-center"><span class="material-symbols-outlined text-green-500 text-lg">check_circle</span></td>
+</tr>
+<!-- DELETE -->
+<tr id="row-DELETE" onclick="selectMethod('DELETE')" class="group hover:bg-blue-50 transition-colors cursor-pointer border-l-4 border-l-transparent hover:border-l-red-500">
+<td class="p-4 font-mono font-bold text-red-400">DELETE</td>
+<td class="p-4 text-[#181811]">Eliminar (Delete)</td>
+<td class="p-4 text-center"><span class="material-symbols-outlined text-red-500 text-lg">cancel</span></td>
+<td class="p-4 text-center"><span class="material-symbols-outlined text-green-500 text-lg">check_circle</span></td>
+<td class="p-4 text-center text-[#8c8b5f]">—</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="bg-[#1e293b] px-4 py-3 border-t border-[#d4d4c8] text-xs text-[#8c8b5f] flex gap-4">
+<p><strong class="text-[#181811]">Seguro:</strong> No modifica recursos.</p>
+<p><strong class="text-[#181811]">Idempotente:</strong> Múltiples solicitudes idénticas tienen el mismo efecto que una sola solicitud.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Inspector Panel -->
+<div class="lg:col-span-5 flex flex-col gap-4">
+    <div class="flex items-center justify-between">
+        <h3 class="text-[#181811] text-xl font-bold flex items-center gap-2">
+            <span class="material-symbols-outlined text-yellow-700">code</span>
+            Inspector: <span id="inspector-title-method" class="text-blue-400 font-mono">GET</span>
+        </h3>
+    </div>
+    <div class="flex flex-col bg-[#f0f0eb] border border-[#d4d4c8] rounded-md h-full shadow-xl">
+        <!-- Tabs -->
+        <div class="flex border-b border-[#d4d4c8]">
+            <button id="tab-request" onclick="switchTab('request')" class="flex-1 px-4 py-2 text-sm font-medium text-[#181811] border-b-2 border-yellow-600 bg-blue-50 transition-colors">Solicitud Ejemplo</button>
+            <button id="tab-response" onclick="switchTab('response')" class="flex-1 px-4 py-2 text-sm font-medium text-[#8c8b5f] hover:text-[#181811] hover:bg-blue-50 transition-colors">Respuesta</button>
+            <button id="tab-status" onclick="switchTab('status')" class="flex-1 px-4 py-2 text-sm font-medium text-[#8c8b5f] hover:text-[#181811] hover:bg-blue-50 transition-colors">Códigos de Estado</button>
+        </div>
+        
+        <!-- Tab Content Area -->
+        <div class="p-5 flex-1 flex flex-col gap-4 relative">
+            
+            <!-- Content: Request (Default) -->
+            <div id="content-request" class="flex flex-col gap-4 transition-opacity duration-300">
+                <!-- Description Card -->
+                <div id="inspector-desc-container" class="bg-blue-500/10 border border-blue-500/20 rounded-md p-3">
+                    <p id="inspector-desc-text" class="text-sm text-blue-800">
+                        <span class="font-bold">Caso de Uso:</span> 
+                        Recupera una representación de un recurso. No debe contener un cuerpo de solicitud.
+                    </p>
+                </div>
+                <!-- Code Block -->
+                <div class="relative group">
+                    <div class="absolute right-2 top-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button class="bg-[#f0f0eb] text-[#8c8b5f] hover:text-[#181811] text-xs px-2 py-1 rounded-md border border-[#d4d4c8]">Copiar</button>
+                    </div>
+                    <div class="bg-[#1e293b] rounded-md border border-[#d4d4c8] p-4 font-mono text-sm overflow-x-auto custom-scrollbar">
+<pre id="inspector-request-code"><span class="token-method">GET</span> <span class="token-path">/api/v1/students/42</span> HTTP/1.1
+<span class="token-key">Host:</span> <span class="token-string">api.university.edu</span>
+<span class="token-key">Authorization:</span> <span class="token-string">Bearer eyJhbGciOiJIUz...</span>
+<span class="token-key">Accept:</span> <span class="token-string">application/json</span>
+</pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content: Response (Hidden) -->
+            <div id="content-response" class="hidden flex-col gap-4 transition-opacity duration-300">
+                <div id="inspector-response-desc-container" class="bg-green-500/10 border border-green-500/20 rounded-md p-3">
+                    <p id="inspector-response-desc-text" class="text-sm text-green-800">
+                        <span class="font-bold">Éxito:</span> 
+                        El servidor encontró el recurso y lo devuelve en formato JSON.
+                    </p>
+                </div>
+                <div class="bg-[#1e293b] rounded-md border border-[#d4d4c8] p-4 font-mono text-sm overflow-x-auto custom-scrollbar">
+<pre id="inspector-response-code" class="text-[#e6edf3]">HTTP/1.1 <span class="token-string">200 OK</span>
+<span class="token-key">Content-Type:</span> <span class="token-string">application/json</span>
+<span class="token-key">Cache-Control:</span> <span class="token-string">max-age=3600</span>
+
+{
+  <span class="token-key">"id"</span>: <span class="token-number">42</span>,
+  <span class="token-key">"name"</span>: <span class="token-string">"Jane Doe"</span>,
+  <span class="token-key">"courses"</span>: [
+    <span class="token-string">"CS101"</span>, 
+    <span class="token-string">"MATH200"</span>
+  ],
+  <span class="token-key">"gpa"</span>: <span class="token-number">3.8</span>,
+  <span class="token-key">"status"</span>: <span class="token-string">"active"</span>
+}
+</pre>
+                </div>
+            </div>
+
+            <!-- Content: Status Codes (Hidden) -->
+            <div id="content-status" class="hidden flex-col gap-4 transition-opacity duration-300">
+                <h4 id="inspector-status-title" class="text-xs font-bold text-[#8c8b5f] uppercase tracking-wider">Códigos de Estado Comunes para GET</h4>
+                <div id="inspector-status-list" class="grid grid-cols-1 gap-3">
+                    <!-- 200 OK -->
+                    <div class="flex items-start gap-3 p-3 rounded-md bg-white border border-[#d4d4c8]">
+                        <span class="bg-green-100 text-green-700 text-xs font-mono px-2 py-1 rounded-md font-bold">200</span>
+                        <div>
+                            <p class="text-sm font-bold text-[#181811]">OK</p>
+                            <p class="text-xs text-[#8c8b5f]">Solicitud exitosa. El recurso se devuelve en el cuerpo.</p>
+                        </div>
+                    </div>
+                    <!-- 304 Not Modified -->
+                    <div class="flex items-start gap-3 p-3 rounded-md bg-white border border-[#d4d4c8]">
+                        <span class="bg-yellow-100 text-yellow-700 text-xs font-mono px-2 py-1 rounded-md font-bold">304</span>
+                        <div>
+                            <p class="text-sm font-bold text-[#181811]">No Modificado</p>
+                            <p class="text-xs text-[#8c8b5f]">El recurso no ha cambiado desde la última solicitud (caché).</p>
+                        </div>
+                    </div>
+                    <!-- 404 Not Found -->
+                    <div class="flex items-start gap-3 p-3 rounded-md bg-white border border-[#d4d4c8]">
+                        <span class="bg-red-100 text-red-700 text-xs font-mono px-2 py-1 rounded-md font-bold">404</span>
+                        <div>
+                            <p class="text-sm font-bold text-[#181811]">No Encontrado</p>
+                            <p class="text-xs text-[#8c8b5f]">El recurso solicitado no existe en el servidor.</p>
+                        </div>
+                    </div>
+                    <!-- 400 Bad Request -->
+                    <div class="flex items-start gap-3 p-3 rounded-md bg-white border border-[#d4d4c8]">
+                        <span class="bg-orange-100 text-orange-700 text-xs font-mono px-2 py-1 rounded-md font-bold">400</span>
+                        <div>
+                            <p class="text-sm font-bold text-[#181811]">Solicitud Incorrecta</p>
+                            <p class="text-xs text-[#8c8b5f]">La sintaxis de la solicitud es inválida.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    const methodsData = {
+        'GET': {
+            colorClass: 'text-blue-400',
+            desc: 'Recupera una representación de un recurso. No debe contener un cuerpo de solicitud.',
+            requestCode: `<span class="token-method">GET</span> <span class="token-path">/api/v1/students/42</span> HTTP/1.1
+<span class="token-key">Host:</span> <span class="token-string">api.university.edu</span>
+<span class="token-key">Authorization:</span> <span class="token-string">Bearer eyJhbGciOiJIUz...</span>
+<span class="token-key">Accept:</span> <span class="token-string">application/json</span>`,
+            responseDesc: 'El servidor encontró el recurso y lo devuelve en formato JSON.',
+            responseCode: `HTTP/1.1 <span class="token-string">200 OK</span>
+<span class="token-key">Content-Type:</span> <span class="token-string">application/json</span>
+<span class="token-key">Cache-Control:</span> <span class="token-string">max-age=3600</span>
+
+{
+  <span class="token-key">"id"</span>: <span class="token-number">42</span>,
+  <span class="token-key">"name"</span>: <span class="token-string">"Jane Doe"</span>,
+  <span class="token-key">"courses"</span>: [<span class="token-string">"CS101"</span>, <span class="token-string">"MATH200"</span>],
+  <span class="token-key">"gpa"</span>: <span class="token-number">3.8</span>,
+  <span class="token-key">"status"</span>: <span class="token-string">"active"</span>
+}`,
+            statusCodes: [
+                { code: '200', title: 'OK', desc: 'Solicitud exitosa. El recurso se devuelve en el cuerpo.', color: 'green' },
+                { code: '304', title: 'No Modificado', desc: 'El recurso no ha cambiado desde la última solicitud (caché).', color: 'yellow' },
+                { code: '404', title: 'No Encontrado', desc: 'El recurso solicitado no existe en el servidor.', color: 'red' },
+                { code: '400', title: 'Solicitud Incorrecta', desc: 'La sintaxis de la solicitud es inválida.', color: 'orange' }
+            ]
+        },
+        'POST': {
+            colorClass: 'text-green-400',
+            desc: 'Envía datos al servidor para crear un nuevo recurso. El tipo de contenido se define en el header Content-Type.',
+            requestCode: `<span class="token-method" style="color:#4ade80">POST</span> <span class="token-path">/api/v1/students</span> HTTP/1.1
+<span class="token-key">Host:</span> <span class="token-string">api.university.edu</span>
+<span class="token-key">Content-Type:</span> <span class="token-string">application/json</span>
+
+{
+  <span class="token-key">"name"</span>: <span class="token-string">"John Smith"</span>,
+  <span class="token-key">"email"</span>: <span class="token-string">"john@example.com"</span>
+}`,
+            responseDesc: 'El recurso fue creado exitosamente. La respuesta incluye la ubicación del nuevo recurso.',
+            responseCode: `HTTP/1.1 <span class="token-string">201 Created</span>
+<span class="token-key">Location:</span> <span class="token-string">/api/v1/students/43</span>
+<span class="token-key">Content-Type:</span> <span class="token-string">application/json</span>
+
+{
+  <span class="token-key">"id"</span>: <span class="token-number">43</span>,
+  <span class="token-key">"name"</span>: <span class="token-string">"John Smith"</span>,
+  <span class="token-key">"status"</span>: <span class="token-string">"pending"</span>
+}`,
+            statusCodes: [
+                { code: '201', title: 'Creado', desc: 'La solicitud ha tenido éxito y se ha creado un nuevo recurso.', color: 'green' },
+                { code: '400', title: 'Solicitud Incorrecta', desc: 'Faltan datos requeridos o el formato es inválido.', color: 'orange' },
+                { code: '401', title: 'No Autorizado', desc: 'Se requiere autenticación para crear recursos.', color: 'red' },
+                { code: '409', title: 'Conflicto', desc: 'El recurso ya existe (ej. email duplicado).', color: 'red' }
+            ]
+        },
+        'PUT': {
+            colorClass: 'text-orange-400',
+            desc: 'Reemplaza todas las representaciones actuales del recurso de destino con la carga útil de la petición.',
+            requestCode: `<span class="token-method" style="color:#fb923c">PUT</span> <span class="token-path">/api/v1/students/42</span> HTTP/1.1
+<span class="token-key">Host:</span> <span class="token-string">api.university.edu</span>
+<span class="token-key">Content-Type:</span> <span class="token-string">application/json</span>
+
+{
+  <span class="token-key">"name"</span>: <span class="token-string">"Jane Doe Updated"</span>,
+  <span class="token-key">"courses"</span>: [<span class="token-string">"CS101"</span>],
+  <span class="token-key">"gpa"</span>: <span class="token-number">3.9</span>
+}`,
+            responseDesc: 'El recurso fue actualizado exitosamente.',
+            responseCode: `HTTP/1.1 <span class="token-string">200 OK</span>
+<span class="token-key">Content-Type:</span> <span class="token-string">application/json</span>
+
+{
+  <span class="token-key">"id"</span>: <span class="token-number">42</span>,
+  <span class="token-key">"name"</span>: <span class="token-string">"Jane Doe Updated"</span>,
+  <span class="token-key">"courses"</span>: [<span class="token-string">"CS101"</span>],
+  <span class="token-key">"gpa"</span>: <span class="token-number">3.9</span>
+}`,
+            statusCodes: [
+                { code: '200', title: 'OK', desc: 'Recurso actualizado correctamente.', color: 'green' },
+                { code: '204', title: 'Sin Contenido', desc: 'Acción exitosa, pero no hay contenido para devolver.', color: 'green' },
+                { code: '404', title: 'No Encontrado', desc: 'El recurso a actualizar no existe.', color: 'red' },
+                { code: '400', title: 'Solicitud Incorrecta', desc: 'El ID en la URL no coincide con el cuerpo.', color: 'orange' }
+            ]
+        },
+        'PATCH': {
+            colorClass: 'text-yellow-500',
+            desc: 'Aplica modificaciones parciales a un recurso. Solo se envían los campos que cambian.',
+            requestCode: `<span class="token-method" style="color:#eab308">PATCH</span> <span class="token-path">/api/v1/students/42</span> HTTP/1.1
+<span class="token-key">Host:</span> <span class="token-string">api.university.edu</span>
+<span class="token-key">Content-Type:</span> <span class="token-string">application/json</span>
+
+{
+  <span class="token-key">"gpa"</span>: <span class="token-number">4.0</span>
+}`,
+            responseDesc: 'El recurso fue modificado parcialmente.',
+            responseCode: `HTTP/1.1 <span class="token-string">200 OK</span>
+<span class="token-key">Content-Type:</span> <span class="token-string">application/json</span>
+
+{
+  <span class="token-key">"id"</span>: <span class="token-number">42</span>,
+  <span class="token-key">"name"</span>: <span class="token-string">"Jane Doe"</span>,
+  <span class="token-key">"courses"</span>: [<span class="token-string">"CS101"</span>, <span class="token-string">"MATH200"</span>],
+  <span class="token-key">"gpa"</span>: <span class="token-number">4.0</span>
+}`,
+            statusCodes: [
+                { code: '200', title: 'OK', desc: 'Recurso modificado correctamente.', color: 'green' },
+                { code: '404', title: 'No Encontrado', desc: 'El recurso a modificar no existe.', color: 'red' },
+                { code: '422', title: 'Entidad Improcesable', desc: 'Errores semánticos en el parche.', color: 'red' }
+            ]
+        },
+        'DELETE': {
+            colorClass: 'text-red-400',
+            desc: 'Borra el recurso especificado.',
+            requestCode: `<span class="token-method" style="color:#f87171">DELETE</span> <span class="token-path">/api/v1/students/42</span> HTTP/1.1
+<span class="token-key">Host:</span> <span class="token-string">api.university.edu</span>
+<span class="token-key">Authorization:</span> <span class="token-string">Bearer ...</span>`,
+            responseDesc: 'El recurso fue eliminado. Generalmente no devuelve contenido.',
+            responseCode: `HTTP/1.1 <span class="token-string">204 No Content</span>
+<span class="token-key">Date:</span> <span class="token-string">Mon, 27 Jul 2023 12:28:53 GMT</span>`,
+            statusCodes: [
+                { code: '204', title: 'Sin Contenido', desc: 'Eliminación exitosa.', color: 'green' },
+                { code: '404', title: 'No Encontrado', desc: 'El recurso ya no existe o nunca existió.', color: 'red' },
+                { code: '403', title: 'Prohibido', desc: 'No tienes permisos para eliminar este recurso.', color: 'red' }
+            ]
+        }
+    };
+
+    function selectMethod(method) {
+        const data = methodsData[method];
+        if (!data) return;
+
+        // Update Title
+        const titleEl = document.getElementById('inspector-title-method');
+        titleEl.textContent = method;
+        titleEl.className = `font-mono ${data.colorClass}`;
+
+        // Update Description
+        document.getElementById('inspector-desc-text').innerHTML = `<span class="font-bold">Caso de Uso:</span> ${data.desc}`;
+        
+        // Update Request Code
+        document.getElementById('inspector-request-code').innerHTML = data.requestCode;
+
+        // Update Response Description
+        document.getElementById('inspector-response-desc-text').innerHTML = `<span class="font-bold">Resultado:</span> ${data.responseDesc}`;
+
+        // Update Response Code
+        document.getElementById('inspector-response-code').innerHTML = data.responseCode;
+
+        // Update Status Codes
+        const statusList = document.getElementById('inspector-status-list');
+        document.getElementById('inspector-status-title').textContent = `Códigos de Estado Comunes para ${method}`;
+        
+        statusList.innerHTML = data.statusCodes.map(status => `
+            <div class="flex items-start gap-3 p-3 rounded-md bg-white border border-[#d4d4c8]">
+                <span class="bg-${status.color}-100 text-${status.color}-700 text-xs font-mono px-2 py-1 rounded-md font-bold">${status.code}</span>
+                <div>
+                    <p class="text-sm font-bold text-[#181811]">${status.title}</p>
+                    <p class="text-xs text-[#8c8b5f]">${status.desc}</p>
+                </div>
+            </div>
+        `).join('');
+
+        // Update Table Row Selection
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.classList.remove('bg-blue-50', 'border-l-blue-500');
+            row.classList.add('border-l-transparent');
+        });
+        
+        const selectedRow = document.getElementById(`row-${method}`);
+        if (selectedRow) {
+            selectedRow.classList.remove('border-l-transparent');
+            selectedRow.classList.add('bg-blue-50', 'border-l-blue-500');
+        }
+    }
+
+    function switchTab(tabName) {
+        // Hide all content
+        document.getElementById('content-request').classList.add('hidden');
+        document.getElementById('content-response').classList.add('hidden');
+        document.getElementById('content-status').classList.add('hidden');
+        
+        // Show selected content
+        document.getElementById('content-' + tabName).classList.remove('hidden');
+        
+        // Reset all tabs styles
+        const tabs = ['request', 'response', 'status'];
+        tabs.forEach(t => {
+            const btn = document.getElementById('tab-' + t);
+            btn.classList.remove('text-[#181811]', 'border-b-2', 'border-yellow-600', 'bg-blue-50');
+            btn.classList.add('text-[#8c8b5f]');
+        });
+        
+        // Set active tab style
+        const activeBtn = document.getElementById('tab-' + tabName);
+        activeBtn.classList.remove('text-[#8c8b5f]');
+        activeBtn.classList.add('text-[#181811]', 'border-b-2', 'border-yellow-600', 'bg-blue-50');
+    }
+
+    // Initialize with GET
+    selectMethod('GET');
+</script>
+</div>
+</main>
+<!-- Footer Progress Bar -->
+<!-- <div class="fixed bottom-0 left-0 w-full h-1 bg-[#1c242d] z-50">
+<div class="h-full bg-primary w-[40%] transition-all duration-500 ease-out"></div>
+</div> -->
+</body></html>
+
+
+
+
+
+
+
+
+
+
+

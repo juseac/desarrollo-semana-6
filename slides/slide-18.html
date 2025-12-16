@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Desafíos de Implementación de APIs - Posgrado</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9f506",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#23220f",
+                        "text-main": "#181811",
+                        "text-muted": "#8c8b5f",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+                        "body": ["Spline Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: #101922; }
+        ::-webkit-scrollbar-thumb { background: #2d3748; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4a5568; }
+    </style>
+    <script src="../navigation.js"></script>
+</head>
+<body class="bg-background-light font-display text-slate-900 antialiased overflow-hidden h-screen flex flex-col">
+    <!-- Top Navigation -->
+    <header class="z-20 flex w-full items-center justify-between border-b border-solid border-b-[#e6e6e0] bg-white/80 backdrop-blur-md px-10 py-4">
+        <div class="flex items-center gap-4 text-[#181811]">
+            <div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary-dark">
+                <span class="material-symbols-outlined text-2xl text-yellow-700">school</span>
+            </div>
+            <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Postgrado en Desarrollo de Software</h2>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex overflow-hidden">
+        <!-- Sidebar Navigation (Challenges List) -->
+        <aside class="w-80 flex flex-col border-r border-[#d4d4c8] bg-[#f0f0eb] shrink-0 overflow-y-auto z-10">
+            <div class="p-6 pb-2">
+                <h2 class="text-slate-900 text-lg font-bold leading-tight mb-1">Common Challenges</h2>
+                <p class="text-slate-500 text-sm">Select a topic to explore solutions</p>
+            </div>
+            <nav class="flex-1 px-4 py-4 space-y-1">
+                <!-- Active Item: Authentication -->
+                <button id="btn-auth" onclick="selectChallenge('auth')" class="w-full flex items-center gap-3 px-3 py-2 bg-primary rounded-lg shadow-sm text-left group transition-all">
+                    <div class="flex items-center justify-center w-8 h-8 rounded bg-white/20 text-[#181811]">
+                        <span class="material-symbols-outlined text-lg">lock</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-bold text-[#181811]">Authentication</p>
+                        <p class="text-xs text-[#181811]/70">JWT, OAuth2, WS-Security</p>
+                    </div>
+                </button>
+
+                <!-- Inactive Items -->
+                <button id="btn-rate" onclick="selectChallenge('rate')" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/50 rounded-lg text-left group transition-all">
+                    <div class="flex items-center justify-center w-8 h-8 rounded bg-gray-200 text-gray-500 group-hover:text-[#181811]">
+                        <span class="material-symbols-outlined text-lg">speed</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-[#181811]">Rate Limiting</p>
+                    </div>
+                </button>
+
+                <button id="btn-version" onclick="selectChallenge('version')" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/50 rounded-lg text-left group transition-all">
+                    <div class="flex items-center justify-center w-8 h-8 rounded bg-gray-200 text-gray-500 group-hover:text-[#181811]">
+                        <span class="material-symbols-outlined text-lg">fork_right</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-[#181811]">Versioning</p>
+                    </div>
+                </button>
+
+                <button id="btn-cors" onclick="selectChallenge('cors')" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/50 rounded-lg text-left group transition-all">
+                    <div class="flex items-center justify-center w-8 h-8 rounded bg-gray-200 text-gray-500 group-hover:text-[#181811]">
+                        <span class="material-symbols-outlined text-lg">public</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-[#181811]">CORS</p>
+                    </div>
+                </button>
+
+                <button id="btn-error" onclick="selectChallenge('error')" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/50 rounded-lg text-left group transition-all">
+                    <div class="flex items-center justify-center w-8 h-8 rounded bg-gray-200 text-gray-500 group-hover:text-[#181811]">
+                        <span class="material-symbols-outlined text-lg">report_problem</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-[#181811]">Error Handling</p>
+                    </div>
+                </button>
+
+                <button id="btn-docs" onclick="selectChallenge('docs')" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/50 rounded-lg text-left group transition-all">
+                    <div class="flex items-center justify-center w-8 h-8 rounded bg-gray-200 text-gray-500 group-hover:text-[#181811]">
+                        <span class="material-symbols-outlined text-lg">menu_book</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-[#181811]">Documentation</p>
+                    </div>
+                </button>
+
+                <button id="btn-test" onclick="selectChallenge('test')" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/50 rounded-lg text-left group transition-all">
+                    <div class="flex items-center justify-center w-8 h-8 rounded bg-gray-200 text-gray-500 group-hover:text-[#181811]">
+                        <span class="material-symbols-outlined text-lg">science</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-[#181811]">Testing</p>
+                    </div>
+                </button>
+
+                <button id="btn-cache" onclick="selectChallenge('cache')" class="w-full flex items-center gap-3 px-3 py-2 hover:bg-white/50 rounded-lg text-left group transition-all">
+                    <div class="flex items-center justify-center w-8 h-8 rounded bg-gray-200 text-gray-500 group-hover:text-[#181811]">
+                        <span class="material-symbols-outlined text-lg">bolt</span>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-[#181811]">Caching</p>
+                    </div>
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Right Content Panel -->
+        <section class="flex-1 flex flex-col overflow-y-auto bg-white relative">
+            <!-- Page Heading Section -->
+            <div class="px-8 pt-8 pb-2">
+                <div class="flex flex-col gap-2">
+                    <h1 class="text-[#181811] text-3xl md:text-4xl font-black leading-tight tracking-tight">Desafíos Reales en Implementación de APIs</h1>
+                    <p class="text-[#5c5c4f] text-base font-normal max-w-3xl">Análisis de problemas comunes y soluciones prácticas en arquitecturas REST y SOAP.</p>
+                </div>
+                <div class="h-px w-full bg-[#e6e6e0] mt-6"></div>
+            </div>
+
+            <!-- Content Card -->
+            <div class="px-8 py-6 flex-1">
+                <!-- Active Challenge Title -->
+                <div class="flex items-center gap-3 mb-6">
+                    <div id="content-icon-container" class="p-3 rounded-xl bg-primary/20 text-yellow-800">
+                        <span id="content-icon" class="material-symbols-outlined text-3xl">lock</span>
+                    </div>
+                    <div>
+                        <span class="uppercase tracking-wider text-xs font-bold text-yellow-700 mb-1 block">Current Topic</span>
+                        <h2 id="content-title" class="text-2xl font-bold text-[#181811]">Autenticación y Autorización</h2>
+                    </div>
+                </div>
+
+                <!-- Problem Statement Box -->
+                <div class="bg-red-50 border-l-4 border-red-500 p-5 rounded-r-lg mb-8">
+                    <h3 class="flex items-center gap-2 text-red-800 font-bold mb-2">
+                        <span class="material-symbols-outlined text-xl">warning</span> The Problem
+                    </h3>
+                    <p id="content-problem" class="text-red-900/80 leading-relaxed">
+                        Asegurar que solo usuarios y sistemas verificados puedan acceder a recursos protegidos. En arquitecturas sin estado como REST, gestionar sesiones sin estado del lado del servidor es crítico. En SOAP, la seguridad debe manejarse a menudo a nivel de mensaje en lugar de solo a nivel de transporte.
+                    </p>
+                </div>
+
+                <!-- Solutions Grid -->
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                    <!-- REST Solution Column -->
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-bold rounded uppercase tracking-wider">REST Approach</span>
+                            </div>
+                        </div>
+                        <div class="bg-[#f8f8f5] rounded-xl border border-[#d4d4c8] p-6 shadow-sm">
+                            <h4 id="rest-title" class="text-lg font-bold text-[#181811] mb-3">Stateless Auth with JWT / OAuth2</h4>
+                            <p id="rest-desc" class="text-sm text-[#5c5c4f] mb-4">
+                                Use JSON Web Tokens (JWT) for self-contained credentials. The server validates the signature without DB lookup for every request.
+                            </p>
+                            <!-- Code Snippet -->
+                            <div class="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm overflow-x-auto border border-[#333] relative group/code">
+                                <div class="absolute right-3 top-3 opacity-0 group-hover/code:opacity-100 transition-opacity">
+                                    <span class="text-xs text-gray-500">JSON</span>
+                                </div>
+                                <div id="rest-code" class="text-gray-300 leading-6">
+                                    <span class="text-purple-400">POST</span> /api/auth/login <br/>
+                                    <span class="text-gray-500">// Response</span><br/>
+                                    {<br/>
+                                    &nbsp;&nbsp;<span class="text-blue-400">"access_token"</span>: <span class="text-green-400">"eyJhbGciOiJIUz..."</span>,<br/>
+                                    &nbsp;&nbsp;<span class="text-blue-400">"token_type"</span>: <span class="text-green-400">"Bearer"</span>,<br/>
+                                    &nbsp;&nbsp;<span class="text-blue-400">"expires_in"</span>: <span class="text-orange-400">3600</span><br/>
+                                    }
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-[#e6e6e0]">
+                                <h5 class="text-xs font-bold uppercase text-[#8c8b5f] mb-2">Key Tech</h5>
+                                <div id="rest-tech" class="flex gap-2 flex-wrap">
+                                    <span class="px-2 py-1 rounded bg-white border border-[#d4d4c8] text-[#5c5c4f] text-xs font-medium">OAuth2</span>
+                                    <span class="px-2 py-1 rounded bg-white border border-[#d4d4c8] text-[#5c5c4f] text-xs font-medium">OpenID Connect</span>
+                                    <span class="px-2 py-1 rounded bg-white border border-[#d4d4c8] text-[#5c5c4f] text-xs font-medium">JWT</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SOAP Solution Column -->
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-2">
+                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded uppercase tracking-wider">SOAP Approach</span>
+                            </div>
+                        </div>
+                        <div class="bg-[#f8f8f5] rounded-xl border border-[#d4d4c8] p-6 shadow-sm">
+                            <h4 id="soap-title" class="text-lg font-bold text-[#181811] mb-3">WS-Security</h4>
+                            <p id="soap-desc" class="text-sm text-[#5c5c4f] mb-4">
+                                Aprovecha la extensión WS-Security para incrustar tokens de seguridad (UsernameToken, SAML, X.509) directamente en el encabezado XML.
+                            </p>
+                            <!-- Code Snippet -->
+                            <div class="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm overflow-x-auto border border-[#333] relative group/code">
+                                <div class="absolute right-3 top-3 opacity-0 group-hover/code:opacity-100 transition-opacity">
+                                    <span class="text-xs text-gray-500">XML</span>
+                                </div>
+                                <div id="soap-code" class="text-gray-300 leading-6">
+                                    <span class="text-gray-500">&lt;</span><span class="text-purple-400">soap:Header</span><span class="text-gray-500">&gt;</span><br/>
+                                    &nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">wsse:Security</span><span class="text-gray-500">&gt;</span><br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">wsse:UsernameToken</span><span class="text-gray-500">&gt;</span><br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">wsse:Username</span><span class="text-gray-500">&gt;</span>admin<span class="text-gray-500">&lt;/...&gt;</span><br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">wsse:Password</span><span class="text-gray-500">&gt;</span>s3cr3t<span class="text-gray-500">&lt;/...&gt;</span><br/>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;/</span><span class="text-yellow-400">wsse:UsernameToken</span><span class="text-gray-500">&gt;</span><br/>
+                                    &nbsp;&nbsp;<span class="text-gray-500">&lt;/</span><span class="text-yellow-400">wsse:Security</span><span class="text-gray-500">&gt;</span><br/>
+                                    <span class="text-gray-500">&lt;/</span><span class="text-purple-400">soap:Header</span><span class="text-gray-500">&gt;</span>
+                                </div>
+                            </div>
+                            <div class="mt-4 pt-4 border-t border-[#e6e6e0]">
+                                <h5 class="text-xs font-bold uppercase text-[#8c8b5f] mb-2">Key Tech</h5>
+                                <div id="soap-tech" class="flex gap-2 flex-wrap">
+                                    <span class="px-2 py-1 rounded bg-white border border-[#d4d4c8] text-[#5c5c4f] text-xs font-medium">WS-Security</span>
+                                    <span class="px-2 py-1 rounded bg-white border border-[#d4d4c8] text-[#5c5c4f] text-xs font-medium">SAML</span>
+                                    <span class="px-2 py-1 rounded bg-white border border-[#d4d4c8] text-[#5c5c4f] text-xs font-medium">XML Encryption</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Best Practices Section -->
+                <div class="mt-8 mb-12">
+                    <h3 class="text-lg font-bold text-[#181811] mb-4">Mejores Prácticas de Implementación</h3>
+                    <div id="practices-container" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="flex gap-3 p-4 bg-primary/10 border border-primary/20 rounded-lg">
+                            <span class="material-symbols-outlined text-yellow-700">https</span>
+                            <div>
+                                <h4 class="text-sm font-bold text-[#181811]">Always use HTTPS</h4>
+                                <p class="text-xs text-[#5c5c4f] mt-1">Never transmit tokens or credentials over plain HTTP.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 p-4 bg-primary/10 border border-primary/20 rounded-lg">
+                            <span class="material-symbols-outlined text-yellow-700">timelapse</span>
+                            <div>
+                                <h4 class="text-sm font-bold text-[#181811]">Short-lived Tokens</h4>
+                                <p class="text-xs text-[#5c5c4f] mt-1">Keep access tokens short-lived (e.g. 15min) and use Refresh Tokens.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 p-4 bg-primary/10 border border-primary/20 rounded-lg">
+                            <span class="material-symbols-outlined text-yellow-700">key_off</span>
+                            <div>
+                                <h4 class="text-sm font-bold text-[#181811]">Least Privilege</h4>
+                                <p class="text-xs text-[#5c5c4f] mt-1">Scopes should restrict access to strictly what is needed.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <!-- <footer class="mt-auto flex justify-between items-center border-t border-[#e6e6db] pt-4 pb-6 w-full max-w-[1400px] mx-auto px-6 md:px-10 lg:px-12">
+        <div class="flex items-center gap-2">
+            <div class="h-6 w-6 rounded-full bg-primary"></div>
+            <span class="text-xs font-bold text-[#181811] uppercase tracking-widest">Postgrado Desarrollo de Software</span>
+        </div>
+    </footer> -->
+
+    <script>
+        const challengesData = {
+            'auth': {
+                title: 'Autenticación y Autorización',
+                icon: 'lock',
+                problem: 'Asegurar que solo usuarios y sistemas verificados puedan acceder a recursos protegidos. En arquitecturas sin estado como REST, gestionar sesiones sin estado del lado del servidor es crítico. En SOAP, la seguridad debe manejarse a menudo a nivel de mensaje en lugar de solo a nivel de transporte.',
+                rest: {
+                    title: 'Stateless Auth with JWT / OAuth2',
+                    desc: 'Use JSON Web Tokens (JWT) for self-contained credentials. The server validates the signature without DB lookup for every request.',
+                    code: `<span class="text-purple-400">POST</span> /api/auth/login <br/>
+<span class="text-gray-500">// Response</span><br/>
+{<br/>
+&nbsp;&nbsp;<span class="text-blue-400">"access_token"</span>: <span class="text-green-400">"eyJhbGciOiJIUz..."</span>,<br/>
+&nbsp;&nbsp;<span class="text-blue-400">"token_type"</span>: <span class="text-green-400">"Bearer"</span>,<br/>
+&nbsp;&nbsp;<span class="text-blue-400">"expires_in"</span>: <span class="text-orange-400">3600</span><br/>
+}`,
+                    tech: ['OAuth2', 'OpenID Connect', 'JWT']
+                },
+                soap: {
+                    title: 'WS-Security',
+                    desc: 'Aprovecha la extensión WS-Security para incrustar tokens de seguridad (UsernameToken, SAML, X.509) directamente en el encabezado XML.',
+                    code: `<span class="text-gray-500">&lt;</span><span class="text-purple-400">soap:Header</span><span class="text-gray-500">&gt;</span><br/>
+&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">wsse:Security</span><span class="text-gray-500">&gt;</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">wsse:UsernameToken</span><span class="text-gray-500">&gt;</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">wsse:Username</span><span class="text-gray-500">&gt;</span>admin<span class="text-gray-500">&lt;/...&gt;</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">wsse:Password</span><span class="text-gray-500">&gt;</span>s3cr3t<span class="text-gray-500">&lt;/...&gt;</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;/</span><span class="text-yellow-400">wsse:UsernameToken</span><span class="text-gray-500">&gt;</span><br/>
+&nbsp;&nbsp;<span class="text-gray-500">&lt;/</span><span class="text-yellow-400">wsse:Security</span><span class="text-gray-500">&gt;</span><br/>
+<span class="text-gray-500">&lt;/</span><span class="text-purple-400">soap:Header</span><span class="text-gray-500">&gt;</span>`,
+                    tech: ['WS-Security', 'SAML', 'XML Encryption']
+                },
+                practices: [
+                    { icon: 'https', title: 'Always use HTTPS', desc: 'Never transmit tokens or credentials over plain HTTP.' },
+                    { icon: 'timelapse', title: 'Short-lived Tokens', desc: 'Keep access tokens short-lived (e.g. 15min) and use Refresh Tokens.' },
+                    { icon: 'key_off', title: 'Least Privilege', desc: 'Scopes should restrict access to strictly what is needed.' }
+                ]
+            },
+            'rate': {
+                title: 'Limitación de Velocidad (Rate Limiting)',
+                icon: 'speed',
+                problem: 'Prevenir el abuso del API y asegurar la disponibilidad del servicio para todos los usuarios, evitando ataques DoS o consumo excesivo de recursos.',
+                rest: {
+                    title: 'HTTP Headers & Status 429',
+                    desc: 'Utiliza encabezados estándar para informar al cliente sobre su cuota restante y el tiempo de reinicio.',
+                    code: `<span class="text-purple-400">HTTP/1.1</span> <span class="text-orange-400">429 Too Many Requests</span><br/>
+<span class="text-blue-400">X-RateLimit-Limit:</span> <span class="text-green-400">1000</span><br/>
+<span class="text-blue-400">X-RateLimit-Remaining:</span> <span class="text-green-400">0</span><br/>
+<span class="text-blue-400">X-RateLimit-Reset:</span> <span class="text-green-400">1609459200</span><br/>
+<span class="text-blue-400">Retry-After:</span> <span class="text-green-400">60</span>`,
+                    tech: ['Redis', 'Nginx', 'API Gateway']
+                },
+                soap: {
+                    title: 'API Gateway / Middleware',
+                    desc: 'Generalmente manejado por un API Gateway o ESB antes de llegar al servicio SOAP, ya que SOAP no tiene un estándar nativo ligero para esto.',
+                    code: `<span class="text-gray-500">&lt;!-- Configuración en ESB --&gt;</span><br/>
+<span class="text-gray-500">&lt;</span><span class="text-yellow-400">ThrottlePolicy</span><span class="text-gray-500">&gt;</span><br/>
+&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">RequestCount</span><span class="text-gray-500">&gt;</span>50<span class="text-gray-500">&lt;/</span><span class="text-yellow-400">RequestCount</span><span class="text-gray-500">&gt;</span><br/>
+&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">UnitTime</span><span class="text-gray-500">&gt;</span>1000ms<span class="text-gray-500">&lt;/</span><span class="text-yellow-400">UnitTime</span><span class="text-gray-500">&gt;</span><br/>
+<span class="text-gray-500">&lt;/</span><span class="text-yellow-400">ThrottlePolicy</span><span class="text-gray-500">&gt;</span>`,
+                    tech: ['WSO2', 'MuleSoft', 'Apigee']
+                },
+                practices: [
+                    { icon: 'dns', title: 'Distributed Counting', desc: 'Use Redis or Memcached for accurate counting across multiple server instances.' },
+                    { icon: 'info', title: 'Informative Headers', desc: 'Always tell the client how many requests they have left.' },
+                    { icon: 'block', title: 'IP & User Based', desc: 'Limit by IP for public APIs, and by User ID for authenticated ones.' }
+                ]
+            },
+            'version': {
+                title: 'Versionado de APIs',
+                icon: 'fork_right',
+                problem: 'Evolucionar el API sin romper la compatibilidad con clientes existentes (Backward Compatibility). Los cambios disruptivos son inevitables a largo plazo.',
+                rest: {
+                    title: 'URI vs Header Versioning',
+                    desc: 'Comúnmente se incluye la versión en la URL (/v1/...) o en un encabezado personalizado (Accept-Version).',
+                    code: `<span class="text-gray-500">// URI Versioning</span><br/>
+<span class="text-purple-400">GET</span> /api/v1/products<br/>
+<span class="text-purple-400">GET</span> /api/v2/products<br/><br/>
+<span class="text-gray-500">// Header Versioning</span><br/>
+<span class="text-blue-400">Accept:</span> application/vnd.myapi.v2+json`,
+                    tech: ['URI Path', 'Query Param', 'Custom Header']
+                },
+                soap: {
+                    title: 'New Namespaces',
+                    desc: 'Se crean nuevos espacios de nombres (namespaces) XML para las nuevas versiones de los tipos de datos y operaciones.',
+                    code: `<span class="text-gray-500">&lt;</span><span class="text-yellow-400">definitions</span> <span class="text-blue-400">targetNamespace</span>=<span class="text-green-400">"http://api.com/v2/service"</span><span class="text-gray-500">&gt;</span><br/>
+&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">types</span><span class="text-gray-500">&gt;</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">xsd:schema</span> <span class="text-blue-400">targetNamespace</span>=<span class="text-green-400">"http://api.com/v2/types"</span><span class="text-gray-500">&gt;</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;...`,
+                    tech: ['XML Namespaces', 'WSDL Operations']
+                },
+                practices: [
+                    { icon: 'schedule', title: 'Sunset Policy', desc: 'Announce deprecation well in advance (e.g., 6 months).' },
+                    { icon: 'description', title: 'Changelog', desc: 'Maintain a detailed changelog of what changed between versions.' },
+                    { icon: 'call_split', title: 'Support N-1', desc: 'Support at least the current and the previous version.' }
+                ]
+            },
+            'cors': {
+                title: 'Cross-Origin Resource Sharing (CORS)',
+                icon: 'public',
+                problem: 'Los navegadores bloquean por defecto las peticiones AJAX a dominios diferentes al de origen por seguridad. Es un desafío común en SPAs (Single Page Applications).',
+                rest: {
+                    title: 'CORS Headers',
+                    desc: 'El servidor debe responder a las peticiones OPTIONS (preflight) y añadir encabezados permitiendo el origen.',
+                    code: `<span class="text-purple-400">OPTIONS</span> /api/data<br/>
+<span class="text-blue-400">Access-Control-Allow-Origin:</span> <span class="text-green-400">https://myapp.com</span><br/>
+<span class="text-blue-400">Access-Control-Allow-Methods:</span> <span class="text-green-400">GET, POST, PUT</span><br/>
+<span class="text-blue-400">Access-Control-Allow-Headers:</span> <span class="text-green-400">Content-Type, Authorization</span>`,
+                    tech: ['Preflight Requests', 'Access-Control Headers']
+                },
+                soap: {
+                    title: 'Proxy / Server-Side',
+                    desc: 'SOAP raramente se consume directamente desde el navegador. Si se hace, requiere la misma configuración CORS o un proxy intermedio.',
+                    code: `<span class="text-gray-500">// Generalmente no aplica directamente</span><br/>
+<span class="text-gray-500">// SOAP se consume desde servidores backend</span><br/>
+<span class="text-gray-500">// Si se usa AJAX, se configura igual que REST</span>`,
+                    tech: ['Reverse Proxy', 'BFF (Backend for Frontend)']
+                },
+                practices: [
+                    { icon: 'check_circle', title: 'Specific Origins', desc: 'Avoid allowing * (wildcard) in production if credentials are used.' },
+                    { icon: 'security', title: 'Credentials', desc: 'Access-Control-Allow-Credentials: true requires specific origin, not *.' },
+                    { icon: 'cached', title: 'Cache Preflight', desc: 'Use Access-Control-Max-Age to reduce OPTIONS requests.' }
+                ]
+            },
+            'error': {
+                title: 'Manejo de Errores',
+                icon: 'report_problem',
+                problem: 'Comunicar fallos de manera clara, consistente y segura sin exponer detalles internos de la infraestructura (Stack Traces).',
+                rest: {
+                    title: 'HTTP Status & JSON Problem Details',
+                    desc: 'Uso semántico de códigos HTTP (400, 401, 403, 404, 500) y un cuerpo JSON estandarizado (RFC 7807).',
+                    code: `<span class="text-purple-400">HTTP/1.1</span> <span class="text-orange-400">400 Bad Request</span><br/>
+{<br/>
+&nbsp;&nbsp;<span class="text-blue-400">"type"</span>: <span class="text-green-400">"about:blank"</span>,<br/>
+&nbsp;&nbsp;<span class="text-blue-400">"title"</span>: <span class="text-green-400">"Invalid Parameter"</span>,<br/>
+&nbsp;&nbsp;<span class="text-blue-400">"detail"</span>: <span class="text-green-400">"The age must be positive."</span><br/>
+}`,
+                    tech: ['RFC 7807', 'HTTP Status Codes']
+                },
+                soap: {
+                    title: 'SOAP Faults',
+                    desc: 'Estructura XML estricta para errores dentro del Body. Contiene Code, Reason, Node, Role y Detail.',
+                    code: `<span class="text-gray-500">&lt;</span><span class="text-purple-400">soap:Fault</span><span class="text-gray-500">&gt;</span><br/>
+&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">soap:Code</span><span class="text-gray-500">&gt;</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">soap:Value</span><span class="text-gray-500">&gt;</span>soap:Sender<span class="text-gray-500">&lt;/...&gt;</span><br/>
+&nbsp;&nbsp;<span class="text-gray-500">&lt;/</span><span class="text-yellow-400">soap:Code</span><span class="text-gray-500">&gt;</span><br/>
+&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">soap:Reason</span><span class="text-gray-500">&gt;</span>Invalid Data<span class="text-gray-500">&lt;/...&gt;</span><br/>
+<span class="text-gray-500">&lt;/</span><span class="text-purple-400">soap:Fault</span><span class="text-gray-500">&gt;</span>`,
+                    tech: ['SOAP Fault', 'Fault Codes']
+                },
+                practices: [
+                    { icon: 'visibility_off', title: 'No Stack Traces', desc: 'Never leak stack traces or DB errors to the client.' },
+                    { icon: 'language', title: 'Consistent Structure', desc: 'Always use the same error object structure.' },
+                    { icon: 'bug_report', title: 'Log Internally', desc: 'Log the full error details on the server with a correlation ID.' }
+                ]
+            },
+            'docs': {
+                title: 'Documentación',
+                icon: 'menu_book',
+                problem: 'Facilitar la integración a los desarrolladores con guías claras, ejemplos y especificaciones precisas. Una API sin documentación es inutilizable.',
+                rest: {
+                    title: 'OpenAPI (Swagger)',
+                    desc: 'Estándar de facto para describir APIs REST. Permite generar documentación interactiva y clientes automáticamente.',
+                    code: `<span class="text-blue-400">openapi:</span> 3.0.0<br/>
+<span class="text-blue-400">info:</span><br/>
+&nbsp;&nbsp;<span class="text-blue-400">title:</span> Sample API<br/>
+<span class="text-blue-400">paths:</span><br/>
+&nbsp;&nbsp;<span class="text-blue-400">/users:</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">get:</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-blue-400">summary:</span> Returns users`,
+                    tech: ['OpenAPI 3.0', 'Swagger UI', 'Redoc']
+                },
+                soap: {
+                    title: 'WSDL',
+                    desc: 'Web Services Description Language. Un archivo XML que describe estrictamente los tipos, mensajes, operaciones y endpoints.',
+                    code: `<span class="text-gray-500">&lt;</span><span class="text-yellow-400">wsdl:definitions</span>...<span class="text-gray-500">&gt;</span><br/>
+&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">wsdl:types</span>...<span class="text-gray-500">&lt;/...&gt;</span><br/>
+&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">wsdl:message</span>...<span class="text-gray-500">&lt;/...&gt;</span><br/>
+&nbsp;&nbsp;<span class="text-gray-500">&lt;</span><span class="text-yellow-400">wsdl:portType</span>...<span class="text-gray-500">&lt;/...&gt;</span><br/>
+<span class="text-gray-500">&lt;/</span><span class="text-yellow-400">wsdl:definitions</span><span class="text-gray-500">&gt;</span>`,
+                    tech: ['WSDL 1.1', 'WSDL 2.0']
+                },
+                practices: [
+                    { icon: 'play_arrow', title: 'Try It Out', desc: 'Provide an interactive console (like Swagger UI).' },
+                    { icon: 'code', title: 'Code Samples', desc: 'Include copy-pasteable code snippets in multiple languages.' },
+                    { icon: 'update', title: 'Keep Updated', desc: 'Generate docs from code annotations to avoid drift.' }
+                ]
+            },
+            'test': {
+                title: 'Testing y QA',
+                icon: 'science',
+                problem: 'Validar la funcionalidad, rendimiento y seguridad antes del despliegue. Asegurar que los contratos se cumplan.',
+                rest: {
+                    title: 'Postman / Jest',
+                    desc: 'Herramientas flexibles para probar endpoints JSON. Pruebas de integración automatizadas con frameworks de JS/Python.',
+                    code: `<span class="text-purple-400">test</span>(<span class="text-green-400">'GET /users returns 200'</span>, <span class="text-blue-400">async</span> () => {<br/>
+&nbsp;&nbsp;<span class="text-blue-400">const</span> res = <span class="text-blue-400">await</span> request(app).get(<span class="text-green-400">'/users'</span>);<br/>
+&nbsp;&nbsp;expect(res.statusCode).toBe(<span class="text-orange-400">200</span>);<br/>
+&nbsp;&nbsp;expect(res.body).toBeInstanceOf(Array);<br/>
+});`,
+                    tech: ['Postman', 'Jest', 'Supertest', 'Karate']
+                },
+                soap: {
+                    title: 'SoapUI',
+                    desc: 'La herramienta estándar para probar servicios SOAP. Permite importar WSDL y generar esqueletos de petición automáticamente.',
+                    code: `<span class="text-gray-500">// SoapUI Assertion Script</span><br/>
+<span class="text-blue-400">def</span> response = messageExchange.responseContent<br/>
+<span class="text-blue-400">def</span> xml = <span class="text-blue-400">new</span> XmlSlurper().parseText(response)<br/>
+<span class="text-blue-400">assert</span> xml.Body.GetUserResponse.Name == <span class="text-green-400">'John'</span>`,
+                    tech: ['SoapUI', 'ReadyAPI', 'JMeter']
+                },
+                practices: [
+                    { icon: 'smart_toy', title: 'Automate', desc: 'Run tests in your CI/CD pipeline on every commit.' },
+                    { icon: 'handshake', title: 'Contract Testing', desc: 'Verify that the provider and consumer adhere to the API contract.' },
+                    { icon: 'security', title: 'Security Scan', desc: 'Run automated security scans (OWASP ZAP) regularly.' }
+                ]
+            },
+            'cache': {
+                title: 'Caché y Rendimiento',
+                icon: 'bolt',
+                problem: 'Reducir la latencia y la carga en el servidor para datos que no cambian frecuentemente.',
+                rest: {
+                    title: 'HTTP Caching',
+                    desc: 'Aprovecha la infraestructura de la web (navegadores, proxies, CDNs) usando encabezados estándar.',
+                    code: `<span class="text-blue-400">Cache-Control:</span> <span class="text-green-400">public, max-age=3600</span><br/>
+<span class="text-blue-400">ETag:</span> <span class="text-green-400">"33a64df551425fcc55e4d42a148795d9f25f89d4"</span><br/>
+<span class="text-blue-400">Vary:</span> <span class="text-green-400">Accept-Encoding</span>`,
+                    tech: ['Cache-Control', 'ETag', 'CDN']
+                },
+                soap: {
+                    title: 'App-Level Caching',
+                    desc: 'Como SOAP usa POST (que no es cacheable por defecto en HTTP), el caché suele implementarse en la aplicación o en el API Gateway.',
+                    code: `<span class="text-gray-500">// Lógica en Servidor</span><br/>
+<span class="text-blue-400">if</span> (cache.contains(requestHash)) {<br/>
+&nbsp;&nbsp;<span class="text-blue-400">return</span> cache.get(requestHash);<br/>
+}<br/>
+<span class="text-blue-400">else</span> {<br/>
+&nbsp;&nbsp;<span class="text-blue-400">return</span> process(request);<br/>
+}`,
+                    tech: ['Redis', 'Memcached', 'Ehcache']
+                },
+                practices: [
+                    { icon: 'timer', title: 'TTL', desc: 'Set appropriate Time-To-Live values based on data volatility.' },
+                    { icon: 'fingerprint', title: 'Validation', desc: 'Use ETags to avoid sending data if it hasn\'t changed.' },
+                    { icon: 'storage', title: 'CDN', desc: 'Use CDNs to cache responses closer to the user.' }
+                ]
+            }
+        };
+
+        function selectChallenge(key) {
+            const data = challengesData[key];
+            if (!data) return;
+
+            // Update Sidebar Active State
+            const buttons = ['auth', 'rate', 'version', 'cors', 'error', 'docs', 'test', 'cache'];
+            buttons.forEach(btnKey => {
+                const btn = document.getElementById('btn-' + btnKey);
+                const iconContainer = btn.querySelector('div');
+                const title = btn.querySelector('p.font-bold') || btn.querySelector('p.font-medium');
+                const subtitle = btn.querySelector('p.text-xs');
+
+                if (btnKey === key) {
+                    // Active
+                    btn.className = "w-full flex items-center gap-3 px-3 py-2 bg-primary rounded-lg shadow-sm text-left group transition-all";
+                    iconContainer.className = "flex items-center justify-center w-8 h-8 rounded bg-white/20 text-[#181811]";
+                    title.className = "text-sm font-bold text-[#181811]";
+                    if (subtitle) subtitle.className = "text-xs text-[#181811]/70";
+                } else {
+                    // Inactive
+                    btn.className = "w-full flex items-center gap-3 px-3 py-2 hover:bg-white/50 rounded-lg text-left group transition-all";
+                    iconContainer.className = "flex items-center justify-center w-8 h-8 rounded bg-gray-200 text-gray-500 group-hover:text-[#181811]";
+                    title.className = "text-sm font-medium text-[#181811]";
+                    if (subtitle) subtitle.className = "text-xs text-gray-400 group-hover:text-[#181811]/70";
+                }
+            });
+
+            // Update Content
+            document.getElementById('content-title').textContent = data.title;
+            document.getElementById('content-icon').textContent = data.icon;
+            document.getElementById('content-problem').textContent = data.problem;
+
+            // REST Section
+            document.getElementById('rest-title').textContent = data.rest.title;
+            document.getElementById('rest-desc').textContent = data.rest.desc;
+            document.getElementById('rest-code').innerHTML = data.rest.code;
+            document.getElementById('rest-tech').innerHTML = data.rest.tech.map(t => 
+                `<span class="px-2 py-1 rounded bg-white border border-[#d4d4c8] text-[#5c5c4f] text-xs font-medium">${t}</span>`
+            ).join('');
+
+            // SOAP Section
+            document.getElementById('soap-title').textContent = data.soap.title;
+            document.getElementById('soap-desc').textContent = data.soap.desc;
+            document.getElementById('soap-code').innerHTML = data.soap.code;
+            document.getElementById('soap-tech').innerHTML = data.soap.tech.map(t => 
+                `<span class="px-2 py-1 rounded bg-white border border-[#d4d4c8] text-[#5c5c4f] text-xs font-medium">${t}</span>`
+            ).join('');
+
+            // Best Practices
+            const practicesContainer = document.getElementById('practices-container');
+            practicesContainer.innerHTML = data.practices.map(p => `
+                <div class="flex gap-3 p-4 bg-primary/10 border border-primary/20 rounded-lg">
+                    <span class="material-symbols-outlined text-yellow-700">${p.icon}</span>
+                    <div>
+                        <h4 class="text-sm font-bold text-[#181811]">${p.title}</h4>
+                        <p class="text-xs text-[#5c5c4f] mt-1">${p.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Casos de Uso Empresariales SOAP</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+      tailwind.config = {
+        
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f9f506",
+              "background-light": "#f8f8f5",
+              "background-dark": "#23220f",
+              "text-main": "#181811",
+              "text-muted": "#8c8b5f",
+            },
+            fontFamily: {
+              "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+              "body": ["Spline Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111418; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #283039; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b4754; 
+        }
+    </style>
+    <script src="../navigation.js"></script>
+</head>
+<body class="bg-background-light text-slate-900 font-display overflow-x-hidden min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="z-20 flex w-full items-center justify-between border-b border-solid border-b-[#e6e6e0] bg-white/80 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-4 text-[#181811]">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary-dark">
+<span class="material-symbols-outlined text-2xl text-yellow-700">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Postgrado en Desarrollo de Software</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+</div>
+</header>
+<!-- Main Content Wrapper -->
+<main class="flex-1 flex flex-col items-center w-full py-6 px-4 sm:px-8 lg:px-16">
+<div class="w-full max-w-[1280px] flex flex-col gap-6">
+<!-- Progress & Heading Section -->
+<div class="flex flex-col gap-6">
+<!-- Progress Bar -->
+<div class="flex flex-col gap-2">
+<!-- <div class="flex justify-between items-center">
+<p class="text-slate-500 text-sm font-medium leading-normal">Modulo 3: Web Services</p>
+
+</div> -->
+<!-- <div class="rounded-full bg-slate-200 h-2 overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-500 ease-out" style="width: 80%;"></div>
+</div> -->
+</div>
+<!-- Page Heading -->
+<div class="flex flex-col gap-2">
+<h1 class="text-3xl sm:text-4xl font-black leading-tight tracking-[-0.033em] text-slate-900">
+                        SOAP en Empresas: Sistemas Legados y Aplicaciones Críticas
+                    </h1>
+<p class="text-slate-500 text-base sm:text-lg font-normal leading-relaxed max-w-[800px]">
+                        Análisis detallado de adopción en sectores de alta regulación. ¿Por qué las grandes corporaciones mantienen SOAP sobre REST?
+                    </p>
+</div>
+</div>
+<!-- Content Grid: Case Studies + Sidebar Chart -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-4">
+<!-- Left Column: Case Studies (2/3 width) -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary">verified</span>
+<h3 class="text-xl font-bold text-slate-900">Casos de Éxito Empresarial</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Card 1: SAP -->
+<div class="group flex flex-col gap-4 rounded-xl border border-[#e5e7eb] bg-[#f0f0eb] p-5 hover:border-primary/50 transition-colors shadow-sm">
+<div class="flex items-center justify-between">
+<div class="p-2 rounded-lg bg-blue-50 text-primary">
+<span class="material-symbols-outlined">factory</span>
+</div>
+<span class="text-xs font-bold px-2 py-1 rounded bg-[#f0f0eb] text-[#8c8b5f] uppercase">ERP</span>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="text-lg font-bold text-slate-900">SAP</h4>
+<p class="text-slate-500 text-sm leading-relaxed">
+                                    Integración ERP crítica en módulos de finanzas y logística. Garantiza transacciones <strong>ACID</strong> atómicas.
+                                </p>
+</div>
+<div class="mt-auto pt-4 border-t border-dashed border-[#d4d4c8]">
+<div class="flex items-center gap-2 text-xs text-slate-400 font-medium">
+<span class="material-symbols-outlined text-[16px]">security</span>
+<span>WS-AtomicTransaction</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Oracle -->
+<div class="group flex flex-col gap-4 rounded-xl border border-[#e5e7eb] bg-[#f0f0eb] p-5 hover:border-primary/50 transition-colors shadow-sm">
+<div class="flex items-center justify-between">
+<div class="p-2 rounded-lg bg-red-50 text-red-500">
+<span class="material-symbols-outlined">database</span>
+</div>
+<span class="text-xs font-bold px-2 py-1 rounded bg-[#f0f0eb] text-[#8c8b5f] uppercase">Middleware</span>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="text-lg font-bold text-slate-900">Oracle</h4>
+<p class="text-slate-500 text-sm leading-relaxed">
+                                    Fusion Middleware. Uso extensivo de la pila WS-* para orquestación compleja (BPEL).
+                                </p>
+</div>
+<div class="mt-auto pt-4 border-t border-dashed border-[#d4d4c8]">
+<div class="flex items-center gap-2 text-xs text-slate-400 font-medium">
+<span class="material-symbols-outlined text-[16px]">hub</span>
+<span>WS-BPEL Orchestration</span>
+</div>
+</div>
+</div>
+<!-- Card 3: IBM -->
+<div class="group flex flex-col gap-4 rounded-xl border border-[#e5e7eb] bg-[#f0f0eb] p-5 hover:border-primary/50 transition-colors shadow-sm">
+<div class="flex items-center justify-between">
+<div class="p-2 rounded-lg bg-indigo-50 text-indigo-500">
+<span class="material-symbols-outlined">dns</span>
+</div>
+<span class="text-xs font-bold px-2 py-1 rounded bg-[#f0f0eb] text-[#8c8b5f] uppercase">Legacy</span>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="text-lg font-bold text-slate-900">IBM</h4>
+<p class="text-slate-500 text-sm leading-relaxed">
+                                    Conectividad con Mainframes (CICS/IMS). Vital para sistemas bancarios core que no pueden fallar.
+                                </p>
+</div>
+<div class="mt-auto pt-4 border-t border-dashed border-[#d4d4c8]">
+<div class="flex items-center gap-2 text-xs text-slate-400 font-medium">
+<span class="material-symbols-outlined text-[16px]">storage</span>
+<span>Mainframe Integration</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Salesforce -->
+<div class="group flex flex-col gap-4 rounded-xl border border-[#e5e7eb] bg-[#f0f0eb] p-5 hover:border-primary/50 transition-colors shadow-sm">
+<div class="flex items-center justify-between">
+<div class="p-2 rounded-lg bg-sky-50 text-sky-500">
+<span class="material-symbols-outlined">cloud</span>
+</div>
+<span class="text-xs font-bold px-2 py-1 rounded bg-[#f0f0eb] text-[#8c8b5f] uppercase">CRM</span>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="text-lg font-bold text-slate-900">Salesforce</h4>
+<p class="text-slate-500 text-sm leading-relaxed">
+                                    API Enterprise fuertemente tipada. Generación de contratos WSDL estrictos para clientes corporativos.
+                                </p>
+</div>
+<div class="mt-auto pt-4 border-t border-dashed border-[#d4d4c8]">
+<div class="flex items-center gap-2 text-xs text-slate-400 font-medium">
+<span class="material-symbols-outlined text-[16px]">description</span>
+<span>WSDL Contracts</span>
+</div>
+</div>
+</div>
+<!-- Card 5: Finance -->
+<div class="group flex flex-col gap-4 rounded-xl border border-[#e5e7eb] bg-[#f0f0eb] p-5 hover:border-primary/50 transition-colors shadow-sm">
+<div class="flex items-center justify-between">
+<div class="p-2 rounded-lg bg-green-50 text-green-500">
+<span class="material-symbols-outlined">account_balance</span>
+</div>
+<span class="text-xs font-bold px-2 py-1 rounded bg-[#f0f0eb] text-[#8c8b5f] uppercase">Fintech</span>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="text-lg font-bold text-slate-900">Instituciones Financieras</h4>
+<p class="text-slate-500 text-sm leading-relaxed">
+                                    Red SWIFT y pasarelas de pago. Enfoque en <strong>No Repudio</strong> y firma digital de mensajes.
+                                </p>
+</div>
+<div class="mt-auto pt-4 border-t border-dashed border-[#d4d4c8]">
+<div class="flex items-center gap-2 text-xs text-slate-400 font-medium">
+<span class="material-symbols-outlined text-[16px]">gavel</span>
+<span>Non-repudiation</span>
+</div>
+</div>
+</div>
+<!-- Card 6: Healthcare -->
+<div class="group flex flex-col gap-4 rounded-xl border border-[#e5e7eb] bg-[#f0f0eb] p-5 hover:border-primary/50 transition-colors shadow-sm">
+<div class="flex items-center justify-between">
+<div class="p-2 rounded-lg bg-pink-50 text-pink-500">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<span class="text-xs font-bold px-2 py-1 rounded bg-[#f0f0eb] text-[#8c8b5f] uppercase">Salud</span>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="text-lg font-bold text-slate-900">Salud (Healthcare)</h4>
+<p class="text-slate-500 text-sm leading-relaxed">
+                                    Interoperabilidad HL7 y cumplimiento HIPAA. Seguridad a nivel de mensaje para privacidad de pacientes.
+                                </p>
+</div>
+<div class="mt-auto pt-4 border-t border-dashed border-[#d4d4c8]">
+<div class="flex items-center gap-2 text-xs text-slate-400 font-medium">
+<span class="material-symbols-outlined text-[16px]">privacy_tip</span>
+<span>HIPAA Compliance</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Chart (1/3 width) -->
+<div class="lg:col-span-1 flex flex-col h-full">
+<div class="flex items-center gap-2 mb-2 lg:mb-6">
+<span class="material-symbols-outlined text-primary">bar_chart</span>
+<h3 class="text-xl font-bold text-slate-900">Adopción por Industria</h3>
+</div>
+<div class="rounded-xl border border-[#e5e7eb] bg-[#f0f0eb] p-6 flex flex-col h-full shadow-sm">
+<div class="flex flex-col gap-2 mb-6">
+<p class="text-sm font-medium text-slate-500">Uso de Protocolo SOAP</p>
+<div class="flex items-end gap-2">
+<p class="text-4xl font-bold text-slate-900">85%</p>
+<div class="flex items-center gap-1 text-[#0bda5b] bg-[#0bda5b]/10 px-2 py-0.5 rounded text-sm font-bold mb-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span>Estable</span>
+</div>
+</div>
+<p class="text-xs text-slate-400">En sectores regulados vs. 2023</p>
+</div>
+<!-- Chart Bars -->
+<div class="flex flex-col gap-5 flex-1 justify-center">
+<!-- Item -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs font-bold text-[#181811]">
+<span>Finanzas &amp; Banca</span>
+<span>92%</span>
+</div>
+<div class="h-2 w-full bg-[#f0f0eb] rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 92%"></div>
+</div>
+</div>
+<!-- Item -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs font-bold text-[#181811]">
+<span>Gobierno</span>
+<span>88%</span>
+</div>
+<div class="h-2 w-full bg-[#f0f0eb] rounded-full overflow-hidden">
+<div class="h-full bg-primary/80 rounded-full" style="width: 88%"></div>
+</div>
+</div>
+<!-- Item -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs font-bold text-[#181811]">
+<span>Salud</span>
+<span>75%</span>
+</div>
+<div class="h-2 w-full bg-[#f0f0eb] rounded-full overflow-hidden">
+<div class="h-full bg-primary/70 rounded-full" style="width: 75%"></div>
+</div>
+</div>
+<!-- Item -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs font-bold text-[#181811]">
+<span>Telecom</span>
+<span>60%</span>
+</div>
+<div class="h-2 w-full bg-[#f0f0eb] rounded-full overflow-hidden">
+<div class="h-full bg-primary/50 rounded-full" style="width: 60%"></div>
+</div>
+</div>
+<!-- Item -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs font-bold text-[#181811]">
+<span>Retail</span>
+<span>45%</span>
+</div>
+<div class="h-2 w-full bg-[#f0f0eb] rounded-full overflow-hidden">
+<div class="h-full bg-primary/30 rounded-full" style="width: 45%"></div>
+</div>
+</div>
+<!-- Item -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs font-bold text-[#181811]">
+<span>Tech Startups</span>
+<span>12%</span>
+</div>
+<div class="h-2 w-full bg-[#f0f0eb] rounded-full overflow-hidden">
+<div class="h-full bg-slate-400 rounded-full" style="width: 12%"></div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-[#d4d4c8]">
+<p class="text-[10px] text-slate-400 text-center uppercase tracking-wider font-bold">
+                                Fuente: Global Enterprise API Report 2024
+                            </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer / Navigation Controls -->
+<div class="w-full max-w-[1280px] mt-8 mb-4 flex justify-between items-center border-t border-[#d4d4c8] pt-6">
+
+
+</div>
+</main>
+</body></html>
+
+
+
+
+

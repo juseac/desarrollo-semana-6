@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Stack Tecnológico - Servicios Web</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script>
+      tailwind.config = {
+        
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f9f506",
+              "background-light": "#f8f8f5",
+              "background-dark": "#23220f",
+              "text-main": "#181811",
+              "text-muted": "#8c8b5f",
+            },
+            fontFamily: {
+              "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+              "body": ["Spline Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #101922; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b4754; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4b5563; 
+        }
+        
+        .glass-header {
+            background: rgba(16, 25, 34, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #3b4754;
+        }
+    </style>
+    <script src="../navigation.js"></script>
+</head>
+<body class="bg-background-light text-[#111418] font-display overflow-x-hidden transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col">
+<!-- Main Layout Container -->
+<div class="layout-container flex h-full grow flex-col">
+<!-- Content Wrapper -->
+<div class="px-6 md:px-20 lg:px-40 flex flex-1 justify-center py-10">
+<div class="layout-content-container flex flex-col max-w-[1024px] flex-1">
+<!-- Page Header -->
+<div class="flex flex-col gap-2 p-4 border-l-4 border-yellow-600 pl-6 mb-8">
+<h1 class="text-[#111418] text-3xl md:text-5xl font-black leading-tight tracking-[-0.033em]">
+                            Stack Tecnológico: <span class="text-yellow-700">Frameworks, Herramientas y Plataformas</span>
+</h1>
+<p class="text-text-secondary text-base md:text-lg font-normal leading-normal">
+                            Desarrollo de Servicios Web REST y SOAP - Postgrado en Desarrollo de Software
+                        </p>
+</div>
+<!-- Category Chips/Stats (Optional Quick View) -->
+<div class="flex gap-3 px-4 pb-6 flex-wrap">
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-yellow-100 border border-yellow-600/20 px-4">
+<span class="material-symbols-outlined text-yellow-700 text-[20px]">api</span>
+<p class="text-[#111418] text-sm font-medium">REST &amp; SOAP</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-yellow-100 border border-yellow-600/20 px-4">
+<span class="material-symbols-outlined text-yellow-700 text-[20px]">deployed_code</span>
+<p class="text-[#111418] text-sm font-medium">Microservicios</p>
+</div>
+<div class="flex h-8 shrink-0 items-center justify-center gap-x-2 rounded-full bg-yellow-100 border border-yellow-600/20 px-4">
+<span class="material-symbols-outlined text-yellow-700 text-[20px]">cloud_sync</span>
+<p class="text-[#111418] text-sm font-medium">Cloud Native</p>
+</div>
+</div>
+<!-- Section Header: Categorías -->
+<div class="px-4 pb-4 pt-2">
+<h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-700">category</span>
+                            Categorías de Herramientas
+                        </h2>
+</div>
+<!-- Categories Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+<!-- Card 1: Testing -->
+<div class="flex flex-1 gap-4 rounded-xl border border-card-border bg-[#f0f0eb] p-5 flex-col shadow-sm hover:border-yellow-600/50 transition-colors duration-200">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-lg bg-yellow-200 text-yellow-700">
+<span class="material-symbols-outlined text-[28px]">fact_check</span>
+</div>
+<h3 class="text-[#111418] text-lg font-bold leading-tight">Testing y QA</h3>
+</div>
+<div class="flex flex-col gap-2 mt-1">
+<p class="text-text-secondary text-sm leading-relaxed">
+                                    Herramientas para pruebas unitarias, de integración y carga.
+                                </p>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">Postman</span>
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">SoapUI</span>
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">Insomnia</span>
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">Thunder Client</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Frameworks -->
+<div class="flex flex-1 gap-4 rounded-xl border border-card-border bg-[#f0f0eb] p-5 flex-col shadow-sm hover:border-yellow-600/50 transition-colors duration-200">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-lg bg-yellow-200 text-yellow-700">
+<span class="material-symbols-outlined text-[28px]">terminal</span>
+</div>
+<h3 class="text-[#111418] text-lg font-bold leading-tight">Frameworks</h3>
+</div>
+<div class="flex flex-col gap-2 mt-1">
+<p class="text-text-secondary text-sm leading-relaxed">
+                                    Bases de código para agilizar el desarrollo de APIs.
+                                </p>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">Python (Flask/Django)</span>
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">Node.js (Express)</span>
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">Java (Spring)</span>
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">.NET</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Gateways -->
+<div class="flex flex-1 gap-4 rounded-xl border border-card-border bg-[#f0f0eb] p-5 flex-col shadow-sm hover:border-yellow-600/50 transition-colors duration-200">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-lg bg-yellow-200 text-yellow-700">
+<span class="material-symbols-outlined text-[28px]">router</span>
+</div>
+<h3 class="text-[#111418] text-lg font-bold leading-tight">API Gateways</h3>
+</div>
+<div class="flex flex-col gap-2 mt-1">
+<p class="text-text-secondary text-sm leading-relaxed">
+                                    Gestión de tráfico, seguridad y enrutamiento centralizado.
+                                </p>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">Kong</span>
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">AWS Gateway</span>
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">Nginx</span>
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">Apache</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Documentation -->
+<div class="flex flex-1 gap-4 rounded-xl border border-card-border bg-[#f0f0eb] p-5 flex-col shadow-sm hover:border-yellow-600/50 transition-colors duration-200">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-lg bg-yellow-200 text-yellow-700">
+<span class="material-symbols-outlined text-[28px]">menu_book</span>
+</div>
+<h3 class="text-[#111418] text-lg font-bold leading-tight">Documentación</h3>
+</div>
+<div class="flex flex-col gap-2 mt-1">
+<p class="text-text-secondary text-sm leading-relaxed">
+                                    Estándares para describir y consumir servicios web.
+                                </p>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">OpenAPI (Swagger)</span>
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">WSDL (SOAP)</span>
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">Redoc</span>
+</div>
+</div>
+</div>
+<!-- Card 5: Monitoring -->
+<div class="flex flex-1 gap-4 rounded-xl border border-card-border bg-[#f0f0eb] p-5 flex-col shadow-sm hover:border-yellow-600/50 transition-colors duration-200 lg:col-span-2">
+<div class="flex items-center gap-3">
+<div class="p-2 rounded-lg bg-yellow-200 text-yellow-700">
+<span class="material-symbols-outlined text-[28px]">monitoring</span>
+</div>
+<h3 class="text-[#111418] text-lg font-bold leading-tight">Monitoreo y Logging</h3>
+</div>
+<div class="flex flex-col gap-2 mt-1">
+<p class="text-text-secondary text-sm leading-relaxed">
+                                    Observabilidad del sistema, trazas y métricas de rendimiento en tiempo real.
+                                </p>
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">ELK Stack</span>
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">Prometheus + Grafana</span>
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">New Relic</span>
+<span class="px-2 py-1 rounded bg-[#f0f2f4] text-xs font-medium">DataDog</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Section Header: Comparativa -->
+<div class="px-4 pb-4 pt-8">
+<h2 class="text-[#111418] text-[22px] font-bold leading-tight tracking-[-0.015em] flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-700">compare_arrows</span>
+                            Comparativa de Herramientas Clave
+                        </h2>
+</div>
+<!-- Comparison Table -->
+<div class="p-4">
+<div class="overflow-hidden rounded-xl border border-card-border shadow-sm">
+<table class="w-full text-left text-sm text-[#111418]">
+<thead class="bg-[#f0f2f4] text-xs uppercase text-text-secondary font-semibold">
+<tr>
+<th class="px-6 py-4" scope="col">Herramienta</th>
+<th class="px-6 py-4 hidden sm:table-cell" scope="col">Tipo</th>
+<th class="px-6 py-4" scope="col">Protocolo</th>
+<th class="px-6 py-4 hidden md:table-cell" scope="col">Complejidad</th>
+<th class="px-6 py-4" scope="col">Costo</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-card-border bg-[#f0f0eb]">
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-orange-500 text-lg">bug_report</span>
+                                            Postman
+                                        </td>
+<td class="px-6 py-4 text-text-secondary hidden sm:table-cell">Testing</td>
+<td class="px-6 py-4"><span class="inline-flex items-center rounded-md bg-blue-500/10 px-2 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-500/20">Ambos</span></td>
+<td class="px-6 py-4 text-text-secondary hidden md:table-cell">Media</td>
+<td class="px-6 py-4 text-text-secondary">Freemium</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500 text-lg">code_blocks</span>
+                                            Spring Boot
+                                        </td>
+<td class="px-6 py-4 text-text-secondary hidden sm:table-cell">Framework</td>
+<td class="px-6 py-4"><span class="inline-flex items-center rounded-md bg-blue-500/10 px-2 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-500/20">Ambos</span></td>
+<td class="px-6 py-4 text-text-secondary hidden md:table-cell">Alta</td>
+<td class="px-6 py-4 text-text-secondary">Open Source</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-700 text-lg">description</span>
+                                            Swagger
+                                        </td>
+<td class="px-6 py-4 text-text-secondary hidden sm:table-cell">Documentación</td>
+<td class="px-6 py-4"><span class="inline-flex items-center rounded-md bg-purple-500/10 px-2 py-1 text-xs font-medium text-purple-400 ring-1 ring-inset ring-purple-500/20">REST</span></td>
+<td class="px-6 py-4 text-text-secondary hidden md:table-cell">Baja</td>
+<td class="px-6 py-4 text-text-secondary">Open Source</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-red-500 text-lg">hub</span>
+                                            Kong
+                                        </td>
+<td class="px-6 py-4 text-text-secondary hidden sm:table-cell">Gateway</td>
+<td class="px-6 py-4"><span class="inline-flex items-center rounded-md bg-blue-500/10 px-2 py-1 text-xs font-medium text-blue-400 ring-1 ring-inset ring-blue-500/20">Ambos</span></td>
+<td class="px-6 py-4 text-text-secondary hidden md:table-cell">Alta</td>
+<td class="px-6 py-4 text-text-secondary">Enterprise</td>
+</tr>
+<tr class="hover:bg-primary/5 transition-colors">
+<td class="px-6 py-4 font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-teal-400 text-lg">text_snippet</span>
+                                            WSDL
+                                        </td>
+<td class="px-6 py-4 text-text-secondary hidden sm:table-cell">Documentación</td>
+<td class="px-6 py-4"><span class="inline-flex items-center rounded-md bg-indigo-500/10 px-2 py-1 text-xs font-medium text-indigo-400 ring-1 ring-inset ring-indigo-500/20">SOAP</span></td>
+<td class="px-6 py-4 text-text-secondary hidden md:table-cell">Media</td>
+<td class="px-6 py-4 text-text-secondary">Estándar</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Slide Navigation Footer -->
+<div class="mt-8 flex items-center justify-between p-4 border-t border-card-border">
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>
+
+
+
+
+
+

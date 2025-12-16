@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>¿Qué son los Servicios Web?</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f9f506",
+              "background-light": "#f8f8f5",
+              "background-dark": "#23220f",
+              "text-main": "#181811",
+              "text-muted": "#8c8b5f",
+            },
+            fontFamily: {
+              "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+              "body": ["Spline Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+    <script src="../navigation.js"></script>
+</head>
+<body class="bg-background-light font-display text-[#181811] transition-colors duration-200">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Header Section -->
+<header class="z-20 flex w-full items-center justify-between border-b border-solid border-b-[#e6e6e0] bg-white/80 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-4 text-[#181811]">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary-dark">
+<span class="material-symbols-outlined text-2xl text-yellow-700">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Postgrado en Desarrollo de Software</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+</div>
+</header>
+<div class="layout-container flex h-full grow flex-col w-full">
+<!-- Main Grid Content -->
+<main class="grid grid-cols-1 lg:grid-cols-12 gap-6 w-full max-w-[1400px] mx-auto grow p-6 md:p-10 lg:p-12">
+<!-- Left Column: Definition & Key Points -->
+<div class="lg:col-span-7 flex flex-col gap-6">
+<!-- Prominent Definition Card -->
+<div class="relative overflow-hidden rounded-xl bg-primary p-8 shadow-sm">
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-[#181811] text-3xl">menu_book</span>
+<p class="text-[#181811] tracking-wide text-sm font-black uppercase">Definición Oficial (W3C)</p>
+</div>
+<h2 class="text-[#181811] text-2xl md:text-3xl font-bold leading-snug">
+                                "Un sistema de software diseñado para soportar la interacción interoperable máquina a máquina a través de una red."
+                            </h2>
+<div class="mt-2 flex gap-3">
+<span class="px-3 py-1 bg-white/30 rounded-full text-xs font-bold text-[#181811]">Machine-to-Machine</span>
+<span class="px-3 py-1 bg-white/30 rounded-full text-xs font-bold text-[#181811]">Interoperable</span>
+</div>
+</div>
+<!-- Decorative Abstract Background Pattern -->
+<div class="absolute right-[-20px] bottom-[-40px] opacity-20 pointer-events-none">
+<span class="material-symbols-outlined text-[180px]">hub</span>
+</div>
+</div>
+<!-- 4 Key Points Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Item 1 -->
+<div class="flex flex-col gap-2 rounded-xl bg-[#f0f0eb] border border-[#e6e6db] p-5 hover:border-yellow-600/50 transition-colors">
+<div class="flex items-center gap-3">
+<div class="bg-yellow-200 p-2 rounded-full text-[#181811]">
+<span class="material-symbols-outlined">link</span>
+</div>
+<h3 class="text-[#181811] text-lg font-bold">Interoperabilidad</h3>
+</div>
+<p class="text-[#8c8b5f] text-sm pl-[52px]">Comunicación fluida entre distintos sistemas.</p>
+</div>
+<!-- Item 2 -->
+<div class="flex flex-col gap-2 rounded-xl bg-[#f0f0eb] border border-[#e6e6db] p-5 hover:border-yellow-600/50 transition-colors">
+<div class="flex items-center gap-3">
+<div class="bg-yellow-200 p-2 rounded-full text-[#181811]">
+<span class="material-symbols-outlined">language</span>
+</div>
+<h3 class="text-[#181811] text-lg font-bold">Independencia</h3>
+</div>
+<p class="text-[#8c8b5f] text-sm pl-[52px]">Funciona sin importar el lenguaje o plataforma.</p>
+</div>
+<!-- Item 3 -->
+<div class="flex flex-col gap-2 rounded-xl bg-[#f0f0eb] border border-[#e6e6db] p-5 hover:border-yellow-600/50 transition-colors">
+<div class="flex items-center gap-3">
+<div class="bg-yellow-200 p-2 rounded-full text-[#181811]">
+<span class="material-symbols-outlined">cloud</span>
+</div>
+<h3 class="text-[#181811] text-lg font-bold">Basado en Web</h3>
+</div>
+<p class="text-[#8c8b5f] text-sm pl-[52px]">Utiliza Estándares de Internet (HTTP).</p>
+</div>
+<!-- Item 4 -->
+<div class="flex flex-col gap-2 rounded-xl bg-[#f0f0eb] border border-[#e6e6db] p-5 hover:border-yellow-600/50 transition-colors">
+<div class="flex items-center gap-3">
+<div class="bg-yellow-200 p-2 rounded-full text-[#181811]">
+<span class="material-symbols-outlined">terminal</span>
+</div>
+<h3 class="text-[#181811] text-lg font-bold">Acceso Remoto</h3>
+</div>
+<p class="text-[#8c8b5f] text-sm pl-[52px]">Permite invocar funciones a distancia.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Stats & Data -->
+<div class="lg:col-span-5 flex flex-col gap-6 h-full">
+<!-- Stats Card -->
+<div class="bg-[#f0f0eb] rounded-xl border border-[#e6e6db] p-6 flex flex-col gap-4 shadow-sm h-full">
+<div class="flex items-start justify-between">
+<h3 class="text-[#181811] text-xl font-bold leading-tight">Estadísticas de Uso de APIs</h3>
+<span class="material-symbols-outlined text-[#8c8b5f]">bar_chart</span>
+</div>
+<div class="flex flex-col gap-1 mb-2">
+<p class="text-[#8c8b5f] text-sm font-medium">Adopción Global</p>
+<p class="text-[#181811] text-4xl font-bold tracking-tight">85% <span class="text-lg font-normal text-[#8c8b5f]">Desarrolladores</span></p>
+</div>
+<hr class="border-[#e6e6db] my-2"/>
+<div class="grid gap-y-5">
+<!-- REST Bar -->
+<div class="space-y-1">
+<div class="flex justify-between text-sm font-bold">
+<span class="text-[#181811]">REST</span>
+<span class="text-[#181811]">70%</span>
+</div>
+<div class="h-3 w-full bg-[#f0f0e8] rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full" style="width: 70%"></div>
+</div>
+</div>
+<!-- SOAP Bar -->
+<div class="space-y-1">
+<div class="flex justify-between text-sm font-bold">
+<span class="text-[#181811]">SOAP</span>
+<span class="text-[#181811]">25%</span>
+</div>
+<div class="h-3 w-full bg-[#f0f0e8] rounded-full overflow-hidden">
+<div class="h-full bg-[#181811] rounded-full" style="width: 25%"></div>
+</div>
+</div>
+<!-- GraphQL Bar -->
+<div class="space-y-1">
+<div class="flex justify-between text-sm font-bold">
+<span class="text-[#181811]">GraphQL</span>
+<span class="text-[#181811]">5%</span>
+</div>
+<div class="h-3 w-full bg-[#f0f0e8] rounded-full overflow-hidden">
+<div class="h-full bg-[#8c8b5f] rounded-full" style="width: 5%"></div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4 flex gap-2 items-center">
+<span class="material-symbols-outlined text-[#8c8b5f] text-sm">info</span>
+<p class="text-xs text-[#8c8b5f]">Datos basados en encuestas de la industria 2024.</p>
+</div>
+</div>
+</div>
+<!-- Bottom Full Width: Timeline -->
+<div class="lg:col-span-12 mt-2">
+<div class="rounded-xl bg-[#f0f0eb] border border-[#e6e6db] p-8 relative overflow-hidden">
+<!-- Background decoration -->
+<div class="absolute top-0 right-0 w-64 h-full bg-gradient-to-l from-[#f0f0eb] to-transparent z-10 pointer-events-none"></div>
+<div class="flex flex-col gap-6 relative z-0">
+<div class="flex justify-between items-end">
+<h3 class="text-[#181811] text-xl font-bold">Evolución Histórica</h3>
+<span class="text-[#8c8b5f] text-sm font-mono">1995 — 2025</span>
+</div>
+<!-- Timeline Line -->
+<div class="relative w-full h-1 bg-gray-300 rounded-full mt-4 mb-2">
+<div class="absolute left-0 top-0 h-full bg-gradient-to-r from-primary/20 via-primary to-primary w-full rounded-full opacity-50"></div>
+</div>
+<!-- Timeline Points -->
+<div class="flex justify-between w-full overflow-x-auto gap-4 pb-2 no-scrollbar">
+<!-- Point 1 -->
+<div class="flex flex-col gap-2 min-w-[120px]">
+<div class="w-3 h-3 rounded-full bg-gray-400 mb-1"></div>
+<span class="text-yellow-700 text-xs font-bold">1998</span>
+<span class="text-[#181811] text-sm font-medium">XML-RPC</span>
+</div>
+<!-- Point 2 -->
+<div class="flex flex-col gap-2 min-w-[120px]">
+<div class="w-3 h-3 rounded-full bg-gray-400 mb-1"></div>
+<span class="text-yellow-700 text-xs font-bold">1999</span>
+<span class="text-[#181811] text-sm font-medium">SOAP 1.0</span>
+</div>
+<!-- Point 3 (Major) -->
+<div class="flex flex-col gap-2 min-w-[120px]">
+<div class="w-4 h-4 rounded-full bg-primary mb-0 border-4 border-[#f0f0eb] shadow-[0_0_10px_rgba(249,245,6,0.5)]"></div>
+<span class="text-yellow-700 text-xs font-bold">2000</span>
+<span class="text-[#181811] text-base font-bold">REST (Fielding)</span>
+</div>
+<!-- Point 4 -->
+<div class="flex flex-col gap-2 min-w-[120px]">
+<div class="w-3 h-3 rounded-full bg-gray-400 mb-1"></div>
+<span class="text-yellow-700 text-xs font-bold">2002</span>
+<span class="text-[#181811] text-sm font-medium">Amazon AWS</span>
+</div>
+<!-- Point 5 -->
+<div class="flex flex-col gap-2 min-w-[120px]">
+<div class="w-3 h-3 rounded-full bg-gray-400 mb-1"></div>
+<span class="text-yellow-700 text-xs font-bold">2015</span>
+<span class="text-[#181811] text-sm font-medium">GraphQL</span>
+</div>
+<!-- Point 6 -->
+<div class="flex flex-col gap-2 min-w-[120px]">
+<div class="w-3 h-3 rounded-full bg-gray-400 mb-1"></div>
+<span class="text-yellow-700 text-xs font-bold">2016</span>
+<span class="text-[#181811] text-sm font-medium">gRPC</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<!-- <footer class="mt-8 flex justify-between items-center border-t border-[#e6e6db] pt-4 w-full max-w-[1400px] mx-auto px-6 md:px-10 lg:px-12">
+<div class="flex items-center gap-2">
+<div class="h-6 w-6 rounded-full bg-primary"></div>
+<span class="text-xs font-bold text-[#181811] uppercase tracking-widest">Postgrado Desarrollo de Software</span>
+</div>
+
+</footer> -->
+</div>
+</div>
+</body></html>
+
+
+
+
+
+

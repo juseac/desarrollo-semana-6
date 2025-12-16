@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fundamentos de SOAP</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f9f506",
+              "background-light": "#f8f8f5",
+              "background-dark": "#23220f",
+              "text-main": "#181811",
+              "text-muted": "#8c8b5f",
+            },
+            fontFamily: {
+              "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+              "body": ["Spline Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for code blocks */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1e293b; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #475569; 
+        }
+    </style>
+    <script src="../navigation.js"></script>
+</head>
+<body class="bg-background-light min-h-screen flex flex-col font-display text-slate-900 overflow-x-hidden selection:bg-primary/30 selection:text-[#181811]">
+<!-- Top Navigation -->
+<header class="z-20 flex w-full items-center justify-between border-b border-solid border-b-[#e6e6e0] bg-white/80 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-4 text-[#181811]">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary-dark">
+<span class="material-symbols-outlined text-2xl text-yellow-700">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Postgrado en Desarrollo de Software</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-[1600px] mx-auto p-6 lg:p-10">
+<!-- Header & Chips -->
+<div class="mb-10 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+<div class="flex flex-col gap-3 max-w-3xl">
+<div class="flex items-center gap-2 text-yellow-700 font-bold text-sm tracking-widest uppercase mb-1">
+<span class="material-symbols-outlined text-lg">category</span>
+<span>Módulo 1: Fundamentos</span>
+</div>
+<h1 class="text-4xl md:text-5xl font-black tracking-tight text-slate-900 leading-[1.1]">
+                    SOAP: Simple Object Access Protocol
+                </h1>
+<p class="text-xl text-slate-500 font-light">
+                    Protocolo Complejo Pero Seguro
+                </p>
+</div>
+<div class="flex flex-wrap gap-2">
+<!-- <div class="flex items-center gap-2 rounded-full border border-gray-200 bg-[#f0f0eb] px-4 py-1.5 shadow-sm">
+<span class="material-symbols-outlined text-yellow-700 text-[18px]">history</span>
+<span class="text-sm font-medium">Origen: 1998</span>
+</div> -->
+<div class="flex items-center gap-2 rounded-full border border-gray-200 bg-[#f0f0eb] px-4 py-1.5 shadow-sm">
+<span class="material-symbols-outlined text-slate-500 text-[18px]">business</span>
+<span class="text-sm font-medium">Microsoft</span>
+</div>
+<div class="flex items-center gap-2 rounded-full border border-gray-200 bg-[#f0f0eb] px-4 py-1.5 shadow-sm">
+<span class="material-symbols-outlined text-slate-500 text-[18px]">business</span>
+<span class="text-sm font-medium">IBM</span>
+</div>
+<div class="flex items-center gap-2 rounded-full border border-gray-200 bg-[#f0f0eb] px-4 py-1.5 shadow-sm">
+<span class="material-symbols-outlined text-slate-500 text-[18px]">business</span>
+<span class="text-sm font-medium">Lotus</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-8 xl:gap-12">
+<!-- Left Column: Theory -->
+<div class="xl:col-span-5 flex flex-col gap-8">
+<!-- Definition Card -->
+<div class="rounded-xl bg-[#f0f0eb] p-6 shadow-sm border border-gray-100 relative overflow-hidden group transition-all duration-300" id="definition-card">
+    <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+    <div class="absolute -right-6 -top-6 text-gray-100 opacity-50 transform rotate-12 group-hover:rotate-0 transition-transform duration-500">
+        <span id="def-bg-icon" class="material-symbols-outlined text-[120px] font-thin">menu_book</span>
+    </div>
+    <h3 class="text-lg font-bold mb-3 flex items-center gap-2 relative z-10">
+        <span id="def-icon" class="material-symbols-outlined text-yellow-700">info</span> 
+        <span id="def-title">Definición Formal</span>
+    </h3>
+    <p id="def-desc" class="text-[#8c8b5f] leading-relaxed relative z-10">
+        Protocolo Estándar basado en <strong class="text-yellow-700">XML</strong> para el intercambio de información estructurada en la implementación de servicios web. Diseñado para permitir la comunicación entre aplicaciones independientemente del sistema operativo o lenguaje.
+    </p>
+</div>
+<!-- 6 Key Characteristics Grid -->
+<div>
+    <h3 class="text-lg font-bold mb-4 flex items-center gap-2">
+        <span class="material-symbols-outlined text-yellow-700">stars</span> Características Clave
+    </h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <!-- Card 1 -->
+        <div id="feat-xml" onclick="selectFeature('xml')" class="p-4 rounded-lg bg-gray-50 border border-gray-200 flex items-start gap-3 hover:border-yellow-600/50 transition-all cursor-pointer hover:shadow-md group">
+            <span class="material-symbols-outlined text-yellow-700 mt-0.5 group-hover:scale-110 transition-transform">code</span>
+            <div>
+                <h4 class="font-semibold text-sm group-hover:text-yellow-700 transition-colors">Basado en XML</h4>
+                <p class="text-xs text-slate-500 mt-1">Estructura rígida y legible por máquina.</p>
+            </div>
+        </div>
+        <!-- Card 2 -->
+        <div id="feat-rpc" onclick="selectFeature('rpc')" class="p-4 rounded-lg bg-gray-50 border border-gray-200 flex items-start gap-3 hover:border-yellow-600/50 transition-all cursor-pointer hover:shadow-md group">
+            <span class="material-symbols-outlined text-yellow-700 mt-0.5 group-hover:scale-110 transition-transform">settings_ethernet</span>
+            <div>
+                <h4 class="font-semibold text-sm group-hover:text-yellow-700 transition-colors">Orientado a RPC</h4>
+                <p class="text-xs text-slate-500 mt-1">Llamada a procedimientos remotos.</p>
+            </div>
+        </div>
+        <!-- Card 3 -->
+        <div id="feat-neutral" onclick="selectFeature('neutral')" class="p-4 rounded-lg bg-gray-50 border border-gray-200 flex items-start gap-3 hover:border-yellow-600/50 transition-all cursor-pointer hover:shadow-md group">
+            <span class="material-symbols-outlined text-yellow-700 mt-0.5 group-hover:scale-110 transition-transform">hub</span>
+            <div>
+                <h4 class="font-semibold text-sm group-hover:text-yellow-700 transition-colors">Neutro</h4>
+                <p class="text-xs text-slate-500 mt-1">Funciona sobre HTTP, SMTP, TCP, etc.</p>
+            </div>
+        </div>
+        <!-- Card 4 -->
+        <div id="feat-typed" onclick="selectFeature('typed')" class="p-4 rounded-lg bg-gray-50 border border-gray-200 flex items-start gap-3 hover:border-yellow-600/50 transition-all cursor-pointer hover:shadow-md group">
+            <span class="material-symbols-outlined text-yellow-700 mt-0.5 group-hover:scale-110 transition-transform">verified</span>
+            <div>
+                <h4 class="font-semibold text-sm group-hover:text-yellow-700 transition-colors">Tipado Fuerte</h4>
+                <p class="text-xs text-slate-500 mt-1">Validación estricta de datos (WSDL).</p>
+            </div>
+        </div>
+        <!-- Card 5 -->
+        <div id="feat-security" onclick="selectFeature('security')" class="p-4 rounded-lg bg-gray-50 border border-gray-200 flex items-start gap-3 hover:border-yellow-600/50 transition-all cursor-pointer hover:shadow-md group">
+            <span class="material-symbols-outlined text-yellow-700 mt-0.5 group-hover:scale-110 transition-transform">lock</span>
+            <div>
+                <h4 class="font-semibold text-sm group-hover:text-yellow-700 transition-colors">Seguridad WS*</h4>
+                <p class="text-xs text-slate-500 mt-1">Estándares de seguridad empresarial.</p>
+            </div>
+        </div>
+        <!-- Card 6 -->
+        <div id="feat-reliability" onclick="selectFeature('reliability')" class="p-4 rounded-lg bg-gray-50 border border-gray-200 flex items-start gap-3 hover:border-yellow-600/50 transition-all cursor-pointer hover:shadow-md group">
+            <span class="material-symbols-outlined text-yellow-700 mt-0.5 group-hover:scale-110 transition-transform">handshake</span>
+            <div>
+                <h4 class="font-semibold text-sm group-hover:text-yellow-700 transition-colors">Fiabilidad</h4>
+                <p class="text-xs text-slate-500 mt-1">Manejo de transacciones ACID.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Pros & Cons -->
+<div class="grid grid-cols-2 gap-6">
+<div>
+<h3 class="text-sm uppercase tracking-wider font-bold text-green-500 mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">check_circle</span> Ventajas
+                        </h3>
+<ul class="space-y-2">
+<li class="flex items-start gap-2 text-sm text-[#8c8b5f]">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5"></span>
+                                Transacciones ACID robustas
+                            </li>
+<li class="flex items-start gap-2 text-sm text-[#8c8b5f]">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5"></span>
+                                Estandarización estricta (WSDL)
+                            </li>
+<li class="flex items-start gap-2 text-sm text-[#8c8b5f]">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5"></span>
+                                Funciona en entornos asíncronos
+                            </li>
+</ul>
+</div>
+<div>
+<h3 class="text-sm uppercase tracking-wider font-bold text-red-500 mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">warning</span> Limitaciones
+                        </h3>
+<ul class="space-y-2">
+<li class="flex items-start gap-2 text-sm text-[#8c8b5f]">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5"></span>
+                                Verbosidad extrema (XML pesado)
+                            </li>
+<li class="flex items-start gap-2 text-sm text-[#8c8b5f]">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5"></span>
+                                Lento parseo comparado con JSON
+                            </li>
+<li class="flex items-start gap-2 text-sm text-[#8c8b5f]">
+<span class="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5"></span>
+                                Curva de aprendizaje alta
+                            </li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Right Column: Technical Implementation -->
+<div class="xl:col-span-7 flex flex-col gap-6">
+<!-- Diagram & Playground Container -->
+<div class="bg-[#f0f0eb] rounded-xl border border-gray-200 shadow-lg overflow-hidden flex flex-col h-full">
+<!-- Tabs Header -->
+<div class="flex border-b border-gray-200 bg-gray-50">
+    <button id="btn-structure" onclick="switchTab('structure')" class="px-6 py-3 text-sm font-medium border-b-2 border-yellow-600 text-yellow-700 bg-[#f0f0eb] transition-colors">
+        Estructura &amp; Ejemplo
+    </button>
+    <button id="btn-fault" onclick="switchTab('fault')" class="px-6 py-3 text-sm font-medium border-b-2 border-transparent text-slate-500 hover:text-[#181811] hover:bg-gray-100 transition-colors">
+        Respuesta (Fault)
+    </button>
+</div>
+<div class="p-6 flex-1 flex flex-col lg:flex-row gap-6 relative">
+
+    <!-- Content: Structure (Default) -->
+    <div id="content-structure" class="flex flex-col lg:flex-row gap-6 w-full transition-opacity duration-300">
+        <!-- Visual Diagram -->
+        <div class="lg:w-1/3 flex flex-col gap-2 select-none">
+            <h4 class="text-xs uppercase font-bold text-slate-500 mb-2">Estructura del Mensaje</h4>
+            <!-- Envelope Visual -->
+            <div class="border-2 border-dashed border-yellow-600/40 rounded-lg p-2 bg-primary/5 relative">
+                <span class="absolute -top-3 left-4 bg-[#f0f0eb] px-2 text-xs font-bold text-yellow-700">Envelope</span>
+                <!-- Header Visual -->
+                <div class="border border-slate-300 rounded p-2 mb-2 bg-[#f0f0eb]">
+                    <span class="text-[10px] font-mono text-slate-500 block mb-1">&lt;Header&gt;</span>
+                    <div class="h-1 w-12 bg-slate-200 rounded mb-1"></div>
+                    <div class="h-1 w-20 bg-slate-200 rounded"></div>
+                    <span class="text-[10px] font-mono text-slate-500 block mt-1 text-right">Optional</span>
+                </div>
+                <!-- Body Visual -->
+                <div class="border-2 border-yellow-600 rounded p-2 bg-[#f0f0eb] relative">
+                    <span class="text-[10px] font-mono text-yellow-700 font-bold block mb-1">&lt;Body&gt;</span>
+                    <div class="h-1.5 w-3/4 bg-yellow-200 rounded mb-1"></div>
+                    <div class="h-1.5 w-1/2 bg-yellow-200 rounded"></div>
+                    <span class="text-[10px] font-mono text-yellow-700 block mt-1 text-right">Mandatory</span>
+                </div>
+            </div>
+        </div>
+        <!-- Code Block -->
+        <div class="lg:w-2/3 flex flex-col h-full min-h-[300px]">
+            <h4 class="text-xs uppercase font-bold text-slate-500 mb-3 flex justify-between">
+                <span>Ejemplo de Solicitud (CreateUser)</span>
+                <span class="text-yellow-700 font-mono text-[10px] bg-yellow-100 px-2 py-0.5 rounded">POST /ws/users</span>
+            </h4>
+            <div class="bg-[#1e293b] rounded-lg p-4 font-mono text-xs overflow-auto custom-scrollbar flex-1 border border-gray-700 shadow-inner">
+<pre class="leading-relaxed"><span class="text-gray-500">&lt;?xml version="1.0"?&gt;</span>
+<span class="text-[#89d185]">&lt;soap:Envelope</span> <span class="text-[#79c0ff]">xmlns:soap</span>=<span class="text-[#a5d6ff]">"http://www.w3.org/2003/05/soap-envelope"</span><span class="text-[#89d185]">&gt;</span>
+  <span class="text-gray-500">&lt;!-- Metadatos de autenticación --&gt;</span>
+  <span class="text-[#89d185]">&lt;soap:Header&gt;</span>
+    <span class="text-[#89d185]">&lt;m:AuthToken</span> <span class="text-[#79c0ff]">xmlns:m</span>=<span class="text-[#a5d6ff]">"http://example.org/auth"</span><span class="text-[#89d185]">&gt;</span>
+      abc-123-xyz
+    <span class="text-[#89d185]">&lt;/m:AuthToken&gt;</span>
+  <span class="text-[#89d185]">&lt;/soap:Header&gt;</span>
+  
+  <span class="text-[#89d185]">&lt;soap:Body&gt;</span>
+    <span class="text-[#89d185]">&lt;m:CreateUserRequest</span> <span class="text-[#79c0ff]">xmlns:m</span>=<span class="text-[#a5d6ff]">"http://example.org/users"</span><span class="text-[#89d185]">&gt;</span>
+      <span class="text-[#89d185]">&lt;m:Username&gt;</span>alex_dev<span class="text-[#89d185]">&lt;/m:Username&gt;</span>
+      <span class="text-[#89d185]">&lt;m:Role&gt;</span>Administrator<span class="text-[#89d185]">&lt;/m:Role&gt;</span>
+    <span class="text-[#89d185]">&lt;/m:CreateUserRequest&gt;</span>
+  <span class="text-[#89d185]">&lt;/soap:Body&gt;</span>
+<span class="text-[#89d185]">&lt;/soap:Envelope&gt;</span>
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content: Fault (Hidden) -->
+    <div id="content-fault" class="hidden flex flex-col lg:flex-row gap-6 w-full transition-opacity duration-300">
+        <!-- Visual Diagram (Fault Focus) -->
+        <div class="lg:w-1/3 flex flex-col gap-2 select-none">
+            <h4 class="text-xs uppercase font-bold text-slate-500 mb-2">Estructura de Error</h4>
+            <!-- Envelope Visual -->
+            <div class="border-2 border-dashed border-red-300 rounded-lg p-2 bg-red-50/50 relative">
+                <span class="absolute -top-3 left-4 bg-[#f0f0eb] px-2 text-xs font-bold text-red-500">Envelope</span>
+                <!-- Header Visual -->
+                <div class="border border-slate-200 rounded p-2 mb-2 bg-[#f0f0eb] opacity-50">
+                    <span class="text-[10px] font-mono text-slate-400 block mb-1">&lt;Header&gt;</span>
+                    <div class="h-1 w-12 bg-slate-200 rounded mb-1"></div>
+                </div>
+                <!-- Body Visual -->
+                <div class="border-2 border-red-400 rounded p-2 bg-[#f0f0eb] relative">
+                    <span class="text-[10px] font-mono text-red-600 font-bold block mb-1">&lt;Body&gt;</span>
+                    <!-- Fault Block -->
+                    <div class="border border-red-500 bg-red-100 rounded p-2 mb-1 shadow-sm">
+                        <span class="text-[10px] font-mono text-red-700 font-bold block mb-1">&lt;Fault&gt;</span>
+                        <div class="h-1.5 w-full bg-red-300 rounded mb-1"></div>
+                        <div class="h-1.5 w-2/3 bg-red-300 rounded"></div>
+                        <span class="text-[10px] font-mono text-red-600 block mt-1 text-right">Error Details</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-red-50 border border-red-100 p-3 rounded-md mt-2">
+                <p class="text-xs text-red-800 leading-snug">
+                    <strong>SOAP Fault:</strong> Mecanismo estándar para reportar errores. Incluye código, motivo y detalles específicos.
+                </p>
+            </div>
+        </div>
+        <!-- Code Block (Fault) -->
+        <div class="lg:w-2/3 flex flex-col h-full min-h-[300px]">
+            <h4 class="text-xs uppercase font-bold text-slate-500 mb-3 flex justify-between">
+                <span>Ejemplo de Respuesta de Error</span>
+                <span class="text-red-500 font-mono text-[10px] bg-red-50 px-2 py-0.5 rounded border border-red-100">HTTP 500 Internal Server Error</span>
+            </h4>
+            <div class="bg-[#1e293b] rounded-lg p-4 font-mono text-xs overflow-auto custom-scrollbar flex-1 border border-gray-700 shadow-inner relative">
+                <div class="absolute top-0 right-0 p-2">
+                    <span class="text-[10px] text-red-400 border border-red-900 bg-red-900/20 px-2 py-1 rounded">Error Response</span>
+                </div>
+<pre class="leading-relaxed"><span class="text-gray-500">&lt;?xml version="1.0"?&gt;</span>
+<span class="text-[#89d185]">&lt;soap:Envelope</span> <span class="text-[#79c0ff]">xmlns:soap</span>=<span class="text-[#a5d6ff]">"http://www.w3.org/2003/05/soap-envelope"</span><span class="text-[#89d185]">&gt;</span>
+  <span class="text-[#89d185]">&lt;soap:Body&gt;</span>
+    <span class="text-[#f87171]">&lt;soap:Fault&gt;</span>
+      <span class="text-[#f87171]">&lt;soap:Code&gt;</span>
+        <span class="text-[#f87171]">&lt;soap:Value&gt;</span>soap:Sender<span class="text-[#f87171]">&lt;/soap:Value&gt;</span>
+      <span class="text-[#f87171]">&lt;/soap:Code&gt;</span>
+      <span class="text-[#f87171]">&lt;soap:Reason&gt;</span>
+        <span class="text-[#e2e8f0]">&lt;soap:Text xml:lang="es"&gt;</span>El formato de los datos es incorrecto<span class="text-[#e2e8f0]">&lt;/soap:Text&gt;</span>
+      <span class="text-[#f87171]">&lt;/soap:Reason&gt;</span>
+      <span class="text-[#f87171]">&lt;soap:Detail&gt;</span>
+        <span class="text-[#e2e8f0]">&lt;e:myFaultDetails xmlns:e="http://example.org/faults"&gt;</span>
+          <span class="text-[#e2e8f0]">&lt;e:message&gt;</span>El campo 'Username' no puede estar vacío.<span class="text-[#e2e8f0]">&lt;/e:message&gt;</span>
+          <span class="text-[#e2e8f0]">&lt;e:errorcode&gt;</span>1002<span class="text-[#e2e8f0]">&lt;/e:errorcode&gt;</span>
+        <span class="text-[#e2e8f0]">&lt;/e:myFaultDetails&gt;</span>
+      <span class="text-[#f87171]">&lt;/soap:Detail&gt;</span>
+    <span class="text-[#f87171]">&lt;/soap:Fault&gt;</span>
+  <span class="text-[#89d185]">&lt;/soap:Body&gt;</span>
+<span class="text-[#89d185]">&lt;/soap:Envelope&gt;</span>
+</pre>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<!-- Comparison Chart: SOAP vs REST Size -->
+<div class="bg-[#f0f0eb] rounded-xl p-6 border border-gray-200">
+<div class="flex items-center justify-between mb-4">
+<h4 class="text-sm font-bold text-slate-800 flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-500">compare_arrows</span>
+                            Comparativa de "Overhead" (Tamaño del Mensaje)
+                        </h4>
+<span class="text-xs bg-[#f0f0eb] px-2 py-1 rounded text-slate-500">Mismos datos</span>
+</div>
+<div class="space-y-4">
+<!-- SOAP Bar -->
+<div>
+<div class="flex justify-between text-xs mb-1 font-mono">
+<span class="text-yellow-700 font-bold">SOAP (XML)</span>
+<span class="text-slate-500">~850 bytes</span>
+</div>
+<div class="w-full bg-gray-100 rounded-full h-4 overflow-hidden relative group">
+<div class="bg-primary h-full rounded-full flex items-center justify-end px-2" style="width: 85%">
+<span class="text-[10px] text-[#181811] font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Estructura Pesada</span>
+</div>
+</div>
+</div>
+<!-- REST Bar -->
+<div>
+<div class="flex justify-between text-xs mb-1 font-mono">
+<span class="text-green-500 font-bold">REST (JSON)</span>
+<span class="text-slate-500">~320 bytes</span>
+</div>
+<div class="w-full bg-gray-100 rounded-full h-4 overflow-hidden relative group">
+<div class="bg-green-500 h-full rounded-full flex items-center justify-end px-2" style="width: 35%">
+<span class="text-[10px] text-[#181811] font-bold opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Ligero</span>
+</div>
+</div>
+</div>
+</div>
+<p class="text-xs text-slate-500 mt-4 italic">
+                        Nota: SOAP añade un "envelope" y namespaces que incrementan significativamente el tamaño del payload comparado con JSON plano.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<script>
+    function switchTab(tabName) {
+        // Hide all content
+        document.getElementById('content-structure').classList.add('hidden');
+        document.getElementById('content-fault').classList.add('hidden');
+        
+        // Show selected content
+        document.getElementById('content-' + tabName).classList.remove('hidden');
+        
+        // Reset buttons
+        const btnStructure = document.getElementById('btn-structure');
+        const btnFault = document.getElementById('btn-fault');
+        
+        // Reset styles
+        [btnStructure, btnFault].forEach(btn => {
+            btn.classList.remove('border-yellow-600', 'text-yellow-700', 'bg-[#f0f0eb]');
+            btn.classList.add('border-transparent', 'text-slate-500', 'hover:text-[#181811]', 'hover:bg-gray-100');
+        });
+        
+        // Set active style
+        const activeBtn = document.getElementById('btn-' + tabName);
+        activeBtn.classList.remove('border-transparent', 'text-slate-500', 'hover:text-[#181811]', 'hover:bg-gray-100');
+        activeBtn.classList.add('border-yellow-600', 'text-yellow-700', 'bg-[#f0f0eb]');
+    }
+
+    const featuresData = {
+        'xml': {
+            title: 'Basado en XML',
+            icon: 'code',
+            desc: 'SOAP utiliza XML exclusivamente para el formato de mensajes. Esto garantiza la independencia de plataforma y lenguaje, permitiendo que sistemas Java hablen con .NET, aunque aumenta el tamaño del mensaje debido a la verbosidad de las etiquetas.'
+        },
+        'rpc': {
+            title: 'Orientado a RPC',
+            icon: 'settings_ethernet',
+            desc: 'El protocolo sigue un modelo de Llamada a Procedimiento Remoto (RPC). Los clientes invocan métodos específicos en el servidor con parámetros definidos, como si fueran funciones locales, abstrayendo la complejidad de la comunicación de red.'
+        },
+        'neutral': {
+            title: 'Neutro en Transporte',
+            icon: 'hub',
+            desc: 'A diferencia de REST que está atado a HTTP, SOAP puede operar sobre múltiples protocolos de capa de aplicación como SMTP (correo), TCP, UDP o JMS (mensajería Java), lo que lo hace versátil para escenarios asíncronos o legacy.'
+        },
+        'typed': {
+            title: 'Tipado Fuerte (WSDL)',
+            icon: 'verified',
+            desc: 'Se basa en contratos estrictos definidos en WSDL. Cada mensaje debe cumplir con un esquema XSD específico, lo que previene errores de tipo de datos en tiempo de ejecución y facilita la generación automática de código cliente (proxies).'
+        },
+        'security': {
+            title: 'Seguridad WS-Security',
+            icon: 'lock',
+            desc: 'Implementa WS-Security para firmar y cifrar partes específicas del mensaje XML. Esto permite seguridad de extremo a extremo (end-to-end) que persiste incluso si el mensaje pasa por múltiples intermediarios, superando la seguridad solo de transporte (HTTPS).'
+        },
+        'reliability': {
+            title: 'Fiabilidad (WS-ReliableMessaging)',
+            icon: 'handshake',
+            desc: 'Garantiza la entrega de mensajes incluso en redes inestables mediante reintentos automáticos y confirmaciones (ACKs). Soporta transacciones ACID distribuidas (WS-AtomicTransaction), crucial para operaciones financieras o críticas.'
+        }
+    };
+
+    function selectFeature(featureKey) {
+        const data = featuresData[featureKey];
+        if (!data) return;
+
+        // Update Definition Card
+        const card = document.getElementById('definition-card');
+        const title = document.getElementById('def-title');
+        const icon = document.getElementById('def-icon');
+        const bgIcon = document.getElementById('def-bg-icon');
+        const desc = document.getElementById('def-desc');
+
+        // Animate out
+        card.classList.add('opacity-50', 'scale-[0.98]');
+        
+        setTimeout(() => {
+            // Update content
+            title.textContent = data.title;
+            icon.textContent = data.icon;
+            bgIcon.textContent = data.icon;
+            desc.textContent = data.desc;
+            
+            // Animate in
+            card.classList.remove('opacity-50', 'scale-[0.98]');
+        }, 150);
+
+        // Update Selection State
+        const features = ['xml', 'rpc', 'neutral', 'typed', 'security', 'reliability'];
+        features.forEach(f => {
+            const el = document.getElementById('feat-' + f);
+            if (f === featureKey) {
+                el.classList.remove('bg-gray-50', 'border-gray-200');
+                el.classList.add('bg-yellow-50', 'border-yellow-600');
+            } else {
+                el.classList.add('bg-gray-50', 'border-gray-200');
+                el.classList.remove('bg-yellow-50', 'border-yellow-600');
+            }
+        });
+    }
+</script>
+</body></html>
+
+
+
+
+
+

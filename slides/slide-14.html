@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ventajas y Limitaciones SOAP - Presentación</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f9f506",
+              "background-light": "#f8f8f5",
+              "background-dark": "#23220f",
+              "text-main": "#181811",
+              "text-muted": "#8c8b5f",
+            },
+            fontFamily: {
+              "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+              "body": ["Spline Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+    <script src="../navigation.js"></script>
+</head>
+<body class="bg-background-light text-slate-900 font-display min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation -->
+<header class="z-20 flex w-full items-center justify-between border-b border-solid border-b-[#e6e6e0] bg-white/80 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-4 text-[#181811]">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary-dark">
+<span class="material-symbols-outlined text-2xl text-yellow-700">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Postgrado en Desarrollo de Software</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-6 py-8 flex flex-col gap-6">
+<!-- Slide Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-[#d4d4c8] pb-6">
+<div class="max-w-3xl">
+<!-- <div class="flex items-center gap-2 mb-2">
+
+<span class="text-[#8c8b5f] text-sm">Estándares WS-* vs Implementación</span>
+</div> -->
+<h1 class="text-3xl md:text-4xl font-black leading-tight tracking-tight text-[#181811]">
+                    SOAP: Fortalezas y Debilidades en Contexto Empresarial
+                </h1>
+</div>
+<!-- <div class="hidden md:block text-right">
+<p class="text-[#8c8b5f] text-sm font-medium">Comparativa Técnica</p>
+<div class="flex gap-1 mt-1 justify-end">
+<div class="w-8 h-1 bg-[#283039] rounded-full"></div>
+<div class="w-8 h-1 bg-[#283039] rounded-full"></div>
+<div class="w-8 h-1 bg-primary rounded-full"></div>
+<div class="w-8 h-1 bg-[#283039] rounded-full"></div>
+<div class="w-8 h-1 bg-[#283039] rounded-full"></div>
+</div>
+</div> -->
+</div>
+<!-- Pros and Cons Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Fortalezas Card -->
+<div class="bg-[#f0f0eb] border border-gray-200 rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-green-600"></div>
+<div class="flex items-center gap-3 mb-6">
+<div class="p-2 rounded-full bg-emerald-500/10 text-emerald-400">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<h3 class="text-xl font-bold text-[#181811]">Fortalezas (Ventajas Clave)</h3>
+</div>
+<ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-500 text-[18px] mt-0.5">verified</span>
+<span class="text-gray-600 text-sm font-medium">Seguridad Robusta <br/><span class="text-[#8c8b5f] text-xs font-normal">WS-Security</span></span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-500 text-[18px] mt-0.5">verified</span>
+<span class="text-gray-600 text-sm font-medium">Fiabilidad <br/><span class="text-[#8c8b5f] text-xs font-normal">WS-ReliableMessaging</span></span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-500 text-[18px] mt-0.5">verified</span>
+<span class="text-gray-600 text-sm font-medium">Transacciones Distribuidas <br/><span class="text-[#8c8b5f] text-xs font-normal">WS-AtomicTransaction</span></span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-500 text-[18px] mt-0.5">verified</span>
+<span class="text-gray-600 text-sm font-medium">Soporte de Políticas <br/><span class="text-[#8c8b5f] text-xs font-normal">WS-Policy</span></span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-500 text-[18px] mt-0.5">verified</span>
+<span class="text-gray-600 text-sm font-medium">Independencia de Protocolo <br/><span class="text-[#8c8b5f] text-xs font-normal">SMTP, JMS, TCP</span></span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-500 text-[18px] mt-0.5">verified</span>
+<span class="text-gray-600 text-sm font-medium">Cumplimiento Normativo <br/><span class="text-[#8c8b5f] text-xs font-normal">Sector Financiero/Bancario</span></span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-500 text-[18px] mt-0.5">verified</span>
+<span class="text-gray-600 text-sm font-medium">Contrato Formal <br/><span class="text-[#8c8b5f] text-xs font-normal">WSDL estricto</span></span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-emerald-500 text-[18px] mt-0.5">verified</span>
+<span class="text-gray-600 text-sm font-medium">Madurez y Estabilidad <br/><span class="text-[#8c8b5f] text-xs font-normal">Estándar Legacy Sólido</span></span>
+</li>
+</ul>
+</div>
+<!-- Debilidades Card -->
+<div class="bg-[#f0f0eb] border border-gray-200 rounded-xl p-6 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-500 to-orange-600"></div>
+<div class="flex items-center gap-3 mb-6">
+<div class="p-2 rounded-full bg-red-500/10 text-red-400">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<h3 class="text-xl font-bold text-[#181811]">Debilidades (Limitaciones)</h3>
+</div>
+<ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-3">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-red-500 text-[18px] mt-0.5">do_not_disturb_on</span>
+<span class="text-gray-600 text-sm font-medium">Complejidad Excesiva <br/><span class="text-[#8c8b5f] text-xs font-normal">Sobrecarga en implementación</span></span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-red-500 text-[18px] mt-0.5">do_not_disturb_on</span>
+<span class="text-gray-600 text-sm font-medium">Rendimiento Limitado <br/><span class="text-[#8c8b5f] text-xs font-normal">Parsing XML pesado</span></span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-red-500 text-[18px] mt-0.5">do_not_disturb_on</span>
+<span class="text-gray-600 text-sm font-medium">Depuración Difícil <br/><span class="text-[#8c8b5f] text-xs font-normal">Mensajes opacos/encriptados</span></span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-red-500 text-[18px] mt-0.5">do_not_disturb_on</span>
+<span class="text-gray-600 text-sm font-medium">Curva de Aprendizaje <br/><span class="text-[#8c8b5f] text-xs font-normal">Estándares muy densos</span></span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-red-500 text-[18px] mt-0.5">do_not_disturb_on</span>
+<span class="text-gray-600 text-sm font-medium">No Cacheable <br/><span class="text-[#8c8b5f] text-xs font-normal">Por defecto (POST requests)</span></span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-red-500 text-[18px] mt-0.5">do_not_disturb_on</span>
+<span class="text-gray-600 text-sm font-medium">Acoplamiento Fuerte <br/><span class="text-[#8c8b5f] text-xs font-normal">Cliente-Servidor rígido</span></span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-red-500 text-[18px] mt-0.5">do_not_disturb_on</span>
+<span class="text-gray-600 text-sm font-medium">Overkill en APIs Simples <br/><span class="text-[#8c8b5f] text-xs font-normal">Demasiada estructura</span></span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-red-500 text-[18px] mt-0.5">do_not_disturb_on</span>
+<span class="text-gray-600 text-sm font-medium">Ecosistema Anticuado <br/><span class="text-[#8c8b5f] text-xs font-normal">Pérdida de tracción vs REST</span></span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Data & Summary Section -->
+<div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-2">
+<!-- Chart Section (2/5 width) -->
+<div class="lg:col-span-2 bg-[#f0f0eb] border border-gray-200 rounded-xl p-6 flex flex-col justify-between">
+<div>
+<h3 class="text-[#181811] text-lg font-bold mb-1">Latencia: Parsing</h3>
+<p class="text-[#8c8b5f] text-sm mb-6">Comparativa de sobrecarga (overhead) en procesamiento de mensajes.</p>
+</div>
+<div class="space-y-6">
+<!-- REST Bar -->
+<div class="group">
+<div class="flex justify-between text-xs font-bold text-[#181811] mb-2">
+<span>REST (JSON)</span>
+<span class="text-emerald-400">Rápido (~20ms)</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
+<div class="bg-emerald-500 h-4 rounded-full" style="width: 25%"></div>
+</div>
+</div>
+<!-- SOAP Bar -->
+<div class="group">
+<div class="flex justify-between text-xs font-bold text-[#181811] mb-2">
+<span>SOAP (XML)</span>
+<span class="text-red-400">Lento (~85ms)</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-4 overflow-hidden relative">
+<!-- Visual representation of overhead -->
+<div class="bg-red-500 h-4 rounded-full" style="width: 85%"></div>
+<div class="absolute top-0 right-4 h-full flex items-center">
+<span class="text-[10px] text-[#181811] font-bold drop-shadow-md">+300% Overhead</span>
+</div>
+</div>
+<p class="text-[10px] text-[#8c8b5f] mt-2 italic">*Test de carga: 10k requests/seg con payload complejo.</p>
+</div>
+</div>
+</div>
+<!-- Table Section (3/5 width) -->
+<div class="lg:col-span-3 bg-[#f0f0eb] border border-gray-200 rounded-xl overflow-hidden flex flex-col">
+<div class="px-6 py-4 border-b border-gray-200">
+<h3 class="text-[#181811] text-lg font-bold">Resumen Comparativo</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-gray-100 text-xs uppercase text-[#8c8b5f]">
+<th class="px-6 py-3 font-semibold w-1/4">Propiedad</th>
+<th class="px-6 py-3 font-semibold w-1/3 text-[#181811]">SOAP</th>
+<th class="px-6 py-3 font-semibold w-1/3 text-emerald-400">REST</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200">
+<tr>
+<td class="px-6 py-3 text-sm font-medium text-[#181811]">Formato</td>
+<td class="px-6 py-3 text-sm text-[#8c8b5f]">XML (Verboso)</td>
+<td class="px-6 py-3 text-sm text-[#8c8b5f]">JSON (Ligero) / XML / YAML</td>
+</tr>
+<tr>
+<td class="px-6 py-3 text-sm font-medium text-[#181811]">Seguridad</td>
+<td class="px-6 py-3 text-sm text-[#8c8b5f]">WS-Security (Mensaje)</td>
+<td class="px-6 py-3 text-sm text-[#8c8b5f]">HTTPS (Transporte)</td>
+</tr>
+<tr>
+<td class="px-6 py-3 text-sm font-medium text-[#181811]">Estado</td>
+<td class="px-6 py-3 text-sm text-[#8c8b5f]">Stateful (Opcional)</td>
+<td class="px-6 py-3 text-sm text-[#8c8b5f]">Stateless (Mandatorio)</td>
+</tr>
+<tr>
+<td class="px-6 py-3 text-sm font-medium text-[#181811]">Cache</td>
+<td class="px-6 py-3 text-sm text-[#8c8b5f]">No (Generalmente)</td>
+<td class="px-6 py-3 text-sm text-[#8c8b5f]">Sí (HTTP Headers)</td>
+</tr>
+<tr>
+<td class="px-6 py-3 text-sm font-medium text-[#181811]">Curva aprendizaje</td>
+<td class="px-6 py-3 text-sm text-red-400 font-medium">Alta / Difícil</td>
+<td class="px-6 py-3 text-sm text-emerald-400 font-medium">Baja / Intuitiva</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<!-- <footer class="w-full max-w-7xl mx-auto px-6 py-6 border-t border-[#d4d4c8] mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4 text-[#8c8b5f] text-xs">
+<p>© 2023 Universidad Tecnológica - Facultad de Ingeniería de Software</p>
+<div class="flex gap-4">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">visibility</span> Solo lectura</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">language</span> ES</span>
+</div>
+</div>
+</footer> -->
+</body></html>
+
+
+
+
+
+

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Concepto de Servicios Web</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script>
+      tailwind.config = {
+        
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f9f506",
+              "background-light": "#f8f8f5",
+              "background-dark": "#23220f",
+              "text-main": "#181811",
+              "text-muted": "#8c8b5f",
+            },
+            fontFamily: {
+              "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+              "body": ["Spline Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+    <script src="../navigation.js"></script>
+</head>
+<body class="bg-background-light font-display text-[#181811] overflow-x-hidden min-h-screen flex flex-col">
+<!-- Header -->
+<header class="z-20 flex w-full items-center justify-between border-b border-solid border-b-[#e6e6e0] bg-white/80 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-4 text-[#181811]">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary-dark">
+<span class="material-symbols-outlined text-2xl text-yellow-700">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Postgrado en Desarrollo de Software</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 lg:px-40 py-8 lg:py-10">
+<div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Left Column: Content (Headline, Definition, Table) -->
+<div class="lg:col-span-7 flex flex-col gap-8">
+<!-- Headline -->
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e6e6db] text-xs font-semibold uppercase tracking-wider mb-4">
+                        Fundamentos
+                    </div>
+<h1 class="text-3xl lg:text-5xl font-bold leading-[1.1] tracking-tight text-balance">
+                        ¿Qué Componen un Servicio Web?
+                    </h1>
+</div>
+<!-- Definition Card -->
+<div class="p-6 md:p-8 rounded-xl bg-primary text-[#181811] relative overflow-hidden group">
+<!-- Abstract Background Pattern -->
+<div class="absolute right-[-20px] top-[-20px] opacity-20">
+<span class="material-symbols-outlined text-[180px]">hub</span>
+</div>
+<h3 class="text-xl font-bold mb-3 relative z-10 flex items-center gap-2">
+<span class="material-symbols-outlined">lightbulb</span>
+                        Definición
+                    </h3>
+<p class="text-lg md:text-xl font-medium leading-relaxed relative z-10">
+                        "Un sistema de software diseñado para soportar la interacción interoperable máquina a máquina a través de una red."
+                    </p>
+<div class="mt-4 text-sm font-bold opacity-70 relative z-10">— W3C Web Services Architecture</div>
+</div>
+<!-- Components Table -->
+<div class="rounded-xl border border-[#e6e6db] bg-[#f0f0eb] overflow-hidden shadow-sm">
+<div class="px-6 py-4 border-b border-[#e6e6db] bg-gray-50">
+<h3 class="font-bold text-lg">Componentes Esenciales</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#f0f0eb] border-b border-[#e6e6db]">
+<th class="px-6 py-3 text-sm font-semibold text-gray-500 w-1/4">Componente</th>
+<th class="px-6 py-3 text-sm font-semibold text-gray-500 w-2/4">Descripción</th>
+<th class="px-6 py-3 text-sm font-semibold text-gray-500 w-1/4">Ejemplo</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#e6e6db]">
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 font-medium">Cliente</td>
+<td class="px-6 py-4 text-sm text-gray-600">Inicia la petición de servicio</td>
+<td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">Navegador</span></td>
+</tr>
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 font-medium">Servidor</td>
+<td class="px-6 py-4 text-sm text-gray-600">Procesa la petición y envía respuesta</td>
+<td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">NodeJS</span></td>
+</tr>
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 font-medium">Mensaje</td>
+<td class="px-6 py-4 text-sm text-gray-600">Datos intercambiados entre partes</td>
+<td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">JSON / XML</span></td>
+</tr>
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 font-medium">Protocolo</td>
+<td class="px-6 py-4 text-sm text-gray-600">Reglas de comunicación</td>
+<td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">HTTP/S</span></td>
+</tr>
+<tr class="hover:bg-gray-50 transition-colors">
+<td class="px-6 py-4 font-medium">Interfaz</td>
+<td class="px-6 py-4 text-sm text-gray-600">Contrato de operaciones disponibles</td>
+<td class="px-6 py-4"><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">API</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column: Protocol Stack Diagram -->
+<div class="lg:col-span-5 flex flex-col h-full justify-center">
+<div class="bg-[#f0f0eb] border border-[#e6e6db] rounded-2xl p-6 lg:p-8 shadow-sm">
+<h3 class="text-xl font-bold mb-6 text-center">Stack de Protocolos</h3>
+<!-- Diagram Container -->
+<div class="flex flex-col gap-3 relative">
+<!-- Connecting Line (Visual Aid) -->
+<div class="absolute left-1/2 top-4 bottom-4 w-0.5 bg-gradient-to-b from-transparent via-[#e6e6db] to-transparent -translate-x-1/2 z-0 hidden md:block"></div>
+<!-- Layer 4: Application -->
+<div class="relative z-10 bg-primary shadow-[0_4px_0_0_rgba(0,0,0,0.1)] rounded-full p-4 flex items-center gap-4 transition-transform hover:-translate-y-1 duration-300">
+<div class="size-10 rounded-full bg-white/30 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[#181811]">language</span>
+</div>
+<div class="flex-1">
+<p class="text-[#181811] text-sm font-bold uppercase tracking-wider opacity-60">Layer 4</p>
+<p class="text-[#181811] font-bold text-lg">Capa de Aplicación</p>
+</div>
+<div class="hidden sm:flex gap-1">
+<span class="text-xs font-bold px-2 py-1 bg-white/40 rounded text-[#181811]">HTTP</span>
+<span class="text-xs font-bold px-2 py-1 bg-white/40 rounded text-[#181811]">FTP</span>
+</div>
+</div>
+<!-- Arrow Down -->
+<div class="flex justify-center -my-2 z-20">
+<span class="material-symbols-outlined text-gray-300">arrow_downward</span>
+</div>
+<!-- Layer 3: Transport -->
+<div class="relative z-10 bg-[#f0f0eb] border border-[#e6e6db] rounded-full p-4 flex items-center gap-4 hover:border-gray-400 transition-colors">
+<div class="size-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-gray-600">swap_horiz</span>
+</div>
+<div class="flex-1">
+<p class="text-gray-500 text-sm font-bold uppercase tracking-wider">Layer 3</p>
+<p class="font-bold text-lg">Capa de Transporte</p>
+</div>
+<div class="hidden sm:flex gap-1">
+<span class="text-xs font-medium px-2 py-1 bg-gray-100 rounded text-gray-600">TCP</span>
+<span class="text-xs font-medium px-2 py-1 bg-gray-100 rounded text-gray-600">UDP</span>
+</div>
+</div>
+<!-- Arrow Down -->
+<div class="flex justify-center -my-2 z-20">
+<span class="material-symbols-outlined text-gray-300">arrow_downward</span>
+</div>
+<!-- Layer 2: Internet -->
+<div class="relative z-10 bg-[#f0f0eb] border border-[#e6e6db] rounded-full p-4 flex items-center gap-4 hover:border-gray-400 transition-colors">
+<div class="size-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-gray-600">public</span>
+</div>
+<div class="flex-1">
+<p class="text-gray-500 text-sm font-bold uppercase tracking-wider">Layer 2</p>
+<p class="font-bold text-lg">Capa de Internet</p>
+</div>
+<div class="hidden sm:flex gap-1">
+<span class="text-xs font-medium px-2 py-1 bg-gray-100 rounded text-gray-600">IP</span>
+<span class="text-xs font-medium px-2 py-1 bg-gray-100 rounded text-gray-600">IPv6</span>
+</div>
+</div>
+<!-- Arrow Down -->
+<div class="flex justify-center -my-2 z-20">
+<span class="material-symbols-outlined text-gray-300">arrow_downward</span>
+</div>
+<!-- Layer 1: Link -->
+<div class="relative z-10 bg-[#f0f0eb] border border-[#e6e6db] rounded-full p-4 flex items-center gap-4 hover:border-gray-400 transition-colors">
+<div class="size-10 rounded-full bg-gray-100 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-gray-600">settings_ethernet</span>
+</div>
+<div class="flex-1">
+<p class="text-gray-500 text-sm font-bold uppercase tracking-wider">Layer 1</p>
+<p class="font-bold text-lg">Capa de Enlace</p>
+</div>
+<div class="hidden sm:flex gap-1">
+<span class="text-xs font-medium px-2 py-1 bg-gray-100 rounded text-gray-600">Ethernet</span>
+</div>
+</div>
+</div>
+<!-- Client/Server Interaction Hint -->
+<div class="mt-8 pt-6 border-t border-dashed border-[#e6e6db]">
+<div class="flex justify-between items-center text-sm font-medium text-gray-500">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-2xl">laptop_mac</span>
+<span>Cliente</span>
+</div>
+<div class="flex flex-col items-center flex-1 px-4">
+<div class="w-full h-0.5 bg-gray-300 relative">
+<div class="absolute -top-1.5 right-0 size-3 bg-gray-300 rounded-full"></div>
+<div class="absolute -top-1.5 left-0 size-3 bg-gray-300 rounded-full"></div>
+</div>
+<span class="text-xs mt-1 uppercase tracking-widest">Request / Response</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-2xl">dns</span>
+<span>Servidor</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Navigation -->
+<!-- <footer class="border-t border-[#e6e6db] bg-[#f0f0eb] py-4 mt-auto">
+<div class="max-w-[1200px] mx-auto px-6 lg:px-40 flex items-center justify-between">
+
+
+
+</div>
+</footer> -->
+</body></html>
+
+
+
+
+

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>REST vs SOAP Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+      tailwind.config = {
+        
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f9f506",
+              "background-light": "#f8f8f5",
+              "background-dark": "#23220f",
+              "text-main": "#181811",
+              "text-muted": "#8c8b5f",
+            },
+            fontFamily: {
+              "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+              "body": ["Spline Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for the table */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0f0eb; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b4754; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #5a6b7c; 
+        }
+    </style>
+    <script src="../navigation.js"></script>
+</head>
+<body class="bg-background-light text-[#111418] overflow-x-hidden font-display">
+<div class="relative flex min-h-screen w-full flex-col group/design-root">
+<!-- Header -->
+<header class="z-20 flex w-full items-center justify-between border-b border-solid border-b-[#e6e6e0] bg-white/80 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-4 text-[#181811]">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary-dark">
+<span class="material-symbols-outlined text-2xl text-yellow-700">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Postgrado en Desarrollo de Software</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+</div>
+</header>
+<!-- Main Content -->
+<div class="flex-1 p-6 lg:p-10 flex flex-col gap-6">
+<!-- Breadcrumbs & Title -->
+<div class="flex flex-col gap-4">
+<!-- <div class="flex flex-wrap items-center gap-2">
+
+<span class="material-symbols-outlined text-[#8c8b5f] text-xs">chevron_right</span>
+
+</div> -->
+<div class="flex flex-wrap justify-between items-end gap-4 border-b border-[#d4d4c8] pb-6">
+<div class="flex flex-col gap-2 max-w-3xl">
+<h1 class="text-[#181811] text-3xl md:text-4xl font-black leading-tight tracking-[-0.033em]">REST vs SOAP: Análisis Técnico Completo</h1>
+<p class="text-[#8c8b5f] text-lg font-normal leading-normal">Comparativa exhaustiva, benchmarks de rendimiento, matriz de decisión y patrones de integración híbrida.</p>
+</div>
+<div class="flex gap-3">
+
+
+</div>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 h-full">
+<!-- Left Column: The Big Table (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-4 min-h-[600px]">
+<div class="flex items-center justify-between">
+<h3 class="text-[#181811] text-lg font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-700">table_chart</span>
+                            Matriz Comparativa de 15 Puntos
+                        </h3>
+<!-- <span class="text-[#8c8b5f] text-xs bg-[#283039] px-2 py-1 rounded">Scroll para ver más</span> -->
+</div>
+<div class="flex-1 overflow-hidden rounded-xl border border-gray-200 bg-[#f8f8f5] flex flex-col shadow-xl">
+<div class="overflow-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 z-10">
+<tr class="bg-gray-100 border-b border-gray-200">
+<th class="px-6 py-4 text-[#8c8b5f] text-xs font-bold uppercase tracking-wider w-1/4">Criterio</th>
+<th class="px-6 py-4 text-[#181811] text-sm font-bold w-1/3 bg-[#137fec]/10 border-b-2 border-yellow-600">REST (Representational State Transfer)</th>
+<th class="px-6 py-4 text-[#181811] text-sm font-bold w-1/3 border-b-2 border-gray-200">SOAP (Simple Object Access Protocol)</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-gray-200">
+<!-- Row 1 -->
+<tr class="hover:bg-gray-100 transition-colors">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Filosofía</td>
+<td class="px-6 py-3 text-[#181811] text-sm">Recurso-céntrico (Nouns)</td>
+<td class="px-6 py-3 text-[#8c8b5f] text-sm">Servicio/Acción (Verbs)</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-gray-100 transition-colors bg-gray-50">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Protocolo</td>
+<td class="px-6 py-3 text-[#181811] text-sm">HTTP Strict</td>
+<td class="px-6 py-3 text-[#8c8b5f] text-sm">Agnóstico (HTTP, SMTP, TCP, JMS)</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-gray-100 transition-colors">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Formato de Datos</td>
+<td class="px-6 py-3 text-yellow-700 font-bold text-sm">JSON (Ligero), XML, HTML, Texto</td>
+<td class="px-6 py-3 text-[#8c8b5f] text-sm">XML (Verbosidad Alta)</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-gray-100 transition-colors bg-gray-50">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Métodos (Verbos)</td>
+<td class="px-6 py-3 text-[#181811] text-sm">GET, POST, PUT, DELETE, PATCH</td>
+<td class="px-6 py-3 text-[#8c8b5f] text-sm">POST (Cuerpo del mensaje define acción)</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-gray-100 transition-colors">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Estado (Stateless)</td>
+<td class="px-6 py-3 text-[#181811] text-sm">Sí (Totalmente Stateless)</td>
+<td class="px-6 py-3 text-[#8c8b5f] text-sm">Opcional (Puede mantener estado)</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-gray-100 transition-colors bg-gray-50">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Cacheabilidad</td>
+<td class="px-6 py-3 text-yellow-700 font-bold text-sm">Alta (HTTP nativo)</td>
+<td class="px-6 py-3 text-[#8c8b5f] text-sm">Nula/Difícil (Requiere configuración extra)</td>
+</tr>
+<!-- Row 7 -->
+<tr class="hover:bg-gray-100 transition-colors">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Seguridad</td>
+<td class="px-6 py-3 text-[#181811] text-sm">HTTPS, OAuth2, JWT (Transport Layer)</td>
+<td class="px-6 py-3 text-[#8c8b5f] text-sm">WS-Security (Message Layer, Enterprise)</td>
+</tr>
+<!-- Row 8 -->
+<tr class="hover:bg-gray-100 transition-colors bg-gray-50">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Transacciones (ACID)</td>
+<td class="px-6 py-3 text-[#181811] text-sm">No (Eventual Consistency)</td>
+<td class="px-6 py-3 text-[#fa6238] font-bold text-sm">Sí (WS-AtomicTransaction)</td>
+</tr>
+<!-- Row 9 -->
+<tr class="hover:bg-gray-100 transition-colors">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Documentación</td>
+<td class="px-6 py-3 text-[#181811] text-sm">OpenAPI (Swagger)</td>
+<td class="px-6 py-3 text-[#8c8b5f] text-sm">WSDL (Contrato estricto)</td>
+</tr>
+<!-- Row 10 -->
+<tr class="hover:bg-gray-100 transition-colors bg-gray-50">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Payload Overhead</td>
+<td class="px-6 py-3 text-yellow-700 font-bold text-sm">Mínimo (JSON headers simples)</td>
+<td class="px-6 py-3 text-[#8c8b5f] text-sm">Alto (Envoltura Envelope/Header/Body)</td>
+</tr>
+<!-- Row 11 -->
+<tr class="hover:bg-gray-100 transition-colors">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Manejo de Errores</td>
+<td class="px-6 py-3 text-[#181811] text-sm">Códigos HTTP (404, 500, 200)</td>
+<td class="px-6 py-3 text-[#8c8b5f] text-sm">SOAP Faults (Estructura XML de error)</td>
+</tr>
+<!-- Row 12 -->
+<tr class="hover:bg-gray-100 transition-colors bg-gray-50">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Consumo de Ancho de Banda</td>
+<td class="px-6 py-3 text-yellow-700 font-bold text-sm">Bajo</td>
+<td class="px-6 py-3 text-[#8c8b5f] text-sm">Alto</td>
+</tr>
+<!-- Row 13 -->
+<tr class="hover:bg-gray-100 transition-colors">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Curva de Aprendizaje</td>
+<td class="px-6 py-3 text-[#181811] text-sm">Suave (Estándar Web)</td>
+<td class="px-6 py-3 text-[#8c8b5f] text-sm">Empinada (Protocolos complejos)</td>
+</tr>
+<!-- Row 14 -->
+<tr class="hover:bg-gray-100 transition-colors bg-gray-50">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Tooling / Ecosistema</td>
+<td class="px-6 py-3 text-[#181811] text-sm">Excelente (Postman, Insomnia, Curl)</td>
+<td class="px-6 py-3 text-[#8c8b5f] text-sm">Limitado/Enterprise (SoapUI)</td>
+</tr>
+<!-- Row 15 -->
+<tr class="hover:bg-gray-100 transition-colors">
+<td class="px-6 py-3 text-[#8c8b5f] text-sm font-medium">Mejor Caso de Uso</td>
+<td class="px-6 py-3 text-[#181811] text-sm">Web, Móvil, SPA, Microservicios</td>
+<td class="px-6 py-3 text-[#8c8b5f] text-sm">Financiero, Telecom, Legacy Enterprise</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column: Widgets (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<!-- Benchmark Card -->
+<div class="flex flex-col gap-2 rounded-xl border border-gray-200 bg-[#f8f8f5] p-6 shadow-lg">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="text-[#181811] text-base font-bold leading-normal">Benchmark: POST /users</h3>
+<p class="text-[#8c8b5f] text-xs">Comparativa de creación de registro (1k usuarios)</p>
+</div>
+<span class="material-symbols-outlined text-[#fa6238]">speed</span>
+</div>
+<div class="grid gap-4">
+<!-- Latency Chart -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs font-medium text-[#8c8b5f]">
+<span>Latencia Promedio</span>
+<span class="text-[#181811]">REST: -62%</span>
+</div>
+<div class="relative h-8 w-full bg-gray-200 rounded overflow-hidden flex items-center">
+<div class="absolute left-0 top-0 bottom-0 bg-primary/80 flex items-center px-2 text-[10px] font-bold text-[#181811] transition-all" style="width: 38%">45ms</div>
+<div class="absolute left-0 top-0 bottom-0 border-l-2 border-[#111418] bg-[#3b4754]/80 flex items-center justify-end px-2 text-[10px] font-bold text-gray-500" style="width: 100%; z-index: -1;">120ms (SOAP)</div>
+</div>
+</div>
+<!-- Payload Chart -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between text-xs font-medium text-[#8c8b5f]">
+<span>Tamaño del Payload</span>
+<span class="text-[#181811]">REST: -76%</span>
+</div>
+<div class="relative h-8 w-full bg-gray-200 rounded overflow-hidden flex items-center">
+<div class="absolute left-0 top-0 bottom-0 bg-primary/80 flex items-center px-2 text-[10px] font-bold text-[#181811] transition-all" style="width: 24%">0.5kb</div>
+<div class="absolute left-0 top-0 bottom-0 border-l-2 border-[#111418] bg-[#3b4754]/80 flex items-center justify-end px-2 text-[10px] font-bold text-gray-500" style="width: 100%; z-index: -1;">2.1kb (SOAP)</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Decision Matrix -->
+<div class="flex flex-col flex-1 rounded-xl border border-gray-200 bg-[#f8f8f5] p-6 shadow-lg">
+<h3 class="text-[#181811] text-base font-bold mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-green-500">account_tree</span>
+                            Matriz de Decisión
+                        </h3>
+<div class="flex flex-col gap-4 relative h-full justify-center">
+<!-- Step 1 -->
+<div class="flex flex-col items-center">
+<div class="bg-white border border-gray-200 px-4 py-2 rounded-lg text-[#181811] text-sm font-medium text-center w-full">
+                                    ¿Se requiere contrato formal y estricto?
+                                </div>
+<div class="h-4 w-0.5 bg-gray-300"></div>
+<div class="w-full h-0.5 bg-gray-300 relative">
+<div class="absolute left-0 -top-2 text-[10px] text-[#8c8b5f] bg-[#f8f8f5] px-1">NO</div>
+<div class="absolute right-0 -top-2 text-[10px] text-[#8c8b5f] bg-[#f8f8f5] px-1">SÃ</div>
+</div>
+</div>
+<!-- Step 2 Split -->
+<div class="flex justify-between gap-4">
+<div class="w-1/2 flex flex-col items-center">
+<div class="h-4 w-0.5 bg-gray-300"></div>
+<div class="bg-white border border-gray-200 px-3 py-2 rounded-lg text-[#181811] text-xs text-center w-full">
+                                        ¿Consumo móvil o web público?
+                                    </div>
+<div class="h-4 w-0.5 bg-gray-300"></div>
+<div class="bg-yellow-200 border border-yellow-600 text-yellow-700 font-bold px-3 py-2 rounded-lg text-sm text-center w-full shadow-[0_0_10px_rgba(19,127,236,0.3)]">
+                                        Usar REST
+                                    </div>
+</div>
+<div class="w-1/2 flex flex-col items-center">
+<div class="h-4 w-0.5 bg-gray-300"></div>
+<div class="bg-white border border-gray-200 px-3 py-2 rounded-lg text-[#181811] text-xs text-center w-full">
+                                        ¿Transacciones ACID críticas?
+                                    </div>
+<div class="h-4 w-0.5 bg-gray-300"></div>
+<div class="bg-gray-200 border border-gray-300 text-[#8c8b5f] font-bold px-3 py-2 rounded-lg text-sm text-center w-full">
+                                        Usar SOAP
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Architecture & Hybrid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
+<!-- Security Snippet -->
+<div class="rounded-xl border border-[#3b4754] bg-[#f8f8f5] p-5 shadow-lg">
+<h4 class="text-[#181811] text-sm font-bold mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">lock</span>
+                                Seguridad: REST vs SOAP
+                            </h4>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-yellow-100 rounded p-2 border border-yellow-600/20">
+<p class="text-[10px] uppercase text-yellow-700 font-bold mb-1">REST</p>
+<p class="text-[#181811] text-xs">Depende de HTTPS. Usa Headers Authorization (Bearer Token).</p>
+</div>
+<div class="bg-[#283039] rounded p-2 border border-[#3b4754]">
+<p class="text-[10px] uppercase text-[#8c8b5f] font-bold mb-1">SOAP</p>
+<p class="text-[#8c8b5f] text-xs">Seguridad a nivel de mensaje (XML Encryption &amp; Signature).</p>
+</div>
+</div>
+</div>
+<!-- Hybrid Diagram -->
+<div class="rounded-xl border border-[#3b4754] bg-[#f8f8f5] p-5 shadow-lg relative overflow-hidden">
+<h4 class="text-[#181811] text-sm font-bold mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">hub</span>
+                                Arquitectura Híbrida Común
+                            </h4>
+<div class="flex items-center justify-between relative z-10">
+<div class="flex flex-col items-center gap-1">
+<div class="size-10 rounded-full bg-primary flex items-center justify-center text-[#181811] shadow-lg">
+<span class="material-symbols-outlined text-lg">smartphone</span>
+</div>
+<span class="text-[10px] text-[#181811] font-medium">App</span>
+</div>
+<div class="flex-1 h-0.5 bg-gradient-to-r from-primary to-[#3b4754] mx-2 relative">
+<div class="absolute inset-0 flex items-center justify-center -top-3">
+<span class="text-[9px] bg-[#f8f8f5] px-1 text-yellow-700">JSON</span>
+</div>
+<span class="material-symbols-outlined absolute right-0 -top-[5px] text-[10px] text-[#8c8b5f]">chevron_right</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="size-10 rounded-lg bg-white border border-yellow-600 border-dashed flex items-center justify-center text-[#181811]">
+<span class="material-symbols-outlined text-lg">api</span>
+</div>
+<span class="text-[10px] text-[#181811] font-medium">Gateway</span>
+</div>
+<div class="flex-1 h-0.5 bg-gradient-to-r from-[#3b4754] to-[#9dabb9] mx-2 relative">
+<div class="absolute inset-0 flex items-center justify-center -top-3">
+<span class="text-[9px] bg-[#f8f8f5] px-1 text-[#8c8b5f]">XML</span>
+</div>
+<span class="material-symbols-outlined absolute right-0 -top-[5px] text-[10px] text-[#8c8b5f]">chevron_right</span>
+</div>
+<div class="flex flex-col items-center gap-1">
+<div class="size-10 rounded bg-[#3b4754] flex items-center justify-center text-[#8c8b5f]">
+<span class="material-symbols-outlined text-lg">dns</span>
+</div>
+<span class="text-[10px] text-[#8c8b5f] font-medium">Legacy</span>
+</div>
+</div>
+<!-- Decoratice BG element -->
+<div class="absolute -right-4 -bottom-4 size-24 bg-gradient-to-br from-primary/10 to-transparent rounded-full blur-2xl"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body></html>
+
+
+
+
+
+

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Estructura WSDL - Servicios Web SOAP</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script>
+      tailwind.config = {
+        
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f9f506",
+              "background-light": "#f8f8f5",
+              "background-dark": "#23220f",
+              "text-main": "#181811",
+              "text-muted": "#8c8b5f",
+            },
+            fontFamily: {
+              "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+              "body": ["Spline Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for code block */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0d1117; 
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #283039; 
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #3b4754; 
+        }
+        
+        /* Syntax Highlighting Colors */
+        .syntax-tag { color: #3b82f6; } /* blue-500 */
+        .syntax-attr { color: #7dd3fc; } /* sky-300 */
+        .syntax-string { color: #a7f3d0; } /* emerald-200 */
+        .syntax-content { color: #cbd5e1; } /* slate-300 */
+        .syntax-comment { color: #64748b; font-style: italic; } /* slate-500 */
+    </style>
+    <script src="../navigation.js"></script>
+</head>
+<body class="bg-background-light text-slate-900 font-display overflow-x-hidden min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="z-20 flex w-full items-center justify-between border-b border-solid border-b-[#e6e6e0] bg-white/80 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-4 text-[#181811]">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary-dark">
+<span class="material-symbols-outlined text-2xl text-yellow-700">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Postgrado en Desarrollo de Software</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="flex-1 w-full max-w-[1400px] mx-auto px-4 md:px-8 py-6 flex flex-col gap-6">
+<!-- Breadcrumbs & Heading -->
+<div class="flex flex-col gap-4 border-b border-[#d4d4c8] pb-6">
+<!-- Breadcrumbs -->
+<!-- <div class="flex flex-wrap items-center gap-2 text-sm">
+
+<span class="text-[#8c8b5f] material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-yellow-700 font-medium bg-yellow-100 px-2 py-0.5 rounded text-xs uppercase tracking-wider">Current</span>
+</div> -->
+<!-- Page Heading -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="text-3xl md:text-4xl font-black leading-tight tracking-tight text-[#181811] mb-2">
+                        WSDL: Web Services Description Language
+                    </h1>
+<p class="text-[#8c8b5f] text-lg font-normal leading-normal max-w-2xl">
+                        El contrato basado en XML que define el "Qué", "Cómo" y "Dónde" de un servicio SOAP.
+                    </p>
+</div>
+<div class="flex items-center gap-2 bg-[#1a242f] border border-[#d4d4c8] rounded-lg px-3 py-1.5">
+
+
+</div>
+</div>
+</div>
+<!-- Split View: Anatomy vs Code -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 h-full">
+<!-- Left Column: Anatomy & Concepts -->
+<div class="col-span-1 lg:col-span-5 flex flex-col gap-6">
+<h3 class="text-[#181811] text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-700">body_system</span>
+                    Anatomía del Documento WSDL
+                </h3>
+<!-- Accordions / Concepts -->
+<div class="flex flex-col gap-3">
+<!-- 1. Types -->
+<details class="group bg-[#f0f0eb] border border-[#d4d4c8] rounded-xl overflow-hidden transition-all duration-300 hover:border-yellow-600/50" open="">
+<summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-3 select-none bg-[#1a242f] group-open:bg-[#202b37]">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">data_object</span>
+</div>
+<span class="text-white text-base font-semibold">1. Types (Tipos - XSD)</span>
+</div>
+<span class="material-symbols-outlined text-[#8c8b5f] transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 py-4 text-[#8c8b5f] text-sm leading-relaxed border-t border-[#d4d4c8]">
+                            Define los <strong>tipos de datos</strong> complejos utilizados en los mensajes mediante XML Schema (XSD). Establece la estructura de los objetos que viajan por la red.
+                        </div>
+</details>
+<!-- 2. Messages -->
+<details class="group bg-[#f0f0eb] border border-[#d4d4c8] rounded-xl overflow-hidden transition-all duration-300 hover:border-yellow-600/50">
+<summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-3 select-none bg-[#1a242f] group-open:bg-[#202b37]">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-purple-500/10 text-purple-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">input</span>
+</div>
+<span class="text-white text-base font-semibold">2. Messages (Mensajes - E/S)</span>
+</div>
+<span class="material-symbols-outlined text-[#8c8b5f] transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 py-4 text-[#8c8b5f] text-sm leading-relaxed border-t border-[#d4d4c8]">
+                            Descripción abstracta de los datos intercambiados. Define qué información se envía (Input) y qué se recibe (Output).
+                        </div>
+</details>
+<!-- 3. PortType -->
+<details class="group bg-[#f0f0eb] border border-[#d4d4c8] rounded-xl overflow-hidden transition-all duration-300 hover:border-yellow-600/50">
+<summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-3 select-none bg-[#1a242f] group-open:bg-[#202b37]">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-green-500/10 text-green-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">settings_ethernet</span>
+</div>
+<span class="text-white text-base font-semibold">3. PortType (Interfaz)</span>
+</div>
+<span class="material-symbols-outlined text-[#8c8b5f] transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 py-4 text-[#8c8b5f] text-sm leading-relaxed border-t border-[#d4d4c8]">
+                            Define un conjunto de <strong>operaciones</strong> abstractas soportadas por uno o más endpoints. Es equivalente a una "Interface" en programación orientada a objetos.
+                        </div>
+</details>
+<!-- 4. Binding -->
+<details class="group bg-[#f0f0eb] border border-[#d4d4c8] rounded-xl overflow-hidden transition-all duration-300 hover:border-yellow-600/50">
+<summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-3 select-none bg-[#1a242f] group-open:bg-[#202b37]">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-orange-500/10 text-orange-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">link</span>
+</div>
+<span class="text-white text-base font-semibold">4. Binding (Protocolo)</span>
+</div>
+<span class="material-symbols-outlined text-[#8c8b5f] transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 py-4 text-[#8c8b5f] text-sm leading-relaxed border-t border-[#d4d4c8]">
+                            Especifica el protocolo concreto (generalmente <strong>SOAP sobre HTTP</strong>) y el formato de los datos para las operaciones definidas en el PortType.
+                        </div>
+</details>
+<!-- 5. Service -->
+<details class="group bg-[#f0f0eb] border border-[#d4d4c8] rounded-xl overflow-hidden transition-all duration-300 hover:border-yellow-600/50">
+<summary class="flex cursor-pointer items-center justify-between gap-4 px-5 py-3 select-none bg-[#1a242f] group-open:bg-[#202b37]">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-red-500/10 text-red-400 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">public</span>
+</div>
+<span class="text-white text-base font-semibold">5. Service (Punto Final)</span>
+</div>
+<span class="material-symbols-outlined text-[#8c8b5f] transition-transform group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 py-4 text-[#8c8b5f] text-sm leading-relaxed border-t border-[#d4d4c8]">
+                            Agrupa un conjunto de puertos relacionados y especifica la <strong>ubicación física (URL)</strong> donde se encuentra disponible el servicio web.
+                        </div>
+</details>
+</div>
+<!-- Feature: Proxy Generation -->
+<div class="mt-4 p-5 rounded-xl bg-gradient-to-r from-[#1a242f] to-[#161e27] border border-[#d4d4c8]">
+<div class="flex items-start gap-4">
+<div class="p-2 bg-yellow-200 rounded-lg text-yellow-700">
+<span class="material-symbols-outlined">auto_fix_high</span>
+</div>
+<div>
+<h4 class="text-white font-bold mb-1">Generación Automática de Cliente (Proxy)</h4>
+<p class="text-[#8c8b5f] text-xs mb-3">
+                                Debido a su estructura estricta, las herramientas de desarrollo pueden leer el WSDL y generar todo el código necesario para consumir el servicio.
+                            </p>
+<div class="flex gap-2 flex-wrap">
+<span class="px-2 py-1 bg-[#283039] rounded text-[10px] font-mono text-gray-300 border border-[#3b4754]">wsimport (Java)</span>
+<span class="px-2 py-1 bg-[#283039] rounded text-[10px] font-mono text-gray-300 border border-[#3b4754]">svcutil.exe (C#)</span>
+<span class="px-2 py-1 bg-[#283039] rounded text-[10px] font-mono text-gray-300 border border-[#3b4754]">zeep (Python)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Code & Comparison -->
+<div class="col-span-1 lg:col-span-7 flex flex-col gap-6">
+<!-- Code Window -->
+<div class="flex flex-col rounded-xl overflow-hidden border border-[#d4d4c8] bg-[#0d1117] shadow-2xl h-fit">
+<!-- Code Window Header -->
+<div class="flex items-center justify-between px-4 py-2 bg-[#161b22] border-b border-[#d4d4c8]">
+<div class="flex gap-2">
+<div class="size-3 rounded-full bg-[#ff5f56]"></div>
+<div class="size-3 rounded-full bg-[#ffbd2e]"></div>
+<div class="size-3 rounded-full bg-[#27c93f]"></div>
+</div>
+<div class="text-xs font-mono text-[#8b949e]">BillingService.wsdl</div>
+<div class="text-[#8b949e]">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</div>
+</div>
+<!-- Code Content -->
+<div class="p-4 overflow-x-auto custom-scrollbar font-mono text-sm leading-6">
+<pre><code><span class="syntax-comment">&lt;!-- 1. TYPES: Estructura de Datos --&gt;</span>
+<span class="syntax-tag">&lt;wsdl:types&gt;</span>
+  <span class="syntax-tag">&lt;xs:schema</span> <span class="syntax-attr">targetNamespace=</span><span class="syntax-string">"http://example.com/billing"</span><span class="syntax-tag">&gt;</span>
+    <span class="syntax-tag">&lt;xs:element</span> <span class="syntax-attr">name=</span><span class="syntax-string">"InvoiceRequest"</span> <span class="syntax-attr">type=</span><span class="syntax-string">"xs:string"</span><span class="syntax-tag">/&gt;</span>
+    <span class="syntax-tag">&lt;xs:element</span> <span class="syntax-attr">name=</span><span class="syntax-string">"InvoiceResponse"</span> <span class="syntax-attr">type=</span><span class="syntax-string">"xs:float"</span><span class="syntax-tag">/&gt;</span>
+  <span class="syntax-tag">&lt;/xs:schema&gt;</span>
+<span class="syntax-tag">&lt;/wsdl:types&gt;</span>
+
+<span class="syntax-comment">&lt;!-- 2. MESSAGES: Entrada y Salida --&gt;</span>
+<span class="syntax-tag">&lt;wsdl:message</span> <span class="syntax-attr">name=</span><span class="syntax-string">"GetInvoiceInput"</span><span class="syntax-tag">&gt;</span>
+  <span class="syntax-tag">&lt;wsdl:part</span> <span class="syntax-attr">name=</span><span class="syntax-string">"body"</span> <span class="syntax-attr">element=</span><span class="syntax-string">"tns:InvoiceRequest"</span><span class="syntax-tag">/&gt;</span>
+<span class="syntax-tag">&lt;/wsdl:message&gt;</span>
+
+<span class="syntax-tag">&lt;wsdl:message</span> <span class="syntax-attr">name=</span><span class="syntax-string">"GetInvoiceOutput"</span><span class="syntax-tag">&gt;</span>
+  <span class="syntax-tag">&lt;wsdl:part</span> <span class="syntax-attr">name=</span><span class="syntax-string">"body"</span> <span class="syntax-attr">element=</span><span class="syntax-string">"tns:InvoiceResponse"</span><span class="syntax-tag">/&gt;</span>
+<span class="syntax-tag">&lt;/wsdl:message&gt;</span>
+
+<span class="syntax-comment">&lt;!-- 3. PORTTYPE: La Interfaz Abstracta --&gt;</span>
+<span class="syntax-tag">&lt;wsdl:portType</span> <span class="syntax-attr">name=</span><span class="syntax-string">"BillingPortType"</span><span class="syntax-tag">&gt;</span>
+  <span class="syntax-tag">&lt;wsdl:operation</span> <span class="syntax-attr">name=</span><span class="syntax-string">"GetInvoice"</span><span class="syntax-tag">&gt;</span>
+    <span class="syntax-tag">&lt;wsdl:input</span> <span class="syntax-attr">message=</span><span class="syntax-string">"tns:GetInvoiceInput"</span><span class="syntax-tag">/&gt;</span>
+    <span class="syntax-tag">&lt;wsdl:output</span> <span class="syntax-attr">message=</span><span class="syntax-string">"tns:GetInvoiceOutput"</span><span class="syntax-tag">/&gt;</span>
+  <span class="syntax-tag">&lt;/wsdl:operation&gt;</span>
+<span class="syntax-tag">&lt;/wsdl:portType&gt;</span>
+
+<span class="syntax-comment">&lt;!-- 4. BINDING: Protocolo (SOAP) --&gt;</span>
+<span class="syntax-tag">&lt;wsdl:binding</span> <span class="syntax-attr">name=</span><span class="syntax-string">"BillingSoapBinding"</span> <span class="syntax-attr">type=</span><span class="syntax-string">"tns:BillingPortType"</span><span class="syntax-tag">&gt;</span>
+  <span class="syntax-tag">&lt;soap:binding</span> <span class="syntax-attr">style=</span><span class="syntax-string">"document"</span> <span class="syntax-attr">transport=</span><span class="syntax-string">"http://schemas.xmlsoap.org/soap/http"</span><span class="syntax-tag">/&gt;</span>
+  <span class="syntax-tag">&lt;wsdl:operation</span> <span class="syntax-attr">name=</span><span class="syntax-string">"GetInvoice"</span><span class="syntax-tag">&gt;</span>
+    <span class="syntax-tag">&lt;soap:operation</span> <span class="syntax-attr">soapAction=</span><span class="syntax-string">"http://example.com/GetInvoice"</span><span class="syntax-tag">/&gt;</span>
+    <span class="syntax-comment">&lt;!-- ... input/output definitions ... --&gt;</span>
+  <span class="syntax-tag">&lt;/wsdl:operation&gt;</span>
+<span class="syntax-tag">&lt;/wsdl:binding&gt;</span>
+
+<span class="syntax-comment">&lt;!-- 5. SERVICE: Endpoint URL --&gt;</span>
+<span class="syntax-tag">&lt;wsdl:service</span> <span class="syntax-attr">name=</span><span class="syntax-string">"BillingService"</span><span class="syntax-tag">&gt;</span>
+  <span class="syntax-tag">&lt;wsdl:port</span> <span class="syntax-attr">name=</span><span class="syntax-string">"BillingPort"</span> <span class="syntax-attr">binding=</span><span class="syntax-string">"tns:BillingSoapBinding"</span><span class="syntax-tag">&gt;</span>
+    <span class="syntax-tag">&lt;soap:address</span> <span class="syntax-attr">location=</span><span class="syntax-string">"http://api.example.com/v1/billing"</span><span class="syntax-tag">/&gt;</span>
+  <span class="syntax-tag">&lt;/wsdl:port&gt;</span>
+<span class="syntax-tag">&lt;/wsdl:service&gt;</span></code></pre>
+</div>
+</div>
+<!-- Comparison Table -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-4 rounded-xl border border-yellow-600/30 bg-primary/5 flex flex-col gap-2">
+<div class="flex items-center justify-between mb-1">
+<h4 class="font-bold text-[#181811] flex items-center gap-2">
+<span class="material-symbols-outlined text-yellow-700">description</span>
+                                WSDL
+                            </h4>
+<span class="text-[10px] uppercase font-bold tracking-wider text-yellow-700 border border-yellow-600/30 px-2 py-0.5 rounded">Estricto</span>
+</div>
+<ul class="text-sm text-[#8c8b5f] space-y-1 list-disc list-inside">
+<li>Formato basado en <strong>XML</strong></li>
+<li>Diseñado para operaciones (Verbos)</li>
+<li>Contrato rígido y tipado fuerte</li>
+<li>Estándar maduro (Enterprise)</li>
+</ul>
+</div>
+<div class="p-4 rounded-xl border border-[#d4d4c8] bg-[#f0f0eb] flex flex-col gap-2 opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex items-center justify-between mb-1">
+<h4 class="font-bold text-[#181811] flex items-center gap-2">
+<span class="material-symbols-outlined text-purple-400">api</span>
+                                OpenAPI / Swagger
+                            </h4>
+<span class="text-[10px] uppercase font-bold tracking-wider text-[#8c8b5f] border border-[#3b4754] px-2 py-0.5 rounded">Flexible</span>
+</div>
+<ul class="text-sm text-[#8c8b5f] space-y-1 list-disc list-inside">
+<li>Formato JSON / YAML</li>
+<li>Diseñado para recursos (Sustantivos)</li>
+<li>Documentación interactiva</li>
+<li>Estándar moderno (Web/Mobile)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer / Progress -->
+<footer class="mt-auto border-t border-[#d4d4c8] bg-[#f8f8f5] py-4">
+<div class="max-w-[1400px] mx-auto px-8 flex justify-between items-center text-sm text-[#8c8b5f]">
+<span>© 2023 Programa de Postgrado en Ingeniería de Software</span>
+<div class="flex items-center gap-4">
+
+
+</div>
+</div>
+</footer>
+</body></html>
+
+
+
+
+
+
+

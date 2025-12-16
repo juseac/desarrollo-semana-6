@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Modelo de Comunicación Cliente-Servidor</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script>
+      tailwind.config = {
+        
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#f9f506",
+              "background-light": "#f8f8f5",
+              "background-dark": "#23220f",
+              "text-main": "#181811",
+              "text-muted": "#8c8b5f",
+            },
+            fontFamily: {
+              "display": ["Spline Sans", "Noto Sans", "sans-serif"],
+              "body": ["Spline Sans", "Noto Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom arrow styles for the sequence diagram */
+        .arrow-line {
+            position: relative;
+            height: 2px;
+            background-color: #181811;
+        }
+        .dark .arrow-line {
+            background-color: #e2e2e2;
+        }
+        .arrow-head-right::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: -5px;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-left: 8px solid currentColor;
+        }
+        .arrow-head-left::after {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: -5px;
+            border-top: 6px solid transparent;
+            border-bottom: 6px solid transparent;
+            border-right: 8px solid currentColor;
+        }
+        
+        /* Dashed lifeline */
+        .lifeline {
+            background-image: linear-gradient(to bottom, currentColor 50%, transparent 50%);
+            background-size: 2px 20px;
+            background-repeat: repeat-y;
+            width: 2px;
+        }
+    </style>
+    <script src="../navigation.js"></script>
+</head>
+<body class="bg-background-light font-display text-text-main overflow-x-hidden min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="z-20 flex w-full items-center justify-between border-b border-solid border-b-[#e6e6e0] bg-white/80 backdrop-blur-md px-10 py-4">
+<div class="flex items-center gap-4 text-[#181811]">
+<div class="flex items-center justify-center size-10 rounded-full bg-primary/20 text-primary-dark">
+<span class="material-symbols-outlined text-2xl text-yellow-700">school</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Postgrado en Desarrollo de Software</h2>
+</div>
+<div class="hidden md:flex flex-1 justify-end gap-8">
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-7xl mx-auto px-6 py-8 flex flex-col gap-8">
+<!-- Header Section: Breadcrumbs & Title -->
+<div class="flex flex-col gap-4">
+
+<!-- Page Heading -->
+<div class="flex flex-wrap justify-between items-end gap-4 border-b border-[#e6e6db] pb-6">
+<div class="flex flex-col gap-2 max-w-2xl">
+<h1 class="text-3xl md:text-4xl font-bold leading-tight tracking-tight">Modelo de Comunicación Cliente-Servidor</h1>
+<p class="text-text-muted text-lg">Ciclo de vida de una petición web y estados de conexión HTTP.</p>
+</div>
+<div class="flex items-center gap-2">
+
+</div>
+</div>
+</div>
+<!-- Split View Content -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start h-full">
+<!-- Left Column: Visual Sequence Diagram (Span 7) -->
+<div class="lg:col-span-7 bg-[#f0f0eb] rounded-xl border border-[#e6e6db] shadow-sm p-6 md:p-8 flex flex-col gap-6 relative overflow-hidden">
+<h3 class="text-lg font-bold flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">lan</span>
+                    Diagrama de Secuencia
+                </h3>
+<!-- Diagram Container -->
+<div class="relative flex justify-between min-h-[400px] px-4 md:px-12 py-4 select-none">
+<!-- Actor: Client -->
+<div class="flex flex-col items-center z-10 w-24">
+<div class="size-14 bg-primary rounded-full flex items-center justify-center shadow-md mb-2 text-black">
+<span class="material-symbols-outlined text-3xl">laptop_mac</span>
+</div>
+<p class="font-bold text-sm mb-4">Cliente</p>
+<!-- Lifeline -->
+<div class="lifeline w-[2px] h-full bg-current opacity-20 grow"></div>
+</div>
+<!-- Interaction Zone (Middle) -->
+<div class="flex-1 flex flex-col py-16 relative">
+<!-- Request Arrow -->
+<div class="relative flex flex-col items-center mb-16 group">
+<span class="absolute -top-7 text-xs font-medium text-text-muted bg-[#f0f0eb] px-2">1. Solicitud (Request)</span>
+<div class="w-full h-[2px] bg-text-main relative">
+<div class="absolute right-0 -top-[5px] border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-text-main"></div>
+</div>
+<div class="bg-[#f0f0eb] border border-primary text-xs font-mono py-1 px-3 rounded-full mt-2 shadow-sm text-text-main">
+                                GET /api/usuarios
+                            </div>
+</div>
+<!-- Processing Block on Server side (Visual trick) -->
+<div class="absolute right-[-3rem] md:right-[-3.5rem] top-[8rem] flex items-center gap-2">
+<div class="w-4 h-16 bg-primary/20 border border-primary rounded-md flex flex-col items-center justify-center animate-pulse">
+</div>
+<span class="text-xs text-text-muted italic">Procesando...</span>
+</div>
+<!-- Response Arrow -->
+<div class="relative flex flex-col items-center mt-8">
+<span class="absolute -top-7 text-xs font-medium text-text-muted bg-[#f0f0eb] px-2">2. Respuesta (Response)</span>
+<div class="w-full h-[2px] bg-text-main relative">
+<div class="absolute left-0 -top-[5px] border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-right-[8px] border-r-[8px] border-r-text-main"></div>
+</div>
+<div class="bg-primary text-black text-xs font-bold py-1 px-3 rounded-full mt-2 shadow-sm">
+                                200 OK (JSON)
+                            </div>
+</div>
+</div>
+<!-- Actor: Server -->
+<div class="flex flex-col items-center z-10 w-24">
+<div class="size-14 bg-background-light rounded-full flex items-center justify-center shadow-md mb-2 text-[#181811]">
+<span class="material-symbols-outlined text-3xl">dns</span>
+</div>
+<p class="font-bold text-sm mb-4">Servidor</p>
+<!-- Lifeline -->
+<div class="lifeline w-[2px] h-full bg-current opacity-20 grow"></div>
+</div>
+</div>
+<div class="bg-background-light p-4 rounded-lg text-sm text-text-muted border border-transparent">
+<p class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">info</span>
+                        El protocolo HTTP es "stateless" (sin estado), lo que significa que cada petición es independiente.
+                    </p>
+</div>
+</div>
+<!-- Right Column: Data Table (Span 5) -->
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div class="bg-[#f0f0eb] rounded-xl border border-[#e6e6db] overflow-hidden flex flex-col h-full shadow-sm">
+<div class="p-4 border-b border-[#e6e6db] bg-background-light">
+<h3 class="text-lg font-bold">Fases de Conexión</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-background-light">
+<th class="p-4 text-xs font-bold text-text-muted uppercase tracking-wider w-1/3">Fase</th>
+<th class="p-4 text-xs font-bold text-text-muted uppercase tracking-wider">Descripción</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-[#e6e6db]">
+<!-- Row 1 -->
+<tr class="hover:bg-background-light transition-colors group">
+<td class="p-4 align-top">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-gray-400 group-hover:bg-primary transition-colors"></span>
+<span class="font-medium text-sm">Establecimiento</span>
+</div>
+</td>
+<td class="p-4 text-sm text-text-muted">Handshake TCP/IP inicial entre cliente y servidor.</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-background-light transition-colors group">
+<td class="p-4 align-top">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-gray-400 group-hover:bg-primary transition-colors"></span>
+<span class="font-medium text-sm">Solicitud</span>
+</div>
+</td>
+<td class="p-4 text-sm text-text-muted">El cliente envía headers y cuerpo del mensaje (JSON/XML).</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-background-light transition-colors group bg-primary/5">
+<td class="p-4 align-top">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-primary animate-pulse"></span>
+<span class="font-bold text-sm text-text-main">Espera</span>
+</div>
+</td>
+<td class="p-4 text-sm text-text-main">El servidor interpreta la petición y ejecuta lógica.</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-background-light transition-colors group">
+<td class="p-4 align-top">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-gray-400 group-hover:bg-primary transition-colors"></span>
+<span class="font-medium text-sm">Respuesta</span>
+</div>
+</td>
+<td class="p-4 text-sm text-text-muted">El servidor retorna código de estado (ej. 200, 404) y payload.</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-background-light transition-colors group">
+<td class="p-4 align-top">
+<div class="flex items-center gap-2">
+<span class="size-2 rounded-full bg-gray-400 group-hover:bg-primary transition-colors"></span>
+<span class="font-medium text-sm">Cierre</span>
+</div>
+</td>
+<td class="p-4 text-sm text-text-muted">Finalización de la conexión. Liberación de recursos.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Mini Note Card -->
+<div class="bg-primary text-black p-4 rounded-xl shadow-sm flex items-start gap-3">
+<span class="material-symbols-outlined mt-0.5">lightbulb</span>
+<div>
+<h4 class="font-bold text-sm">Nota Importante</h4>
+<p class="text-sm opacity-90 leading-snug">En REST, cada petición debe contener toda la información necesaria para ser procesada. El servidor no "recuerda" el estado anterior del cliente.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Navigation -->
+<!-- <footer class="w-full border-t border-[#e6e6db] bg-[#f0f0eb] px-6 py-4 mt-auto">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+
+<div class="hidden md:flex gap-1">
+<div class="h-1 w-8 rounded-full bg-primary"></div>
+<div class="h-1 w-2 rounded-full bg-[#e6e6db]"></div>
+<div class="h-1 w-2 rounded-full bg-[#e6e6db]"></div>
+<div class="h-1 w-2 rounded-full bg-[#e6e6db]"></div>
+</div>
+
+</div>
+</footer> -->
+</body></html>
+
+
+
+
+
