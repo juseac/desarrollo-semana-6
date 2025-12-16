@@ -57,8 +57,8 @@
         <!-- Sidebar Navigation (Challenges List) -->
         <aside class="w-80 flex flex-col border-r border-[#d4d4c8] bg-[#f0f0eb] shrink-0 overflow-y-auto z-10">
             <div class="p-6 pb-2">
-                <h2 class="text-slate-900 text-lg font-bold leading-tight mb-1">Common Challenges</h2>
-                <p class="text-slate-500 text-sm">Select a topic to explore solutions</p>
+                <h2 class="text-slate-900 text-lg font-bold leading-tight mb-1">Desafíos Comunes</h2>
+                <p class="text-slate-500 text-sm">Selecciona un tema para ver soluciones</p>
             </div>
             <nav class="flex-1 px-4 py-4 space-y-1">
                 <!-- Active Item: Authentication -->
@@ -67,7 +67,7 @@
                         <span class="material-symbols-outlined text-lg">lock</span>
                     </div>
                     <div class="flex-1">
-                        <p class="text-sm font-bold text-[#181811]">Authentication</p>
+                        <p class="text-sm font-bold text-[#181811]">Autenticación</p>
                         <p class="text-xs text-[#181811]/70">JWT, OAuth2, WS-Security</p>
                     </div>
                 </button>
@@ -78,7 +78,7 @@
                         <span class="material-symbols-outlined text-lg">speed</span>
                     </div>
                     <div class="flex-1">
-                        <p class="text-sm font-medium text-[#181811]">Rate Limiting</p>
+                        <p class="text-sm font-medium text-[#181811]">Límite de Velocidad</p>
                     </div>
                 </button>
 
@@ -87,7 +87,7 @@
                         <span class="material-symbols-outlined text-lg">fork_right</span>
                     </div>
                     <div class="flex-1">
-                        <p class="text-sm font-medium text-[#181811]">Versioning</p>
+                        <p class="text-sm font-medium text-[#181811]">Versionado</p>
                     </div>
                 </button>
 
@@ -105,7 +105,7 @@
                         <span class="material-symbols-outlined text-lg">report_problem</span>
                     </div>
                     <div class="flex-1">
-                        <p class="text-sm font-medium text-[#181811]">Error Handling</p>
+                        <p class="text-sm font-medium text-[#181811]">Manejo de Errores</p>
                     </div>
                 </button>
 
@@ -114,7 +114,7 @@
                         <span class="material-symbols-outlined text-lg">menu_book</span>
                     </div>
                     <div class="flex-1">
-                        <p class="text-sm font-medium text-[#181811]">Documentation</p>
+                        <p class="text-sm font-medium text-[#181811]">Documentación</p>
                     </div>
                 </button>
 
@@ -123,7 +123,7 @@
                         <span class="material-symbols-outlined text-lg">science</span>
                     </div>
                     <div class="flex-1">
-                        <p class="text-sm font-medium text-[#181811]">Testing</p>
+                        <p class="text-sm font-medium text-[#181811]">Pruebas</p>
                     </div>
                 </button>
 
@@ -132,7 +132,7 @@
                         <span class="material-symbols-outlined text-lg">bolt</span>
                     </div>
                     <div class="flex-1">
-                        <p class="text-sm font-medium text-[#181811]">Caching</p>
+                        <p class="text-sm font-medium text-[#181811]">Caché</p>
                     </div>
                 </button>
             </nav>
@@ -157,7 +157,7 @@
                         <span id="content-icon" class="material-symbols-outlined text-3xl">lock</span>
                     </div>
                     <div>
-                        <span class="uppercase tracking-wider text-xs font-bold text-yellow-700 mb-1 block">Current Topic</span>
+                        <span class="uppercase tracking-wider text-xs font-bold text-yellow-700 mb-1 block">Tema Actual</span>
                         <h2 id="content-title" class="text-2xl font-bold text-[#181811]">Autenticación y Autorización</h2>
                     </div>
                 </div>
@@ -165,7 +165,7 @@
                 <!-- Problem Statement Box -->
                 <div class="bg-red-50 border-l-4 border-red-500 p-5 rounded-r-lg mb-8">
                     <h3 class="flex items-center gap-2 text-red-800 font-bold mb-2">
-                        <span class="material-symbols-outlined text-xl">warning</span> The Problem
+                        <span class="material-symbols-outlined text-xl">warning</span> El Problema
                     </h3>
                     <p id="content-problem" class="text-red-900/80 leading-relaxed">
                         Asegurar que solo usuarios y sistemas verificados puedan acceder a recursos protegidos. En arquitecturas sin estado como REST, gestionar sesiones sin estado del lado del servidor es crítico. En SOAP, la seguridad debe manejarse a menudo a nivel de mensaje en lugar de solo a nivel de transporte.
@@ -178,13 +178,13 @@
                     <div class="flex flex-col gap-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2">
-                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-bold rounded uppercase tracking-wider">REST Approach</span>
+                                <span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-bold rounded uppercase tracking-wider">Enfoque REST</span>
                             </div>
                         </div>
                         <div class="bg-[#f8f8f5] rounded-xl border border-[#d4d4c8] p-6 shadow-sm">
-                            <h4 id="rest-title" class="text-lg font-bold text-[#181811] mb-3">Stateless Auth with JWT / OAuth2</h4>
+                            <h4 id="rest-title" class="text-lg font-bold text-[#181811] mb-3">Autenticación sin estado con JWT / OAuth2</h4>
                             <p id="rest-desc" class="text-sm text-[#5c5c4f] mb-4">
-                                Use JSON Web Tokens (JWT) for self-contained credentials. The server validates the signature without DB lookup for every request.
+                                Usa JSON Web Tokens (JWT) para credenciales autocontenidas. El servidor valida la firma sin consultar la BD en cada petición.
                             </p>
                             <!-- Code Snippet -->
                             <div class="bg-[#1e1e1e] rounded-lg p-4 font-mono text-sm overflow-x-auto border border-[#333] relative group/code">
@@ -202,7 +202,7 @@
                                 </div>
                             </div>
                             <div class="mt-4 pt-4 border-t border-[#e6e6e0]">
-                                <h5 class="text-xs font-bold uppercase text-[#8c8b5f] mb-2">Key Tech</h5>
+                                <h5 class="text-xs font-bold uppercase text-[#8c8b5f] mb-2">Tecnologías Clave</h5>
                                 <div id="rest-tech" class="flex gap-2 flex-wrap">
                                     <span class="px-2 py-1 rounded bg-white border border-[#d4d4c8] text-[#5c5c4f] text-xs font-medium">OAuth2</span>
                                     <span class="px-2 py-1 rounded bg-white border border-[#d4d4c8] text-[#5c5c4f] text-xs font-medium">OpenID Connect</span>
@@ -216,7 +216,7 @@
                     <div class="flex flex-col gap-4">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-2">
-                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded uppercase tracking-wider">SOAP Approach</span>
+                                <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded uppercase tracking-wider">Enfoque SOAP</span>
                             </div>
                         </div>
                         <div class="bg-[#f8f8f5] rounded-xl border border-[#d4d4c8] p-6 shadow-sm">
@@ -241,7 +241,7 @@
                                 </div>
                             </div>
                             <div class="mt-4 pt-4 border-t border-[#e6e6e0]">
-                                <h5 class="text-xs font-bold uppercase text-[#8c8b5f] mb-2">Key Tech</h5>
+                                <h5 class="text-xs font-bold uppercase text-[#8c8b5f] mb-2">Tecnologías Clave</h5>
                                 <div id="soap-tech" class="flex gap-2 flex-wrap">
                                     <span class="px-2 py-1 rounded bg-white border border-[#d4d4c8] text-[#5c5c4f] text-xs font-medium">WS-Security</span>
                                     <span class="px-2 py-1 rounded bg-white border border-[#d4d4c8] text-[#5c5c4f] text-xs font-medium">SAML</span>
@@ -259,22 +259,22 @@
                         <div class="flex gap-3 p-4 bg-primary/10 border border-primary/20 rounded-lg">
                             <span class="material-symbols-outlined text-yellow-700">https</span>
                             <div>
-                                <h4 class="text-sm font-bold text-[#181811]">Always use HTTPS</h4>
-                                <p class="text-xs text-[#5c5c4f] mt-1">Never transmit tokens or credentials over plain HTTP.</p>
+                                <h4 class="text-sm font-bold text-[#181811]">Usar siempre HTTPS</h4>
+                                <p class="text-xs text-[#5c5c4f] mt-1">Nunca transmitas tokens o credenciales sobre HTTP plano.</p>
                             </div>
                         </div>
                         <div class="flex gap-3 p-4 bg-primary/10 border border-primary/20 rounded-lg">
                             <span class="material-symbols-outlined text-yellow-700">timelapse</span>
                             <div>
-                                <h4 class="text-sm font-bold text-[#181811]">Short-lived Tokens</h4>
-                                <p class="text-xs text-[#5c5c4f] mt-1">Keep access tokens short-lived (e.g. 15min) and use Refresh Tokens.</p>
+                                <h4 class="text-sm font-bold text-[#181811]">Tokens de corta duración</h4>
+                                <p class="text-xs text-[#5c5c4f] mt-1">Mantén los tokens de acceso con vida corta (ej. 15min) y usa Refresh Tokens.</p>
                             </div>
                         </div>
                         <div class="flex gap-3 p-4 bg-primary/10 border border-primary/20 rounded-lg">
                             <span class="material-symbols-outlined text-yellow-700">key_off</span>
                             <div>
-                                <h4 class="text-sm font-bold text-[#181811]">Least Privilege</h4>
-                                <p class="text-xs text-[#5c5c4f] mt-1">Scopes should restrict access to strictly what is needed.</p>
+                                <h4 class="text-sm font-bold text-[#181811]">Mínimo Privilegio</h4>
+                                <p class="text-xs text-[#5c5c4f] mt-1">Los scopes deben restringir el acceso estrictamente a lo necesario.</p>
                             </div>
                         </div>
                     </div>
@@ -602,9 +602,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
