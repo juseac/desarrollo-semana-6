@@ -170,9 +170,9 @@
 <!-- Code Examples & Structure Grid -->
 <div class="flex flex-col gap-4 px-4">
 <h3 class="text-[#181811] text-2xl font-bold leading-tight">Comparación de Estructura de Código</h3>
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 <!-- RPC Card -->
-<div class="flex flex-col rounded-xl border border-[#e6e6db] bg-[#f0f0eb] overflow-hidden group shadow-sm hover:shadow-md transition-shadow">
+<div class="flex flex-col h-full rounded-xl border border-[#e6e6db] bg-[#f0f0eb] overflow-hidden group shadow-sm hover:shadow-md transition-shadow">
 <div class="px-5 py-4 border-b border-[#e6e6db] flex items-center justify-between bg-[#fcfcf9]">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-[#8c8b5f]">terminal</span>
@@ -180,9 +180,9 @@
 </div>
 <span class="text-xs font-mono text-[#8c8b5f] bg-[#f0f0eb] px-2 py-1 rounded">Llamada a Función</span>
 </div>
-<div class="p-5 flex flex-col gap-3">
+<div class="p-5 flex flex-col gap-3 flex-1">
 <p class="text-sm text-[#5c5b3f]">Pensando en términos de <strong class="text-[#181811]">procedimientos</strong>. Envías un comando para ejecutar.</p>
-<div class="bg-[#2d2c29] rounded-lg p-4 font-mono text-xs text-gray-300 shadow-inner">
+<div class="bg-[#2d2c29] rounded-lg p-4 font-mono text-xs text-gray-300 shadow-inner flex-1">
 <div class="flex gap-2 mb-2">
 <span class="text-purple-400 font-bold">POST</span>
 <span class="text-gray-300">/api/updateUser</span>
@@ -198,7 +198,7 @@
 </div>
 </div>
 <!-- REST Card -->
-<div class="flex flex-col rounded-xl border border-primary bg-[#f0f0eb] overflow-hidden group shadow-md ring-4 ring-primary/5 relative">
+<div class="flex flex-col h-full rounded-xl border border-primary bg-[#f0f0eb] overflow-hidden group shadow-md ring-4 ring-primary/5 relative">
 <div class="absolute top-0 right-0 bg-primary text-black text-[10px] font-bold px-2 py-1 rounded-bl-lg uppercase">Estándar</div>
 <div class="px-5 py-4 border-b border-[#e6e6db] flex items-center justify-between bg-primary/10">
 <div class="flex items-center gap-2">
@@ -207,9 +207,9 @@
 </div>
 <span class="text-xs font-mono text-black bg-primary/20 px-2 py-1 rounded">Estado del Recurso</span>
 </div>
-<div class="p-5 flex flex-col gap-3">
+<div class="p-5 flex flex-col gap-3 flex-1">
 <p class="text-sm text-[#5c5b3f]">Pensando en términos de <strong class="text-[#181811]">recursos</strong>. Manipulas un objeto.</p>
-<div class="bg-[#2d2c29] rounded-lg p-4 font-mono text-xs text-gray-300 shadow-inner">
+<div class="bg-[#2d2c29] rounded-lg p-4 font-mono text-xs text-gray-300 shadow-inner flex-1">
 <div class="flex gap-2 mb-2">
 <span class="text-orange-400 font-bold">PUT</span>
 <span class="text-gray-300">/api/users/123</span>
@@ -224,7 +224,7 @@
 </div>
 </div>
 <!-- SOAP Card -->
-<div class="flex flex-col rounded-xl border border-[#e6e6db] bg-[#f0f0eb] overflow-hidden group shadow-sm hover:shadow-md transition-shadow">
+<div class="flex flex-col h-full rounded-xl border border-[#e6e6db] bg-[#f0f0eb] overflow-hidden group shadow-sm hover:shadow-md transition-shadow">
 <div class="px-5 py-4 border-b border-[#e6e6db] flex items-center justify-between bg-[#fcfcf9]">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-[#8c8b5f]">mail</span>
@@ -232,9 +232,9 @@
 </div>
 <span class="text-xs font-mono text-[#8c8b5f] bg-[#f0f0eb] px-2 py-1 rounded">Sobre (Envelope)</span>
 </div>
-<div class="p-5 flex flex-col gap-3">
+<div class="p-5 flex flex-col gap-3 flex-1">
 <p class="text-sm text-[#5c5b3f]">Pensando en términos de <strong class="text-[#181811]">contratos</strong>. Envoltura estricta de protocolo.</p>
-<div class="bg-[#2d2c29] rounded-lg p-4 font-mono text-xs text-gray-300 shadow-inner">
+<div class="bg-[#2d2c29] rounded-lg p-4 font-mono text-xs text-gray-300 shadow-inner flex-1">
 <div class="flex gap-2 mb-2">
 <span class="text-purple-400 font-bold">POST</span>
 <span class="text-gray-300">/service</span>
@@ -244,6 +244,35 @@
                                               <span class="text-blue-300">&lt;id&gt;</span>123<span class="text-blue-300">&lt;/id&gt;</span><br/>
                                               <span class="text-blue-300">&lt;name&gt;</span>Alice<span class="text-blue-300">&lt;/name&gt;</span><br/>
 <span class="text-gray-500 text-[10px]">&lt;/soap:Envelope&gt;</span>
+</div>
+</div>
+</div>
+</div>
+<!-- GraphQL Card -->
+<div class="flex flex-col h-full rounded-xl border border-[#e6e6db] bg-[#f0f0eb] overflow-hidden group shadow-sm hover:shadow-md transition-shadow">
+<div class="px-5 py-4 border-b border-[#e6e6db] flex items-center justify-between bg-[#fcfcf9]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#8c8b5f]">hub</span>
+<span class="font-bold text-[#181811]">GraphQL</span>
+</div>
+<span class="text-xs font-mono text-[#8c8b5f] bg-[#f0f0eb] px-2 py-1 rounded">Consulta (Query)</span>
+</div>
+<div class="p-5 flex flex-col gap-3 flex-1">
+<p class="text-sm text-[#5c5b3f]">Pensando en términos de <strong class="text-[#181811]">grafos</strong>. Pides exactamente lo que necesitas.</p>
+<div class="bg-[#2d2c29] rounded-lg p-4 font-mono text-xs text-gray-300 shadow-inner flex-1">
+<div class="flex gap-2 mb-2">
+<span class="text-purple-400 font-bold">POST</span>
+<span class="text-gray-300">/graphql</span>
+</div>
+<div class="pl-4 border-l-2 border-gray-600">
+<span class="text-gray-500">// Query: Obtener datos específicos</span><br>
+<span class="text-purple-300">query</span> {<br>
+&nbsp;&nbsp;user(<span class="text-blue-300">id</span>: <span class="text-orange-300">123</span>) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;name<br>
+&nbsp;&nbsp;&nbsp;&nbsp;email<br>
+&nbsp;&nbsp;&nbsp;&nbsp;posts { title }<br>
+&nbsp;&nbsp;}<br>
+}
 </div>
 </div>
 </div>
