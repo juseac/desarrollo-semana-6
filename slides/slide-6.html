@@ -183,15 +183,20 @@
 <div class="p-5 flex flex-col gap-3 flex-1">
 <p class="text-sm text-[#5c5b3f]">Pensando en términos de <strong class="text-[#181811]">procedimientos</strong>. Envías un comando para ejecutar.</p>
 <div class="bg-[#2d2c29] rounded-lg p-4 font-mono text-xs text-gray-300 shadow-inner flex-1">
-<div class="flex gap-2 mb-2">
+<div class="flex gap-2 mb-2 border-b border-gray-700 pb-2">
 <span class="text-purple-400 font-bold">POST</span>
-<span class="text-gray-300">/api/updateUser</span>
+<span class="text-gray-300">/rpc/execute</span>
 </div>
-<div class="pl-4 border-l-2 border-gray-600">
-<span class="text-gray-500">// Payload</span><br/>
+<div class="pl-0">
+<span class="text-gray-500">// JSON-RPC 2.0 Style</span><br/>
                                             {<br/>
-                                              <span class="text-blue-300">"id"</span>: <span class="text-orange-300">123</span>,<br/>
-                                              <span class="text-blue-300">"newName"</span>: <span class="text-green-300">"Alice"</span><br/>
+                                              <span class="text-blue-300">"jsonrpc"</span>: <span class="text-green-300">"2.0"</span>,<br/>
+                                              <span class="text-blue-300">"method"</span>: <span class="text-green-300">"updateUser"</span>,<br/>
+                                              <span class="text-blue-300">"params"</span>: {<br/>
+                                                <span class="text-blue-300">"id"</span>: <span class="text-orange-300">123</span>,<br/>
+                                                <span class="text-blue-300">"active"</span>: <span class="text-orange-300">true</span><br/>
+                                              },<br/>
+                                              <span class="text-blue-300">"id"</span>: <span class="text-orange-300">1</span><br/>
                                             }
                                         </div>
 </div>
@@ -210,16 +215,21 @@
 <div class="p-5 flex flex-col gap-3 flex-1">
 <p class="text-sm text-[#5c5b3f]">Pensando en términos de <strong class="text-[#181811]">recursos</strong>. Manipulas un objeto.</p>
 <div class="bg-[#2d2c29] rounded-lg p-4 font-mono text-xs text-gray-300 shadow-inner flex-1">
-<div class="flex gap-2 mb-2">
-<span class="text-orange-400 font-bold">PUT</span>
+<div class="flex gap-2 mb-2 border-b border-gray-700 pb-2">
+<span class="text-orange-400 font-bold">PATCH</span>
 <span class="text-gray-300">/api/users/123</span>
 </div>
-<div class="pl-4 border-l-2 border-gray-600">
-<span class="text-gray-500">// Payload</span><br/>
+<div class="pl-0">
+<span class="text-gray-500">// Modificación Parcial</span><br/>
                                             {<br/>
-                                              <span class="text-blue-300">"name"</span>: <span class="text-green-300">"Alice"</span><br/>
-                                            }
-                                        </div>
+                                              <span class="text-blue-300">"email"</span>: <span class="text-green-300">"alice@new.com"</span>,<br/>
+                                              <span class="text-blue-300">"prefs"</span>: {<br/>
+                                                <span class="text-blue-300">"theme"</span>: <span class="text-green-300">"dark"</span>,<br/>
+                                                <span class="text-blue-300">"notifs"</span>: <span class="text-orange-300">false</span><br/>
+                                              }<br/>
+                                            }<br/>
+<span class="text-gray-500 mt-1 block">// Status: 200 OK</span>
+</div>
 </div>
 </div>
 </div>
@@ -235,15 +245,20 @@
 <div class="p-5 flex flex-col gap-3 flex-1">
 <p class="text-sm text-[#5c5b3f]">Pensando en términos de <strong class="text-[#181811]">contratos</strong>. Envoltura estricta de protocolo.</p>
 <div class="bg-[#2d2c29] rounded-lg p-4 font-mono text-xs text-gray-300 shadow-inner flex-1">
-<div class="flex gap-2 mb-2">
+<div class="flex gap-2 mb-2 border-b border-gray-700 pb-2">
 <span class="text-purple-400 font-bold">POST</span>
-<span class="text-gray-300">/service</span>
+<span class="text-gray-300">/soap/service</span>
 </div>
-<div class="pl-4 border-l-2 border-gray-600">
-<span class="text-gray-500 text-[10px]">&lt;soap:Envelope&gt;</span><br/>
-                                              <span class="text-blue-300">&lt;id&gt;</span>123<span class="text-blue-300">&lt;/id&gt;</span><br/>
-                                              <span class="text-blue-300">&lt;name&gt;</span>Alice<span class="text-blue-300">&lt;/name&gt;</span><br/>
-<span class="text-gray-500 text-[10px]">&lt;/soap:Envelope&gt;</span>
+<div class="pl-0 overflow-x-auto">
+<span class="text-gray-500">&lt;!-- Estructura Verbosa --&gt;</span><br/>
+<span class="text-blue-300">&lt;soap:Envelope</span> <span class="text-orange-300">xmlns:soap</span>=...&gt;<br/>
+                                              <span class="text-blue-300">&lt;soap:Body&gt;</span><br/>
+                                                <span class="text-green-300">&lt;m:UpdateUser&gt;</span><br/>
+                                                  <span class="text-green-300">&lt;id&gt;</span>123<span class="text-green-300">&lt;/id&gt;</span><br/>
+                                                  <span class="text-green-300">&lt;email&gt;</span>alice@new.com<span class="text-green-300">&lt;/email&gt;</span><br/>
+                                                <span class="text-green-300">&lt;/m:UpdateUser&gt;</span><br/>
+                                              <span class="text-blue-300">&lt;/soap:Body&gt;</span><br/>
+<span class="text-blue-300">&lt;/soap:Envelope&gt;</span>
 </div>
 </div>
 </div>
@@ -260,20 +275,22 @@
 <div class="p-5 flex flex-col gap-3 flex-1">
 <p class="text-sm text-[#5c5b3f]">Pensando en términos de <strong class="text-[#181811]">grafos</strong>. Pides exactamente lo que necesitas.</p>
 <div class="bg-[#2d2c29] rounded-lg p-4 font-mono text-xs text-gray-300 shadow-inner flex-1">
-<div class="flex gap-2 mb-2">
+<div class="flex gap-2 mb-2 border-b border-gray-700 pb-2">
 <span class="text-purple-400 font-bold">POST</span>
 <span class="text-gray-300">/graphql</span>
 </div>
-<div class="pl-4 border-l-2 border-gray-600">
-<span class="text-gray-500">// Query: Obtener datos específicos</span><br>
-<span class="text-purple-300">query</span> {<br>
-&nbsp;&nbsp;user(<span class="text-blue-300">id</span>: <span class="text-orange-300">123</span>) {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;name<br>
-&nbsp;&nbsp;&nbsp;&nbsp;email<br>
-&nbsp;&nbsp;&nbsp;&nbsp;posts { title }<br>
-&nbsp;&nbsp;}<br>
-}
-</div>
+<div class="pl-0">
+<span class="text-gray-500">// Query Anidada</span><br/>
+<span class="text-purple-300">query</span> {<br/>
+                                              user(<span class="text-blue-300">id</span>: <span class="text-orange-300">123</span>) {<br/>
+                                                fullName<br/>
+                                                avatar(size: <span class="text-green-300">"LARGE"</span>)<br/>
+                                                friends(limit: <span class="text-orange-300">5</span>) {<br/>
+                                                  name<br/>
+                                                }<br/>
+                                              }<br/>
+                                            }
+                                        </div>
 </div>
 </div>
 </div>
@@ -290,8 +307,3 @@
 </div>
 </div>
 </body></html>
-
-
-
-
-
